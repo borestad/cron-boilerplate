@@ -4,4 +4,4 @@ dot := '.'
     @just --choose
 
 job1:
-    .github/scripts/pstats zx ./src/job1.mjs
+    # .github/scripts/pstats zx ./src/job1.mjs
