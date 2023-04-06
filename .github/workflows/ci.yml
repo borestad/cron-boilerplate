@@ -47,7 +47,7 @@ jobs:
           ___
 
           helpers create-directories
-          pstats curl -fsSL https://deno.land/x/install/install.sh | sh
+          curl -fsSL https://deno.land/x/install/install.sh | sh
           helpers optimize-ubuntu &
           helpers install-pnpm-binary &
           helpers install-static-binaries &
