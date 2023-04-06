@@ -1,8 +1,8 @@
 {
   "type": "module",
   "private": true,
-  "author": "Johan Borestad <johan@borestad.com> (http://borestad.com/)",
   "packageManager": "pnpm@8.1.1",
+  "author": "Johan Borestad <johan@borestad.com> (http://borestad.com/)",
   "engines": {
     "node": ">=16"
   },
@@ -13,9 +13,10 @@
     "eslint": "^8.37.0",
     "eslint-plugin-unicorn": "^44.0.2"
   },
-  "dependenciesBin": [
+  "preinstallBinaries": [
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64-upx/just",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge"
+    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge",
+    "https://github.com/denoland/deno/releases/download/v1.32.3/deno-x86_64-unknown-linux-gnu.zip"
   ],
   "pnpm": {
     "overrides": {

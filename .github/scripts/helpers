@@ -11,11 +11,13 @@ download() {
 
   if ! command -v "$software" &> /dev/null; then
     echo "𐄂 $software is not installed, downloading ..."
-    wget -O ~/.local/bin/$software -q -nv --content-disposition "$url"
-    chmod +x ~/.local/bin/$software 2> /dev/null || true
+    # wget -O ~/.local/bin/$software -q -nv --content-disposition "$url"
+    # chmod +x ~/.local/bin/$software 2> /dev/null || true
   else
-    printf "%-35s %s\n" "✔ $software is already installed. " "[ `command -v $software` ]"
+    printf "%-35s %s\n" "✔ $software is already preinstalled. " "[ `command -v $software` ] - installing anyway"
   fi
+
+  eget -q "$url" --to=~/.local/bin
 }
 
 install-static-binaries() {
@@ -25,7 +27,7 @@ install-static-binaries() {
     chmod +x $EGET_BIN/eget
   fi
 
-  for url in $(jq .dependenciesBin package.json | jq -r .[]); do
+  for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
     download $url &
   done
   wait
