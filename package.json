@@ -1,0 +1,28 @@
+{
+  "type": "module",
+  "private": true,
+  "author": "Johan Borestad <johan@borestad.com> (http://borestad.com/)",
+  "packageManager": "pnpm@8.1.1",
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "zx": "^7.2.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.29.4",
+    "@tsconfig/node-lts": "^18.12.1",
+    "eslint": "^8.37.0",
+    "eslint-plugin-unicorn": "^44.0.2"
+  },
+  "dependenciesBin": [
+    "https://raw.githubusercontent.com/borestad/static-binaries/main/just",
+    "https://raw.githubusercontent.com/borestad/static-binaries/main/sponge"
+  ],
+  "pnpm": {
+    "overrides": {
+      "web-streams-polyfill": "1.0.0"
+    }
+  },
+  "apt": []
+}
