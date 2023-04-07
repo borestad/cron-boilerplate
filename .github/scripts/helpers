@@ -17,8 +17,6 @@ download() {
 
     wget -O ~/.local/bin/$software -q -nv --content-disposition "$url"
     chmod +x ~/.local/bin/$software 2> /dev/null || true
-
-  # eget -q "$url"
 }
 
 preinstall-binaries() {
