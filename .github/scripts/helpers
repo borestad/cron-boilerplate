@@ -25,6 +25,7 @@ install-static-binaries() {
     echo "𐄂 eget not installed, downloading ..."
     curl -sS "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/eget" --output $EGET_BIN/eget
     chmod +x $EGET_BIN/eget
+    echo "✔ eget installed"
   fi
 
   for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
