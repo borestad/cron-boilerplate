@@ -46,9 +46,11 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
+          mkdir -p ~/.local/bin
           pstats .github/scripts/helpers preinstall-binaries
 
           macchina
+
           .github/scripts/helpers ___
 
           .github/scripts/helpers create-directories
