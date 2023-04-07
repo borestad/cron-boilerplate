@@ -16,7 +16,7 @@
   "preinstallBinaries": [
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64-upx/just",
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge",
-    "https://github.com/denoland/deno/releases/download/v1.32.3/deno-x86_64-unknown-linux-gnu.zip"
+    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/deno"
   ],
   "pnpm": {
     "overrides": {
