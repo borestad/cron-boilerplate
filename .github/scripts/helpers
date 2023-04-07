@@ -19,13 +19,6 @@ download() {
 }
 
 preinstall-binaries() {
-  # if ! command -v "eget" &> /dev/null; then
-  #   echo "𐄂 eget not installed, downloading ..."
-  #   curl -sS "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/eget" --output $EGET_BIN/eget
-  #   chmod +x $EGET_BIN/eget
-  #   echo "✔ eget installed"
-  # fi
-
   for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
     download $url &
   done
@@ -59,7 +52,7 @@ set-env-variables() {
   echo RUNNER_TEMPDIR=$RUNNER_TEMP/`date +%s%N`                           >> $GITHUB_ENV
   echo NODE_ENV="production"                                              >> $GITHUB_ENV
   echo EGET_BIN=$RUNNER_WORKSPACE/.actions-cache/bin                      >> $GITHUB_ENV
-  echo TERM=xterm                                                         >> $GITHUB_ENV
+  echo TERM=xterm-256color                                                >> $GITHUB_ENV
 
   echo './node_modules/.bin'                                              >> $GITHUB_PATH
   echo $HOME/.local/bin                                                   >> $GITHUB_PATH

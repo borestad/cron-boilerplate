@@ -31,6 +31,8 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Github ❯ actions/checkout@v3
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
 
       # ─────────────────────────────────────────────────────
       - name: Github ❯ denoland/setup-deno@v1
@@ -48,9 +50,6 @@ jobs:
         run: |
           mkdir -p ~/.local/bin
           pstats .github/scripts/helpers preinstall-binaries
-
-          TERM=xterm-mono macchina
-
           .github/scripts/helpers ___
 
           .github/scripts/helpers create-directories
@@ -72,10 +71,6 @@ jobs:
       #       ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-
 
       # ─────────────────────────────────────────────────────
-      # - name: Bootstrap ❯ Install dependencies
-      #   run: pstats .github/scripts/deps
-
-      # ─────────────────────────────────────────────────────
       - name: Just ❯ cron/default
         run: just job1
 
@@ -91,18 +86,18 @@ jobs:
           git push
 
       # # ─────────────────────────────────────────────────────
-      # - name: "Debug: Context Information"
-      #   id: github_context_step
-      #   if: github.ref == 'refs/heads/main'
-      #   run: |
-      #     helpers show-cache-folders
-      #     helpers show-cache-structure
-      #     mkdir -p $CONTEXT_DIR &> /dev/null
-      #     echo '${{ toJSON(github) }}'    >> $CONTEXT_DIR/github.json &
-      #     echo '${{ toJSON(job) }}'       >> $CONTEXT_DIR/job.json &
-      #     echo '${{ toJSON(steps) }}'     >> $CONTEXT_DIR/steps.json &
-      #     echo '${{ toJSON(runner) }}'    >> $CONTEXT_DIR/runner.json &
-      #     echo '${{ toJSON(strategy) }}'  >> $CONTEXT_DIR/strategy.json &
-      #     echo '${{ toJSON(matrix) }}'    >> $CONTEXT_DIR/matrix.json &
-      #     wait
-      #     pstats helpers 'dump-context'
+      - name: "Debug: Context Information"
+        id: github_context_step
+        if: github.ref == 'refs/heads/main'
+        run: |
+          helpers show-cache-folders
+          helpers show-cache-structure
+          mkdir -p $CONTEXT_DIR &> /dev/null
+          echo '${{ toJSON(github) }}'    >> $CONTEXT_DIR/github.json &
+          echo '${{ toJSON(job) }}'       >> $CONTEXT_DIR/job.json &
+          echo '${{ toJSON(steps) }}'     >> $CONTEXT_DIR/steps.json &
+          echo '${{ toJSON(runner) }}'    >> $CONTEXT_DIR/runner.json &
+          echo '${{ toJSON(strategy) }}'  >> $CONTEXT_DIR/strategy.json &
+          echo '${{ toJSON(matrix) }}'    >> $CONTEXT_DIR/matrix.json &
+          wait
+          pstats helpers 'dump-context'
