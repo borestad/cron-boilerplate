@@ -15,8 +15,7 @@
   },
   "preinstallBinaries": [
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64-upx/just",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/deno"
+    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge"
   ],
   "pnpm": {
     "overrides": {
