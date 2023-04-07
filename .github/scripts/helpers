@@ -17,7 +17,7 @@ download() {
     printf "%-35s %s\n" "✔ $software is already preinstalled. " "[ `command -v $software` ] - installing anyway"
   fi
 
-  eget "$url"
+  eget -q "$url"
 }
 
 install-static-binaries() {
