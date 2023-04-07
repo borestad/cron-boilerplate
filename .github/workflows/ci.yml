@@ -90,6 +90,7 @@ jobs:
         id: github_context_step
         if: github.ref == 'refs/heads/main'
         run: |
+          uptime
           helpers show-cache-folders
           helpers show-cache-structure
           mkdir -p $CONTEXT_DIR &> /dev/null
