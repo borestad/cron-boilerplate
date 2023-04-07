@@ -46,6 +46,8 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
+          pstats .github/scripts/helpers preinstall-binaries
+
           macchina
           .github/scripts/helpers ___
 
@@ -56,7 +58,6 @@ jobs:
           .github/scripts/helpers dump-env
           .github/scripts/helpers ___
 
-          pstats .github/scripts/helpers preinstall-binaries
           pstats .github/scripts/deps
 
       # ─────────────────────────────────────────────────────
