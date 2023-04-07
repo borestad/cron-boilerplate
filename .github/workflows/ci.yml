@@ -81,7 +81,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add . --verbose
-          stats=$(git diff --cached --shortstat | sed -E 's/ (insertions|deletions)//g')
+          stats=$(git diff --cached --shortstat | sed -E 's/ (insertion|insertions|deletion|deletions)//g'
           git commit -m "⚡️ CI: $stats [skip ci]" -a || true
           git push
 

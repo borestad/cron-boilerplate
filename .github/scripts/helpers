@@ -5,7 +5,7 @@ set -euo pipefail
 # Preinstall
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 download() {
-  local url=$1
+  local url="$1"
   local software=$(basename "$url")
 
   if ! command -v "$software" &> /dev/null; then
@@ -20,7 +20,7 @@ download() {
 
 preinstall-binaries() {
   for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
-    download $url &
+    download "$url" &
   done
   wait
 }
