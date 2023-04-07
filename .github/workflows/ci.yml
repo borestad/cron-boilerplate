@@ -49,7 +49,7 @@ jobs:
           mkdir -p ~/.local/bin
           pstats .github/scripts/helpers preinstall-binaries
 
-          macchina
+          TERM=xterm-mono macchina
 
           .github/scripts/helpers ___
 
