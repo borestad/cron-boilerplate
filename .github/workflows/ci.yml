@@ -38,22 +38,23 @@ jobs:
         with:
           deno-version: v1.x
 
-      # # ─────────────────────────────────────────────────────
-      # - name: Bootstrap ❯ Set env variables
-      #   run: |
-      #     .github/scripts/helpers set-env-variables
+      # ─────────────────────────────────────────────────────
+      - name: Bootstrap ❯ Set env variables
+        run: |
+          .github/scripts/helpers set-env-variables
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
-          .github/scripts/helpers set-env-variables
-          mkdir -p ~/.local/bin
-          .github/scripts/helpers show-system-information
-          .github/scripts/helpers dump-env
+          macchina
           .github/scripts/helpers ___
 
           .github/scripts/helpers create-directories
           .github/scripts/helpers optimize-ubuntu
+
+          .github/scripts/helpers show-system-information
+          .github/scripts/helpers dump-env
+          .github/scripts/helpers ___
 
           pstats .github/scripts/helpers preinstall-binaries
           pstats .github/scripts/deps
