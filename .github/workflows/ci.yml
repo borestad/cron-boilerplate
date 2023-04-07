@@ -46,17 +46,15 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
-          . .github/scripts/helpers
           mkdir -p ~/.local/bin
-          show-system-information
-          dump-env
-          ___
+          .github/scripts/helpers show-system-information
+          .github/scripts/helpers dump-env
+          .github/scripts/helpers ___
 
-          helpers create-directories
-          helpers optimize-ubuntu &
-          helpers preinstall-binaries &
-          wait
+          .github/scripts/helpers create-directories
+          .github/scripts/helpers optimize-ubuntu
 
+          pstats .github/scripts/helpers preinstall-binaries
           pstats .github/scripts/deps
 
       # ─────────────────────────────────────────────────────
