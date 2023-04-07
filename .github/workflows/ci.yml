@@ -54,7 +54,7 @@ jobs:
 
           helpers create-directories
           helpers optimize-ubuntu &
-          helpers install-static-binaries &
+          helpers preinstall-binaries &
           wait
 
           pstats .github/scripts/deps
