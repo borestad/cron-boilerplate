@@ -11,22 +11,23 @@ download() {
 
   if ! command -v "$software" &> /dev/null; then
     echo "𐄂 $software is not installed, downloading ..."
-    # wget -O ~/.local/bin/$software -q -nv --content-disposition "$url"
-    # chmod +x ~/.local/bin/$software 2> /dev/null || true
   else
     printf "%-35s %s\n" "✔ $software is already preinstalled. " "[ `command -v $software` ] - installing anyway"
   fi
 
-  eget -q "$url"
+    wget -O ~/.local/bin/$software -q -nv --content-disposition "$url"
+    chmod +x ~/.local/bin/$software 2> /dev/null || true
+
+  # eget -q "$url"
 }
 
 preinstall-binaries() {
-  if ! command -v "eget" &> /dev/null; then
-    echo "𐄂 eget not installed, downloading ..."
-    curl -sS "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/eget" --output $EGET_BIN/eget
-    chmod +x $EGET_BIN/eget
-    echo "✔ eget installed"
-  fi
+  # if ! command -v "eget" &> /dev/null; then
+  #   echo "𐄂 eget not installed, downloading ..."
+  #   curl -sS "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/eget" --output $EGET_BIN/eget
+  #   chmod +x $EGET_BIN/eget
+  #   echo "✔ eget installed"
+  # fi
 
   for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
     download $url &
