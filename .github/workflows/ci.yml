@@ -44,7 +44,7 @@ jobs:
           .github/scripts/helpers set-env-variables
 
       # ─────────────────────────────────────────────────────
-      - name: Bootstrap ❯ Prepare Environment
+      - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
           . .github/scripts/helpers
           mkdir -p ~/.local/bin
@@ -57,6 +57,8 @@ jobs:
           helpers install-static-binaries &
           wait
 
+          pstats .github/scripts/deps
+
       # ─────────────────────────────────────────────────────
       # - uses: actions/cache@v3
       #   name: Bootstrap ❯ Restore Cache
@@ -67,8 +69,8 @@ jobs:
       #       ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-
 
       # ─────────────────────────────────────────────────────
-      - name: Bootstrap ❯ Install dependencies
-        run: pstats .github/scripts/deps
+      # - name: Bootstrap ❯ Install dependencies
+      #   run: pstats .github/scripts/deps
 
       # ─────────────────────────────────────────────────────
       - name: Just ❯ cron/default
