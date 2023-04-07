@@ -52,9 +52,9 @@ jobs:
           dump-env
           ___
 
+          pnpm --version
           helpers create-directories
           helpers optimize-ubuntu &
-          helpers install-pnpm-binary &
           helpers install-static-binaries &
           wait
 

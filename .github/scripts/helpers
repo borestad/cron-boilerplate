@@ -20,7 +20,7 @@ download() {
   eget -q "$url"
 }
 
-install-static-binaries() {
+preinstall-binaries() {
   if ! command -v "eget" &> /dev/null; then
     echo "𐄂 eget not installed, downloading ..."
     curl -sS "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/eget" --output $EGET_BIN/eget
