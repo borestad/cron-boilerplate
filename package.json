@@ -6,7 +6,6 @@
   "engines": {
     "node": ">=16"
   },
-  "dependencies": {},
   "devDependencies": {
     "@antfu/eslint-config": "^0.29.4",
     "@tsconfig/node-lts": "^18.12.1",
@@ -23,5 +22,108 @@
       "web-streams-polyfill": "1.0.0"
     }
   },
-  "apt": []
+  "apt": [],
+  "eslintConfig": {
+    "extends": "@antfu",
+    "root": true,
+    "ignorePatterns": ["deno.jsonc"],
+    "parserOptions": {
+      "ecmaVersion": 2023,
+      "sourceType": "module",
+      "project": "tsconfig.json"
+    },
+    "plugins": [
+      "unicorn"
+    ],
+    "rules": {
+      "unicorn/template-indent": [
+        "warn",
+        {
+          "tags": [],
+          "functions": [],
+          "selectors": [
+            "TemplateLiteral"
+          ]
+        }
+      ]
+    },
+    "globals": {
+      "$": true,
+      "argv": true,
+      "cd": true,
+      "chalk": true,
+      "echo": true,
+      "fetch": true,
+      "fs": true,
+      "glob": true,
+      "globby": true,
+      "log": true,
+      "nothrow": true,
+      "os": true,
+      "path": true,
+      "ProcessOutput": true,
+      "ProcessPromise": true,
+      "question": true,
+      "quiet": true,
+      "quote": true,
+      "quotePowerShell": true,
+      "sleep": true,
+      "stdin": true,
+      "which": true,
+      "within": true,
+      "YAML": true,
+      "zx": true
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.ts",
+          "*.tsx",
+          "*.js",
+          "*.mjs"
+        ],
+        "rules": {
+          "no-console": "off",
+          "template-tag-spacing": [
+            "error",
+            "always"
+          ],
+          "@typescript-eslint/require-await": [
+            "error"
+          ],
+          "@typescript-eslint/no-floating-promises": [
+            "error"
+          ],
+          "@typescript-eslint/no-misused-promises": [
+            "error"
+          ],
+          "no-multiple-empty-lines": [
+            "error",
+            {
+              "max": 1,
+              "maxBOF": 0,
+              "maxEOF": 0
+            }
+          ]
+        }
+      },
+      {
+        "files": [
+          "settings.json",
+          "deno.jsonc"
+        ],
+        "rules": {
+          "jsonc/sort-keys": [
+            "error",
+            "asc",
+            {
+              "caseSensitive": true,
+              "natural": false,
+              "minKeys": 2
+            }
+          ]
+        }
+      }
+    ]
+  }
 }
