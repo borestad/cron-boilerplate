@@ -4,7 +4,7 @@
   "packageManager": "pnpm@8.1.1",
   "author": "Johan Borestad <johan@borestad.com> (http://borestad.com/)",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.29.4",

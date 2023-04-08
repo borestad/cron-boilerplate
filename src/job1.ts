@@ -1,5 +1,5 @@
 import $ from 'dax/mod.ts'
-import { red } from 'fmt/colors.ts'
+// import { red } from '/fmt/colors.ts'
 
 // run a command
 await $ `echo 5` // outputs: 5
