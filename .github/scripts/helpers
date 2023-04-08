@@ -44,15 +44,16 @@ optimize-ubuntu() {
 
 set-env-variables() {
   echo ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache                 >> $GITHUB_ENV
-  echo ACTIONS_CACHE_BIN_DIR=$RUNNER_WORKSPACE/.actions-cache/bin         >> $GITHUB_ENV
+  echo ACTIONS_CACHE_BIN_DIR=$ACTIONS_CACHE_DIR/bin                       >> $GITHUB_ENV
   echo CACHE_PREFIX=$(date +'%U')                                         >> $GITHUB_ENV
   echo CONTEXT_DIR=$RUNNER_WORKSPACE/.context                             >> $GITHUB_ENV
-  echo PNPM_HOME=$RUNNER_WORKSPACE/.actions-cache/pnpm                    >> $GITHUB_ENV
-  echo PNPM_STORE_DIR=$RUNNER_WORKSPACE/.actions-cache/pnpm/pnpm-store    >> $GITHUB_ENV
+  echo PNPM_HOME=$ACTIONS_CACHE_DIR/pnpm                                  >> $GITHUB_ENV
+  echo PNPM_STORE_DIR=$ACTIONS_CACHE_DIR/pnpm/pnpm-store                  >> $GITHUB_ENV
   echo RUNNER_TEMPDIR=$RUNNER_TEMP/`date +%s%N`                           >> $GITHUB_ENV
   echo NODE_ENV="production"                                              >> $GITHUB_ENV
-  echo EGET_BIN=$RUNNER_WORKSPACE/.actions-cache/bin                      >> $GITHUB_ENV
+  echo EGET_BIN=$ACTIONS_CACHE_DIR/bin                                    >> $GITHUB_ENV
   echo TERM=xterm-256color                                                >> $GITHUB_ENV
+  echo DENO_DIR=$ACTIONS_CACHE_DIR/.deno                                  >> $GITHUB_ENV
 
   echo './node_modules/.bin'                                              >> $GITHUB_PATH
   echo $HOME/.local/bin                                                   >> $GITHUB_PATH
