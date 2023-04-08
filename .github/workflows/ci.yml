@@ -71,8 +71,8 @@ jobs:
       #       ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-
 
       # ─────────────────────────────────────────────────────
-      - name: Just ❯ cron/default
-        run: just job1
+      - name: cron ❯ job1
+        run: deno task job1
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯ Commit to repository
