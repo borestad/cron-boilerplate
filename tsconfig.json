@@ -4,7 +4,7 @@
     "./**/*.ts", "./**/*.mjs"
   ],
   "exclude": [
-    "./fixtures/**/*.*"
+    "./fixtures/**/*.*", "deno.json"
   ],
   "compilerOptions": {
     "baseUrl": ".",
