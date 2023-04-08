@@ -43,6 +43,8 @@ optimize-ubuntu() {
 }
 
 set-env-variables() {
+  export ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache
+
   echo ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache                 >> $GITHUB_ENV
   echo ACTIONS_CACHE_BIN_DIR=$ACTIONS_CACHE_DIR/bin                       >> $GITHUB_ENV
   echo CACHE_PREFIX=$(date +'%U')                                         >> $GITHUB_ENV
