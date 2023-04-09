@@ -1,18 +1,17 @@
 import $ from 'dax/mod.ts'
-// import { red } from '/fmt/colors.ts'
+import { mapLimit } from 'promise-utils/map.ts'
 
 // run a command
-await $ `echo 5` // outputs: 5
+await $ `echo 5`
 await $ `echo ---------`
 
-// more complex example outputting 1 to stdout and 2 to stderr
-await $ `echo 1 && deno eval 'console.error(2);'`
+await $ `git rev-parse --show-toplevel`
 
-await $ `echo ---------`
-
-// parallel
-await Promise.all([
-  $ `sleep 0 ; echo 1`,
-  $ `sleep 0 ; echo 2`,
-  $ `sleep 0 ; echo 3`,
-])
+await mapLimit([
+  '1',
+  '2',
+  '3',
+  '4',
+], 2, async (x) => {
+  await $ `echo ${x}`
+})

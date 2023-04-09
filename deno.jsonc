@@ -2,7 +2,9 @@
   "imports": {
     "std/": "https://deno.land/std@0.182.0/",
     "dax/": "https://deno.land/x/dax@0.31.0/",
-    "fmt/": "https://deno.land/std@0.182.0/fmt/"
+    "fmt/": "https://deno.land/std@0.182.0/fmt/",
+    // "promise-utils/": "https://cdn.jsdelivr.net/npm/blend-promise-utils/dist/src/"
+    "promise-utils/": "https://cdn.jsdelivr.net/gh/blend/promise-utils/src/"
   },
   // testsson
   "tasks": {
