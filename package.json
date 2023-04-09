@@ -13,7 +13,6 @@
     "eslint-plugin-unicorn": "^44.0.2"
   },
   "preinstallBinaries": [
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/just",
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/gron",
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge"
   ],

@@ -23,6 +23,7 @@ Time: %es (CPU: %P  Mem: %MKb  IO: %I/%O  User/Kernel: %Us/%Ss)
 %C" "$@"
 
 code=$?
-# cat $FILE | GREP_COLORS='mt=01;31' ggrep -E --color=always -C 9999 '\d+|\d+\.|\d+s|\d+\%'
-cat $FILE | GREP_COLORS='mt=01;31' $grep -E --color=always -C 9999 '[0-9]+\.?s?%?'
+
+cat $FILE | GREP_COLORS='mt=01;31' $grep -E --color=always -C 9999 '[0-9]+\.?s?%?' | head -n 3
+tac $FILE | head -n 1
 exit $code
