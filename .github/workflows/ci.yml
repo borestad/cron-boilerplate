@@ -71,7 +71,7 @@ jobs:
             ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-
 
       # ─────────────────────────────────────────────────────
-      - name: cron ❯ job1
+      - name: Cron ❯ Job1
         run: deno task job1
 
       # ─────────────────────────────────────────────────────
