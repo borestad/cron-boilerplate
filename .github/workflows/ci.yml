@@ -62,13 +62,13 @@ jobs:
           pstats .github/scripts/deps
 
       # ─────────────────────────────────────────────────────
-      # - uses: actions/cache@v3
-      #   name: Bootstrap ❯ Restore Cache
-      #   with:
-      #     path: ${{ env.ACTIONS_CACHE_DIR }}
-      #     key:  ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-${{ hashFiles('**/deno.jsonc') }} }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-
+      - uses: actions/cache@v3
+        name: Bootstrap ❯ Restore Cache
+        with:
+          path: ${{ env.ACTIONS_CACHE_DIR }}
+          key:  ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-${{ hashFiles('**/deno.jsonc') }} }}
+          restore-keys: |
+            ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-
 
       # ─────────────────────────────────────────────────────
       - name: cron ❯ job1
