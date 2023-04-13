@@ -28,6 +28,11 @@ jobs:
     name: job ❯ build & run
     runs-on: ubuntu-22.04
     steps:
+      - name: Add mask
+        run: |
+          # echo "::add-mask::${{ secrets.SECRET_URL }}"
+          echo "::add-mask::deno"
+
       # ─────────────────────────────────────────────────────
       - name: Github ❯ actions/checkout@v3
         uses: actions/checkout@v3
