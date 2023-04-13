@@ -14,14 +14,9 @@
   },
   "preinstallBinaries": [
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/gron",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge"
+    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge",
+    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/ets"
   ],
-  "pnpm": {
-    "overrides": {
-      "web-streams-polyfill": "1.0.0"
-    }
-  },
-  "apt": [],
   "eslintConfig": {
     "extends": "@antfu",
     "root": true,
