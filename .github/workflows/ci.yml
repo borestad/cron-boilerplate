@@ -72,7 +72,7 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯ Job1
-        run: ets -s -f '%S.%Ls █ ' deno task job1
+        run: ets -s -f '%S.%Ls ┃ ' deno task job1
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯ Commit to repository
