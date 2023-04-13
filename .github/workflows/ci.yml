@@ -32,6 +32,13 @@ jobs:
         run: |
           # echo "::add-mask::${{ secrets.SECRET_URL }}"
           echo "::add-mask::deno"
+          echo "apa"
+          echo "deno"
+          echo "deno deno"
+          echo "deno1111"
+          echo "apadeno1111"
+          echo "deno http://www.google.se"
+          echo "http://www.deno.se"
 
       # ─────────────────────────────────────────────────────
       - name: Github ❯ actions/checkout@v3
