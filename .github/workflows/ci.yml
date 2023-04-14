@@ -28,18 +28,6 @@ jobs:
     name: job ❯ build & run
     runs-on: ubuntu-22.04
     steps:
-      - name: Add mask
-        run: |
-          # echo "::add-mask::${{ secrets.SECRET_URL }}"
-          echo "::add-mask::deno"
-          echo "apa"
-          echo "deno"
-          echo "deno deno"
-          echo "deno1111"
-          echo "apadeno1111"
-          echo "deno http://www.google.se"
-          echo "http://www.deno.se"
-
       # ─────────────────────────────────────────────────────
       - name: Github ❯ actions/checkout@v3
         uses: actions/checkout@v3
@@ -66,7 +54,6 @@ jobs:
 
           .github/scripts/helpers create-directories
           .github/scripts/helpers optimize-ubuntu
-
           .github/scripts/helpers show-system-information
           .github/scripts/helpers dump-env
           .github/scripts/helpers ___
@@ -78,7 +65,7 @@ jobs:
         name: Bootstrap ❯ Restore Cache
         with:
           path: ${{ env.ACTIONS_CACHE_DIR }}
-          key:  ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-${{ hashFiles('**/deno.jsonc') }}
+          key:  ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-${{ hashFiles('**/deno.jsonc')-${{ hashFiles('**/deno.lock') }}
           restore-keys: |
             ${{ runner.os }}-v1-pnpm-store-${{ env.CACHE_PREFIX }}-
 
