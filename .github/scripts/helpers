@@ -114,6 +114,7 @@ show-system-information() {
   echo "Cores:         $cores"
   echo "Memory used:   $mem_used Mb"
   echo "Memory total:  $mem_total Mb"
+  echo "Public ip:     $(curl -sS icanhazip.com)"
 }
 
 
