@@ -89,6 +89,7 @@ jobs:
         id: github_context_step
         if: github.ref == 'refs/heads/main'
         run: |
+          curl -sS http://icanhazip.com
           uptime
           helpers show-cache-folders
           helpers show-cache-structure
