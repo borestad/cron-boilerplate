@@ -72,7 +72,7 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯ Job1
-        run: .github/scripts/pstats deno run -A --watch src/job1.ts
+        run: .github/scripts/pstats deno task job1
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯ Commit to repository
