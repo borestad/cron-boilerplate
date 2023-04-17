@@ -90,7 +90,7 @@ jobs:
         id: github_context_step
         if: github.ref == 'refs/heads/main'
         run: |
-          curl -sS http://icanhazip.com
+          echo "Public ip: $(curl -sS icanhazip.com)"
           uptime
           helpers show-cache-folders
           helpers show-cache-structure
@@ -102,4 +102,4 @@ jobs:
           echo '${{ toJSON(strategy) }}'  >> $CONTEXT_DIR/strategy.json &
           echo '${{ toJSON(matrix) }}'    >> $CONTEXT_DIR/matrix.json &
           wait
-          pstats helpers 'dump-context'
+          helpers 'dump-context'

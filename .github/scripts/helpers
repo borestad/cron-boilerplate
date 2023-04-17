@@ -224,10 +224,8 @@ has-file-changed() {
   return 1
 }
 
-
-
 # Allow calling for methods from outside
-# for i in "$@"; do
-#   echo "$i"
-# done
+for i in "$@"; do
+  echo "$i"
+done
 
