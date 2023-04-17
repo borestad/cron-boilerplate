@@ -133,7 +133,7 @@ dump-env() {
 }
 
 dump-context() {
-  command -v gron || (mkdir -p ~/.local/bin &> /dev/null && cd "$_" && wget -q -nv "https://raw.githubusercontent.com/borestad/static-binaries/main/gron" && chmod +x gron)
+  command -v gron &> /dev/null || (mkdir -p ~/.local/bin &> /dev/null && cd "$_" && wget -q -nv "https://raw.githubusercontent.com/borestad/static-binaries/main/gron" && chmod +x gron)
 
   TOKEN="dump-context-$RANDOM-$RANDOM-token"
   echo "::group::Event ($(gron $GITHUB_EVENT_PATH | wc -l))"
