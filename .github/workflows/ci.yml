@@ -43,19 +43,21 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Set env variables
         run: |
-          .github/scripts/helpers set-env-variables
+          . .github/scripts/helpers
+          set-env-variables
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
           mkdir -p ~/.local/bin
-          .github/scripts/helpers preinstall-binaries
-          .github/scripts/helpers ___
+          . .github/scripts/helpers
+          preinstall-binaries
+          ___
 
-          .github/scripts/helpers create-directories
-          .github/scripts/helpers optimize-ubuntu
-          .github/scripts/helpers show-system-information
-          .github/scripts/helpers dump-env
+          create-directories
+          optimize-ubuntu
+          show-system-information
+          dump-env
 
           .github/scripts/deps
 

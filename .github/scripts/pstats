@@ -1,8 +1,12 @@
 #!/bin/bash
 
+. $(dirname $0)/helpers
+GITROOT=`git-root`
+
 # Inspired from this blog article : http://www.thegeekstuff.com/2013/10/time-command-format/
 
-BAR="[0m[7m [27m[0m"
+# BAR="[0m[7m [27m[0m"
+BAR=$(cat $GITROOT/bar.txt)
 
 if [ $# -eq 0 ]; then
   echo "Usage: $0 command <argv>..."
