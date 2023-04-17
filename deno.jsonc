@@ -9,7 +9,7 @@
   // testsson
   "tasks": {
     "dev": "deno run -A --watch src/job1.ts",
-    "job1": "deno run -A src/job1.ts"
+    "job1": "FORCE_COLOR=1 deno run -A src/job1.ts"
 
   }
 }
