@@ -22,7 +22,7 @@ await mapLimit([
 })
 
 // const space = ' '
-const bar = chalk?.inverse(' ')
+const bar = chalk?.reset?.inverse(' ')
 
 // process.stdout.write(bar)
 console.log(bar)
