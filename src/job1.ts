@@ -34,10 +34,12 @@ console.log(bar)
 
 const text1 = chalk.bgBlue('hello world')
 const text2 = chalk.bgWhite('hello world')
-const text3 = chalk.bgWhite(' ')
+const text3 = chalk.black.bgWhite('hello world')
+const text4 = chalk.bgWhite(' ')
 
 console.log(text1)
 console.log(text2)
 console.log(text3)
+console.log(text4)
 
 // process.stdout.write(bar)
