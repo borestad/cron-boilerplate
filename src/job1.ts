@@ -3,7 +3,7 @@ import $ from 'dax/mod.ts'
 import { mapLimit } from 'promise-utils/map.ts'
 import chalk from 'npm:chalk'
 
-// process.env.FORCE_COLOR = 'true';
+process.env.FORCE_COLOR = 'true'
 
 // run a command
 await $ `echo 5`
@@ -28,4 +28,5 @@ await mapLimit(
 )
 
 const bar = chalk.reset.inverse(' ')
-process.stdout.write(bar)
+console.log(bar)
+// process.stdout.write(bar)
