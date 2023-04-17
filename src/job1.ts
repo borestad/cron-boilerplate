@@ -16,17 +16,14 @@ const foo = await $ `git rev-parse --show-toplevel`.text()
 console.log(foo)
 
 await $ `echo ---------`
-await mapLimit(
-  [
-    '1',
-    '2',
-    '3',
-    '4',
-  ],
-  2,
-  async (x) => {
-    await $ `echo ${x}`
-  },
+await mapLimit([
+  '1',
+  '2',
+  '3',
+  '4',
+], 2, async (x) => {
+  await $ `echo ${x}`
+},
 )
 
 const bar = chalk.reset.inverse(' ')

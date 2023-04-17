@@ -50,14 +50,13 @@ jobs:
       - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
           mkdir -p ~/.local/bin
-          . .github/scripts/helpers
-          preinstall-binaries
+          .github/scripts/helpers preinstall-binaries
           ___
 
-          create-directories
-          optimize-ubuntu
-          show-system-information
-          dump-env
+          .github/scripts/helpers create-directories
+          .github/scripts/helpers optimize-ubuntu
+          .github/scripts/helpers show-system-information
+          .github/scripts/helpers dump-env
 
           .github/scripts/deps
 
@@ -92,8 +91,8 @@ jobs:
         run: |
           echo "Public ip: $(curl -sS icanhazip.com)"
           uptime
-          helpers show-cache-folders
-          helpers show-cache-structure
+          .github/scripts/helpers show-cache-folders
+          .github/scripts/helpers show-cache-structure
           mkdir -p $CONTEXT_DIR &> /dev/null
           echo '${{ toJSON(github) }}'    >> $CONTEXT_DIR/github.json &
           echo '${{ toJSON(job) }}'       >> $CONTEXT_DIR/job.json &
@@ -102,4 +101,4 @@ jobs:
           echo '${{ toJSON(strategy) }}'  >> $CONTEXT_DIR/strategy.json &
           echo '${{ toJSON(matrix) }}'    >> $CONTEXT_DIR/matrix.json &
           wait
-          helpers 'dump-context'
+          .github/scripts/helpers dump-context
