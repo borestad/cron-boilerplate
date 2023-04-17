@@ -72,7 +72,7 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯ Job1
-        run: FORCE_COLOR=1 deno task job1
+        run: FORCE_COLOR=2 deno task job1
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯ Commit to repository
