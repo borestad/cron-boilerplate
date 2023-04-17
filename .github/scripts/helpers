@@ -226,6 +226,6 @@ has-file-changed() {
 
 # Allow calling for methods from outside
 for i in "$@"; do
-  echo "$i"
+  "$i"
 done
 
