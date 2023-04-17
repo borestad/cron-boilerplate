@@ -58,7 +58,7 @@ jobs:
           .github/scripts/helpers dump-env
           .github/scripts/helpers ___
 
-          # pstats .github/scripts/deps
+          pstats .github/scripts/deps
 
       # ─────────────────────────────────────────────────────
       - uses: actions/cache@v3
