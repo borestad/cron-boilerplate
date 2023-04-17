@@ -49,7 +49,7 @@ jobs:
       - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
           mkdir -p ~/.local/bin
-          pstats .github/scripts/helpers preinstall-binaries
+          .github/scripts/helpers preinstall-binaries
           .github/scripts/helpers ___
 
           .github/scripts/helpers create-directories
@@ -71,7 +71,7 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯ Job1
-        run: ets -s -f '%S.%Ls ┃ ' deno task job1
+        run: deno task job1
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯ Commit to repository
