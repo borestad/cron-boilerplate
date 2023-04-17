@@ -5,8 +5,11 @@ import { mapLimit } from 'promise-utils/map.ts'
 await $ `echo 5`
 await $ `echo ---------`
 
-await $ `git rev-parse --show-toplevel`
+const foo = await $ `git rev-parse --show-toplevel`.text()
 
+console.log(foo)
+
+await $ `echo ---------`
 await mapLimit([
   '1',
   '2',

@@ -1,8 +1,5 @@
 lockfileVersion: '6.0'
 
-overrides:
-  web-streams-polyfill: 1.0.0
-
 devDependencies:
   '@antfu/eslint-config':
     specifier: ^0.29.4
