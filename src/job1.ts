@@ -1,4 +1,5 @@
 /// <reference types="npm:@types/node" />
+
 import process from 'node:process'
 import $ from 'dax/mod.ts'
 import { mapLimit } from 'promise-utils/map.ts'
@@ -30,4 +31,7 @@ await mapLimit(
 
 const bar = chalk.reset.inverse(' ')
 console.log(bar)
+
+const text1 = chalk.bgBlue('hello world')
+console.log(text1)
 // process.stdout.write(bar)
