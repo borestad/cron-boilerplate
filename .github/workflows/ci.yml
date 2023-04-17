@@ -43,8 +43,7 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Set env variables
         run: |
-          . .github/scripts/helpers
-          set-env-variables
+          .github/scripts/helpers set-env-variables
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Preinstall & Prepare Environment
