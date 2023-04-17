@@ -9,6 +9,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.29.4",
     "@tsconfig/node-lts": "^18.12.1",
+    "@types/node": "^18.15.11",
     "eslint": "^8.37.0",
     "eslint-plugin-unicorn": "^44.0.2"
   },
@@ -20,7 +21,9 @@
   "eslintConfig": {
     "extends": "@antfu",
     "root": true,
-    "ignorePatterns": ["deno.json*"],
+    "ignorePatterns": [
+      "deno.json*"
+    ],
     "parserOptions": {
       "ecmaVersion": 2023,
       "sourceType": "module",
