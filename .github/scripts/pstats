@@ -2,7 +2,8 @@
 
 # Inspired from this blog article : http://www.thegeekstuff.com/2013/10/time-command-format/
 
-BAR='┃'
+# BAR='┃'
+BAR="[37m[47m_[49m[39m"
 
 if [ $# -eq 0 ]; then
   echo "Usage: $0 command <argv>..."
