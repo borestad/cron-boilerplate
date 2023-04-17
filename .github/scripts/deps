@@ -17,19 +17,21 @@ timestamp
 # =============================================================================
 # Install node_modules
 # =============================================================================
-# ✨ "pnpm install"
+if cat package.json | jq -e .dependencies; then
+  ✨ "pnpm install"
 
-# cd $GITROOT
-# # Applying dirty fix for *not* including @types/* in the production ci
-# cp pnpm-lock.yaml $RUNNER_TEMPDIR/
-# grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
+  cd $GITROOT
+  # Applying dirty fix for *not* including @types/* in the production ci
+  cp pnpm-lock.yaml $RUNNER_TEMPDIR/
+  grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
 
-# pnpm install \
-#   --frozen-lockfile \
-#   --production \
-#   --prefer-offline \
-#   --no-verify-store-integrity
+  pnpm install \
+    --frozen-lockfile \
+    --production \
+    --prefer-offline \
+    --no-verify-store-integrity
 
-# mv $RUNNER_TEMPDIR/pnpm-lock.yaml .
-# timestamp
+  mv $RUNNER_TEMPDIR/pnpm-lock.yaml .
+  timestamp
 
+fi

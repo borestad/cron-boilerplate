@@ -26,10 +26,12 @@ preinstall-binaries() {
 }
 
 install-pnpm-binary() {
-  local version=$(jq -r .packageManager package.json | sed 's/pnpm@//')
-  /usr/bin/time -f "%es | %C" wget -nv -qO- "https://registry.npmjs.org/pnpm/-/pnpm-$version.tgz" | tar -xzpf- -C $RUNNER_TEMP
-  ln -sf $(readlink -f $RUNNER_TEMP/package/bin/pnpm.cjs) ~/.local/bin/pnpm
-  echo "store-dir=$PNPM_STORE_DIR" >>~/.npmrc
+  if cat package.json | jq -e .dependencies; then
+    local version=$(jq -r .packageManager package.json | sed 's/pnpm@//')
+    /usr/bin/time -f "%es | %C" wget -nv -qO- "https://registry.npmjs.org/pnpm/-/pnpm-$version.tgz" | tar -xzpf- -C $RUNNER_TEMP
+    ln -sf $(readlink -f $RUNNER_TEMP/package/bin/pnpm.cjs) ~/.local/bin/pnpm
+    echo "store-dir=$PNPM_STORE_DIR" >>~/.npmrc
+  fi
 }
 
 create-directories() {
