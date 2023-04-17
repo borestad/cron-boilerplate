@@ -1,7 +1,8 @@
+/// <reference types="npm:@types/node" />
 import process from 'node:process'
 import $ from 'dax/mod.ts'
 import { mapLimit } from 'promise-utils/map.ts'
-import * as chalk from 'chalk'
+import chalk from 'npm:chalk@5'
 
 process.env.FORCE_COLOR = 'true'
 
