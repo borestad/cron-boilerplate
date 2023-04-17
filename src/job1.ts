@@ -35,7 +35,7 @@ console.log(bar)
 const text1 = chalk.bgBlue('hello world')
 const text2 = chalk.bgWhite('hello world')
 const text3 = chalk.black.bgWhite('hello world')
-const text4 = chalk.bgWhite(' ')
+const text4 = chalk.white.bgWhite('_')
 
 console.log(text1)
 console.log(text2)
