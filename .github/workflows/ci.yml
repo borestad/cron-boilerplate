@@ -56,7 +56,6 @@ jobs:
           .github/scripts/helpers optimize-ubuntu
           .github/scripts/helpers show-system-information
           .github/scripts/helpers dump-env
-          .github/scripts/helpers ___
 
           .github/scripts/deps
 
