@@ -1,6 +1,15 @@
 {
   "deno.enable": true,
   "deno.importMap": "./deno.jsonc",
+  "deno.suggest.autoImports": true,
+  "deno.suggest.completeFunctionCalls": true,
+  "deno.suggest.imports.autoDiscover": true,
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": true
+  },
+  "deno.suggest.names": true,
+  "deno.suggest.paths": true,
+  "deno.unstable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
