@@ -14,6 +14,7 @@
   },
   "tasks": {
     "dev": "deno run -A --watch src/job1.ts",
-    "job1": "deno run -A src/job1.ts"
+    "job1": "deno run -A src/job1.ts",
+    "update:lockfile": "deno cache --import-map=deno.jsonc --unstable --lock=deno.lock --lock-write src/job1.ts"
   }
 }

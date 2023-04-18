@@ -34,15 +34,6 @@
     "https://deno.land/std@0.182.0/streams/reader_from_stream_reader.ts": "fa4971e5615a010e49492c5d1688ca1a4d17472a41e98b498ab89a64ebd7ac73",
     "https://deno.land/std@0.182.0/streams/write_all.ts": "aec90152978581ea62d56bb53a5cbf487e6a89c902f87c5969681ffbdf32b998",
     "https://deno.land/std@0.182.0/types.d.ts": "dbaeb2c4d7c526db9828fc8df89d8aecf53b9ced72e0c4568f97ddd8cda616a4",
-    "https://deno.land/std@0.69.0/fmt/colors.ts": "ce9375edade12ca09c257743f223fc469d72578d0c74a55cbf1a34f6198ce3df",
-    "https://deno.land/std@0.94.0/node/tty.ts": "9fa7f7b461759774b4eeab00334ac5d25b69bf0de003c02814be01e65150da79",
-    "https://deno.land/x/chalk_deno@v4.1.1-deno/source/ansi-styles/index.js": "7cc96ab93d1c9cfc0746e9dffb40be872e42ee242906f48e68df0d2c9669f737",
-    "https://deno.land/x/chalk_deno@v4.1.1-deno/source/has-flag/index.js": "aed21e4eba656057e7b8c6024305f5354d2ebee2adc857a1d8cd5207923de7e5",
-    "https://deno.land/x/chalk_deno@v4.1.1-deno/source/index.js": "6339123f32f7eb4b17c5c9c926ecdf3dbc353fd4fda7811ad2d3c1d4b98a7420",
-    "https://deno.land/x/chalk_deno@v4.1.1-deno/source/supports-color/index.js": "4d7f2d216b6ac9013d9ec7e004de21f5a7d00bf2be4075bab2d82638d0d41a86",
-    "https://deno.land/x/chalk_deno@v4.1.1-deno/source/templates.js": "f2e12be18cb84710e341e5499528280278052909fa74a12cefc9e2cc26a597ac",
-    "https://deno.land/x/chalk_deno@v4.1.1-deno/source/util.js": "cd08297ec411dcee91826ad01a00d3427235d4548ba605a59e64f0da83af8306",
-    "https://deno.land/x/cli_badges@v0.1.1/mod.ts": "e87f6e8ecba800f518152aec665b1dd8fedb65b62602bb914e18f7f27a5a9183",
     "https://deno.land/x/dax@0.31.0/mod.ts": "321cedcadf8ba261aef0083d0e50edcc76486822e0f62b64ec364e92ef246e42",
     "https://deno.land/x/dax@0.31.0/src/command.ts": "f30e4fd31bf76cfee6038da109b00a83f479f8e564223434e2275aed38ab2006",
     "https://deno.land/x/dax@0.31.0/src/command_handler.ts": "d32dafb16ec21d673aef9eb1dfde435ab5b139a2d0f0de5c6afa6c849121b3bd",
@@ -85,7 +76,6 @@
   "npm": {
     "specifiers": {
       "@types/node": "@types/node@18.11.18",
-      "chalk": "chalk@5.2.0",
       "chalk@5": "chalk@5.2.0"
     },
     "packages": {
