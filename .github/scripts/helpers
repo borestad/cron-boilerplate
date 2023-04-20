@@ -48,7 +48,6 @@ set-env-variables() {
   # Action Cache
   export ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache
   echo ACTIONS_CACHE_DIR=$ACTIONS_CACHE_DIR                    >> $GITHUB_ENV
-  echo TTL_CACHE_DIR=$TTL_CACHE_DIR                            >> $GITHUB_ENV
   echo ACTIONS_CACHE_BIN_DIR=$ACTIONS_CACHE_DIR/bin            >> $GITHUB_ENV
   echo PNPM_STORE_DIR=$ACTIONS_CACHE_DIR/pnpm/pnpm-store       >> $GITHUB_ENV
   echo EGET_BIN=$ACTIONS_CACHE_DIR/bin                         >> $GITHUB_ENV
@@ -57,10 +56,11 @@ set-env-variables() {
 
   # TTL Cache (Cache that will automatically be invalidated)
   export TTL_CACHE_DIR=$RUNNER_WORKSPACE/.ttl-cache
+  echo TTL_CACHE_DIR=$TTL_CACHE_DIR                            >> $GITHUB_ENV
   echo BKT_TMPDIR=$TTL_CACHE_DIR/bkt                           >> $GITHUB_ENV
 
   # Other dirs
-  echo DEBUG_DIR=$RUNNER_WORKSPACE/.debug                  >> $GITHUB_ENV
+  echo DEBUG_DIR=$RUNNER_WORKSPACE/.debug                      >> $GITHUB_ENV
   echo RUNNER_TEMPDIR=$RUNNER_TEMP/`date +%s%N`                >> $GITHUB_ENV
 
   # Other env
