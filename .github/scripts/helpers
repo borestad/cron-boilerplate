@@ -59,7 +59,7 @@ set-env-variables() {
   echo TERM=xterm-256color                                                >> $GITHUB_ENV
   echo DENO_DIR=$ACTIONS_CACHE_DIR/.deno                                  >> $GITHUB_ENV
   echo FORCE_COLOR=1                                                      >> $GITHUB_ENV
-  echo $BKT_TMPDIR=$ACTIONS_CACHE_DIR/bkt                                 >> $GITHUB_ENV
+  echo BKT_TMPDIR=$ACTIONS_CACHE_DIR/bkt                                 >> $GITHUB_ENV
 
   echo './node_modules/.bin'                                              >> $GITHUB_PATH
   echo $HOME/.local/bin                                                   >> $GITHUB_PATH
