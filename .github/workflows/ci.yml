@@ -72,7 +72,7 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Cron ❯ Job1
         run: |
-          bkt -- sleep 10
+          bkt --ttl=120s -- sleep 10
           .github/scripts/pstats deno task job1
 
       # ─────────────────────────────────────────────────────
