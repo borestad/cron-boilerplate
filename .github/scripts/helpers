@@ -48,6 +48,7 @@ set-env-variables() {
   export ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache
 
   echo ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache                 >> $GITHUB_ENV
+  echo TTL_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache                 >> $GITHUB_ENV
   echo ACTIONS_CACHE_BIN_DIR=$ACTIONS_CACHE_DIR/bin                       >> $GITHUB_ENV
   echo CACHE_PREFIX=$(date +'%U')                                         >> $GITHUB_ENV
   echo CONTEXT_DIR=$RUNNER_WORKSPACE/.context                             >> $GITHUB_ENV
@@ -59,7 +60,7 @@ set-env-variables() {
   echo TERM=xterm-256color                                                >> $GITHUB_ENV
   echo DENO_DIR=$ACTIONS_CACHE_DIR/.deno                                  >> $GITHUB_ENV
   echo FORCE_COLOR=1                                                      >> $GITHUB_ENV
-  echo BKT_TMPDIR=$ACTIONS_CACHE_DIR/bkt                                 >> $GITHUB_ENV
+  echo BKT_TMPDIR=$TTL_CACHE_DIR/bkt                                 >> $GITHUB_ENV
 
   echo './node_modules/.bin'                                              >> $GITHUB_PATH
   echo $HOME/.local/bin                                                   >> $GITHUB_PATH
