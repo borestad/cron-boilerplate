@@ -3,7 +3,8 @@
   "typescript": {
     "deno": true,
     "quoteStyle": "preferSingle",
-    "binaryExpression.operatorPosition": "sameLine"
+    "binaryExpression.operatorPosition": "sameLine",
+    "semiColons": "asi"
   },
   "json": {
     "deno": true,

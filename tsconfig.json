@@ -1,10 +1,12 @@
 {
   "extends": "@tsconfig/node-lts/tsconfig.json",
   "include": [
-    "./**/*.ts", "./**/*.mjs"
+    "./**/*.ts",
+    "./**/*.mjs"
   ],
   "exclude": [
-    "./fixtures/**/*.*", "deno.json"
+    "./fixtures/**/*.*",
+    "deno.json"
   ],
   "compilerOptions": {
     "baseUrl": ".",
