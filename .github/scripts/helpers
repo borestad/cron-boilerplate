@@ -45,28 +45,36 @@ optimize-ubuntu() {
 }
 
 set-env-variables() {
+  # Action Cache
   export ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache
+  echo ACTIONS_CACHE_DIR=$ACTIONS_CACHE_DIR                    >> $GITHUB_ENV
+  echo TTL_CACHE_DIR=$TTL_CACHE_DIR                            >> $GITHUB_ENV
+  echo ACTIONS_CACHE_BIN_DIR=$ACTIONS_CACHE_DIR/bin            >> $GITHUB_ENV
+  echo PNPM_STORE_DIR=$ACTIONS_CACHE_DIR/pnpm/pnpm-store       >> $GITHUB_ENV
+  echo EGET_BIN=$ACTIONS_CACHE_DIR/bin                         >> $GITHUB_ENV
+  echo DENO_DIR=$ACTIONS_CACHE_DIR/.deno                       >> $GITHUB_ENV
+  echo PNPM_HOME=$ACTIONS_CACHE_DIR/pnpm                       >> $GITHUB_ENV
 
-  echo ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache                 >> $GITHUB_ENV
-  echo TTL_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache                 >> $GITHUB_ENV
-  echo ACTIONS_CACHE_BIN_DIR=$ACTIONS_CACHE_DIR/bin                       >> $GITHUB_ENV
-  echo CACHE_PREFIX=$(date +'%U')                                         >> $GITHUB_ENV
-  echo CONTEXT_DIR=$RUNNER_WORKSPACE/.context                             >> $GITHUB_ENV
-  echo PNPM_HOME=$ACTIONS_CACHE_DIR/pnpm                                  >> $GITHUB_ENV
-  echo PNPM_STORE_DIR=$ACTIONS_CACHE_DIR/pnpm/pnpm-store                  >> $GITHUB_ENV
-  echo RUNNER_TEMPDIR=$RUNNER_TEMP/`date +%s%N`                           >> $GITHUB_ENV
-  echo NODE_ENV="production"                                              >> $GITHUB_ENV
-  echo EGET_BIN=$ACTIONS_CACHE_DIR/bin                                    >> $GITHUB_ENV
-  echo TERM=xterm-256color                                                >> $GITHUB_ENV
-  echo DENO_DIR=$ACTIONS_CACHE_DIR/.deno                                  >> $GITHUB_ENV
-  echo FORCE_COLOR=1                                                      >> $GITHUB_ENV
-  echo BKT_TMPDIR=$TTL_CACHE_DIR/bkt                                 >> $GITHUB_ENV
+  # TTL Cache (Cache that will automatically be invalidated)
+  export TTL_CACHE_DIR=$RUNNER_WORKSPACE/.ttl-cache
+  echo BKT_TMPDIR=$TTL_CACHE_DIR/bkt                           >> $GITHUB_ENV
 
-  echo './node_modules/.bin'                                              >> $GITHUB_PATH
-  echo $HOME/.local/bin                                                   >> $GITHUB_PATH
-  echo $RUNNER_WORKSPACE/.actions-cache/pnpm                              >> $GITHUB_PATH
-  echo $RUNNER_WORKSPACE/.actions-cache/bin                               >> $GITHUB_PATH
-  echo $GITHUB_WORKSPACE/.github/scripts                                  >> $GITHUB_PATH
+  # Other dirs
+  echo DEBUG_DIR=$RUNNER_WORKSPACE/.debug                  >> $GITHUB_ENV
+  echo RUNNER_TEMPDIR=$RUNNER_TEMP/`date +%s%N`                >> $GITHUB_ENV
+
+  # Other env
+  echo CACHE_PREFIX=$(date +'%U')                              >> $GITHUB_ENV
+  echo NODE_ENV="production"                                   >> $GITHUB_ENV
+  echo TERM=xterm-256color                                     >> $GITHUB_ENV
+  echo FORCE_COLOR=1                                           >> $GITHUB_ENV
+
+
+  echo './node_modules/.bin'                                   >> $GITHUB_PATH
+  echo $HOME/.local/bin                                        >> $GITHUB_PATH
+  echo $RUNNER_WORKSPACE/.actions-cache/pnpm                   >> $GITHUB_PATH
+  echo $RUNNER_WORKSPACE/.actions-cache/bin                    >> $GITHUB_PATH
+  echo $GITHUB_WORKSPACE/.github/scripts                       >> $GITHUB_PATH
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -145,44 +153,44 @@ dump-context() {
   echo "::endgroup::"
 
   TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Github Context ($(gron $CONTEXT_DIR/github.json | wc -l))"
+  echo "::group::Github Context ($(gron $DEBUG_DIR/github.json | wc -l))"
   echo "::stop-commands::$TOKEN"
-  gron -c $CONTEXT_DIR/github.json || true
+  gron -c $DEBUG_DIR/github.json || true
   echo "::$TOKEN::"
   echo "::endgroup::"
 
   TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Job Context ($(gron $CONTEXT_DIR/job.json | wc -l))"
+  echo "::group::Job Context ($(gron $DEBUG_DIR/job.json | wc -l))"
   echo "::stop-commands::$TOKEN"
-  gron -c $CONTEXT_DIR/job.json || true
+  gron -c $DEBUG_DIR/job.json || true
   echo "::$TOKEN::"
   echo "::endgroup::"
 
   TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Steps Context ($(gron $CONTEXT_DIR/steps.json | wc -l))"
+  echo "::group::Steps Context ($(gron $DEBUG_DIR/steps.json | wc -l))"
   echo "::stop-commands::$TOKEN"
-  gron -c $CONTEXT_DIR/steps.json || true
+  gron -c $DEBUG_DIR/steps.json || true
   echo "::$TOKEN::"
   echo "::endgroup::"
 
   TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Runner Context ($(gron $CONTEXT_DIR/runner.json | wc -l))"
+  echo "::group::Runner Context ($(gron $DEBUG_DIR/runner.json | wc -l))"
   echo "::stop-commands::$TOKEN"
-  gron -c $CONTEXT_DIR/runner.json || true
+  gron -c $DEBUG_DIR/runner.json || true
   echo "::$TOKEN::"
   echo "::endgroup::"
 
   TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Strategy Context ($(gron $CONTEXT_DIR/strategy.json | wc -l))"
+  echo "::group::Strategy Context ($(gron $DEBUG_DIR/strategy.json | wc -l))"
   echo "::stop-commands::$TOKEN"
-  gron -c $CONTEXT_DIR/strategy.json || true
+  gron -c $DEBUG_DIR/strategy.json || true
   echo "::$TOKEN::"
   echo "::endgroup::"
 
   TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Matrix Context ($(gron $CONTEXT_DIR/matrix.json | wc -l))"
+  echo "::group::Matrix Context ($(gron $DEBUG_DIR/matrix.json | wc -l))"
   echo "::stop-commands::$TOKEN"
-  gron -c $CONTEXT_DIR/matrix.json || true
+  gron -c $DEBUG_DIR/matrix.json || true
   echo "::$TOKEN::"
   echo "::endgroup::"
 }

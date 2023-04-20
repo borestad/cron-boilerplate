@@ -102,15 +102,15 @@ jobs:
           uptime
           .github/scripts/helpers show-cache-folders
           .github/scripts/helpers show-cache-structure
-          mkdir -p $CONTEXT_DIR &> /dev/null
+          mkdir -p $DEBUG_DIR &> /dev/null
           .github/scripts/helpers ___
 
-          echo '${{ toJSON(github) }}'    >> $CONTEXT_DIR/github.json &
-          echo '${{ toJSON(job) }}'       >> $CONTEXT_DIR/job.json &
-          echo '${{ toJSON(steps) }}'     >> $CONTEXT_DIR/steps.json &
-          echo '${{ toJSON(runner) }}'    >> $CONTEXT_DIR/runner.json &
-          echo '${{ toJSON(strategy) }}'  >> $CONTEXT_DIR/strategy.json &
-          echo '${{ toJSON(matrix) }}'    >> $CONTEXT_DIR/matrix.json &
+          echo '${{ toJSON(github) }}'    >> $DEBUG_DIR/github.json &
+          echo '${{ toJSON(job) }}'       >> $DEBUG_DIR/job.json &
+          echo '${{ toJSON(steps) }}'     >> $DEBUG_DIR/steps.json &
+          echo '${{ toJSON(runner) }}'    >> $DEBUG_DIR/runner.json &
+          echo '${{ toJSON(strategy) }}'  >> $DEBUG_DIR/strategy.json &
+          echo '${{ toJSON(matrix) }}'    >> $DEBUG_DIR/matrix.json &
           wait
 
           .github/scripts/helpers dump-context
