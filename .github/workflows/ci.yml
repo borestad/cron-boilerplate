@@ -71,7 +71,9 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯ Job1
-        run: .github/scripts/pstats deno task job1
+        run: |
+          bkt -- sleep 10
+          .github/scripts/pstats deno task job1
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯ Commit to repository
