@@ -30,5 +30,3 @@ console.log(bar)
 
 console.log(chalk.bgBlue.red('hello world'))
 console.log(colors.red(colors.bgBlue('hello world')))
-
-// process.stdout.write(bar)
