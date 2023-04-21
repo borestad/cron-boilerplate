@@ -79,8 +79,12 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Cron ❯ Job1
         run: |
-          echo 'test5'
+          echo
+          echo "start $(date +%H:%M:%S)"
           bkt --ttl=60s -- sleep 3
+          echo "stop $(date +%H:%M:%S)
+          echo
+
           .github/scripts/pstats deno task job1
 
       # ─────────────────────────────────────────────────────
