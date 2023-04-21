@@ -91,7 +91,7 @@ jobs:
         run: |
           echo
           echo "start $(date +%H:%M:%S)"
-          bkt --ttl=60s -- sleep 3
+          bkt --ttl=120s -- sleep 3
           echo "stop $(date +%H:%M:%S)"
           echo
 
