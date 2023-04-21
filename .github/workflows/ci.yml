@@ -80,7 +80,7 @@ jobs:
       - name: Cron ❯ Job1
         run: |
           echo 'test5'
-          bkt --ttl=120s -- sleep 10
+          bkt --ttl=60s -- sleep 3
           .github/scripts/pstats deno task job1
 
       # ─────────────────────────────────────────────────────
