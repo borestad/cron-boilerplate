@@ -81,7 +81,7 @@ jobs:
         if: always()
         with:
           path: ${{ env.TTL_CACHE_DIR }}
-          key:  ${{ runner.os }}-ttl-cache-${{ github.sha }}-${{ hashFiles('**/deno.lock') }}
+          key:  ${{ runner.os }}-ttl-cache-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-ttl-cache-
             ${{ runner.os }}-
@@ -91,7 +91,7 @@ jobs:
         run: |
           echo
           echo "start $(date +%H:%M:%S)"
-          bkt --ttl=120s -- sleep 3
+          bkt --ttl=300s -- sleep 3
           echo "stop $(date +%H:%M:%S)"
           echo
 
