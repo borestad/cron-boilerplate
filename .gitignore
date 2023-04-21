@@ -122,7 +122,9 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/osx,vim,node,windows,visualstudiocode
 
 .cache
+.cache-*
 .tmp
+.tmp-*
 paused.conf
 
 # Yarn: https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
