@@ -69,12 +69,18 @@ jobs:
             ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX }}-
             ${{ runner.os }}-v1-store-
 
-      - uses: actions/cache@v3
+      - uses: actions/download-artifact@v3
         name: Bootstrap ❯ Restore TTL Cache
-        if: always()
         with:
+          name: ttl-cache
           path: ${{ env.TTL_CACHE_DIR }}
-          key:  ${{ runner.os }}-ttl-cache-${{ github.head_ref }}
+
+      # - uses: actions/cache@v3
+      #   name: Bootstrap ❯ Restore TTL Cache
+      #   if: always()
+      #   with:
+      #     path: ${{ env.TTL_CACHE_DIR }}
+      #     key:  ${{ runner.os }}-ttl-cache-${{ hashFiles('**/deno.lock') }}
 
 
       # ─────────────────────────────────────────────────────
@@ -99,6 +105,12 @@ jobs:
           stats=$(git diff --cached --shortstat | sed -E 's/ (insertion|insertions|deletion|deletions)//g')
           git commit -m "⚡️ CI: $stats [skip ci]" -a || true
           git push
+
+      - uses: actions/upload-artifact@v3
+        name: Post hooks ❯ Upload TTL Cache
+        with:
+          name: ttl-cache
+          path: ${{ env.TTL_CACHE_DIR }}
 
       # # ─────────────────────────────────────────────────────
       - name: "Debug: Context Information"
