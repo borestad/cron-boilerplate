@@ -71,6 +71,7 @@ jobs:
 
       - uses: actions/cache@v3
         name: Bootstrap ❯ Restore TTL Cache
+        if: always()
         with:
           path: ${{ env.TTL_CACHE_DIR }}
           key:  ${{ runner.os }}-ttl-cache-${{ github.head_ref }}
