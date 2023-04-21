@@ -71,6 +71,7 @@ jobs:
 
       - uses: actions/download-artifact@v3
         name: Bootstrap ❯ Restore TTL Cache
+        continue-on-error: true
         with:
           name: ttl-cache
           path: ${{ env.TTL_CACHE_DIR }}
