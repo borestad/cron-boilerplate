@@ -67,12 +67,13 @@ jobs:
           key:  ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX }}-${{ hashFiles('**/deno.lock') }}
           restore-keys: |
             ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX }}-
+            ${{ runner.os }}-v1-store-
 
       - uses: actions/cache@v3
         name: Bootstrap ❯ Restore TTL Cache
         with:
           path: ${{ env.TTL_CACHE_DIR }}
-          key:  ${{ runner.os }}-ttl-cache
+          key:  ${{ runner.os }}-ttl-cache-${{ github.head_ref }}
 
 
       # ─────────────────────────────────────────────────────
