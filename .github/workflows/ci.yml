@@ -29,24 +29,24 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       # ─────────────────────────────────────────────────────
-      - name: Github ❯ actions/checkout@v3
+      - name: Bootstrap ❯❯ actions/checkout@v3
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
       # ─────────────────────────────────────────────────────
-      - name: Github ❯ denoland/setup-deno@v1
+      - name: Bootstrap ❯❯ denoland/setup-deno@v1
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
 
       # ─────────────────────────────────────────────────────
-      - name: Bootstrap ❯ Set env variables
+      - name: Bootstrap ❯❯ Set env variables
         run: |
           .github/scripts/helpers set-env-variables
 
       # ─────────────────────────────────────────────────────
-      - name: Bootstrap ❯ Preinstall & Prepare Environment
+      - name: Bootstrap ❯❯ Preinstall & Prepare Environment
         run: |
           .github/scripts/helpers create-directories
           .github/scripts/helpers preinstall-binaries
@@ -58,7 +58,7 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - uses: actions/cache@v3
-        name: Bootstrap ❯ Restore Cache
+        name: Bootstrap ❯❯ Restore Cache
         with:
           path: ${{ env.ACTIONS_CACHE_DIR }}
           key:  ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX }}-${{ hashFiles('**/deno.lock') }}
@@ -67,7 +67,7 @@ jobs:
             ${{ runner.os }}-v1-store-
 
       - uses: actions/cache@v3
-        name: Bootstrap ❯ Restore TTL Cache
+        name: Bootstrap ❯❯ Restore TTL Cache
         if: always()
         with:
           path: ${{ env.TTL_CACHE_DIR }}
@@ -77,7 +77,7 @@ jobs:
             ${{ runner.os }}-
 
       # ─────────────────────────────────────────────────────
-      - name: Cron ❯ Job1
+      - name: Cron ❯❯ Job1
         run: |
           echo
           echo "start $(date +%H:%M:%S)"
@@ -89,7 +89,7 @@ jobs:
           # test18
 
       # ─────────────────────────────────────────────────────
-      - name: Post hooks ❯ Commit to repository
+      - name: Post hooks ❯❯ Commit to repository
         if: github.ref == 'refs/heads/main'
         run: |
           git config user.name github-actions
@@ -101,7 +101,7 @@ jobs:
 
 
       # # ─────────────────────────────────────────────────────
-      - name: "Debug: Context Information"
+      - name: "Debug ❯❯ Context Information"
         id: github_context_step
         if: github.ref == 'refs/heads/main'
         run: |
