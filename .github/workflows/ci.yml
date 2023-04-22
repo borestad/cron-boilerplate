@@ -48,12 +48,9 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯ Preinstall & Prepare Environment
         run: |
-          mkdir -p ~/.local/bin
+          .github/scripts/helpers create-directories
           .github/scripts/helpers preinstall-binaries
           .github/scripts/helpers ___
-
-          .github/scripts/helpers create-directories
-          .github/scripts/helpers optimize-ubuntu
           .github/scripts/helpers show-system-information
           .github/scripts/helpers dump-env
 
@@ -68,13 +65,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX }}-
             ${{ runner.os }}-v1-store-
-
-      # - uses: actions/download-artifact@v3
-      #   name: Bootstrap ❯ Restore TTL Cache
-      #   continue-on-error: true
-      #   with:
-      #     name: ttl-cache
-      #     path: ${{ env.TTL_CACHE_DIR }}
 
       - uses: actions/cache@v3
         name: Bootstrap ❯ Restore TTL Cache
@@ -109,11 +99,6 @@ jobs:
           git commit -m "⚡️ CI: $stats [skip ci]" -a || true
           git push
 
-        # - uses: actions/upload-artifact@v3
-        #   name: Post hooks ❯ Upload TTL Cache
-        #   with:
-        #     name: ttl-cache
-        #     path: ${{ env.TTL_CACHE_DIR }}
 
       # # ─────────────────────────────────────────────────────
       - name: "Debug: Context Information"

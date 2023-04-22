@@ -35,7 +35,12 @@ install-pnpm-binary() {
 }
 
 create-directories() {
-  mkdir -p ~/.local/bin $ACTIONS_CACHE_DIR $ACTIONS_CACHE_BIN_DIR $PNPM_HOME $PNPM_STORE_DIR $RUNNER_TEMPDIR
+  mkdir -p ~/.local/bin
+  mkdir -p $ACTIONS_CACHE_DIR
+  mkdir -p $ACTIONS_CACHE_BIN_DIR
+  mkdir -p $PNPM_HOME
+  mkdir -p $PNPM_STORE_DIR
+  mkdir -p $RUNNER_TEMPDIR
 }
 
 optimize-ubuntu() {
