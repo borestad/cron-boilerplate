@@ -56,10 +56,6 @@
         ],
         "rules": {
           "no-console": "off",
-          "template-tag-spacing": [
-            "error",
-            "always"
-          ],
           "@typescript-eslint/require-await": [
             "error"
           ],

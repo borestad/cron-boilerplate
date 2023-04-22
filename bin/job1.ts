@@ -3,28 +3,30 @@ import $ from 'dax/mod.ts'
 import { colors } from 'dax/src/deps.ts'
 import { mapLimit } from 'promise-utils/map.ts'
 import chalk from 'npm:chalk@5'
+const { log } = console
 
 process.env.FORCE_COLOR = 'true'
 
 // run a command
-await $ `echo 5`
-await $ `echo ---------`
+await $`echo 5`
+await $`echo ---------`
 
-await $ `git rev-parse --show-toplevel`
-const branch = await $ `git rev-parse --abbrev-ref HEAD`.text()
+await $`git rev-parse --show-toplevel`
+const branch = await $`git rev-parse --abbrev-ref HEAD`.text()
 console.log(branch)
 
-await $ `echo ---------`
+await $`echo ---------`
 await mapLimit(
   [
-    '1',
-    '2',
-    '3',
-    '4',
+    '11',
+    '22',
+    '33',
+    '44',
   ],
   2,
-  async (x) => {
-    await $ `echo ${x}`
+  async (x, i) => {
+    log(i, x)
+    await $`sleep 0.1`
   },
 )
 
