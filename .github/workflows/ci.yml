@@ -79,6 +79,8 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Cron ❯❯ Job1
         run: |
+          cd cron
+
           echo
           echo "start $(date +%H:%M:%S)"
           bkt --ttl=300s -- sleep 3
