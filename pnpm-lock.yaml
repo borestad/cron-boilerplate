@@ -7,9 +7,6 @@ devDependencies:
   '@tsconfig/deno':
     specifier: ^1.0.7
     version: 1.0.7
-  '@tsconfig/node-lts':
-    specifier: ^18.12.1
-    version: 18.12.1
   '@types/node':
     specifier: ^18.15.11
     version: 18.15.11
@@ -209,10 +206,6 @@ packages:
 
   /@tsconfig/deno@1.0.7:
     resolution: {integrity: sha512-AqIaGDRyklUuxaYzSQeCtj6+/OXTOcTLpm04RW8a7T1tTTr6kd/zNq/7Ex38bNJG/60GQUuIdZwcd8MSz9/cuw==}
-    dev: true
-
-  /@tsconfig/node-lts@18.12.1:
-    resolution: {integrity: sha512-UkIaMWDwJ+qJX/os8lzYh7m47qQJY7sIp1WZiEStASrpzczp27+jA0fJES+IjnS2OlDDLeBghNrVkKw8iYIRdA==}
     dev: true
 
   /@types/json-schema@7.0.11:
