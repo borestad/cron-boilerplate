@@ -19,6 +19,9 @@ download() {
 }
 
 preinstall-binaries() {
+  cp .github/scripts/pststs ~/.local/bin/
+  cp .github/scripts/ciutil ~/.local/bin/
+
   for url in $(jq .preinstallBinaries cron/package.json | jq -r .[]); do
     download "$url" &
   done

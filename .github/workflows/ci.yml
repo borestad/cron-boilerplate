@@ -43,16 +43,16 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Set env variables
         run: |
-          .github/scripts/helpers set-env-variables
+          .github/scripts/ciutil set-env-variables
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Preinstall & Prepare Environment
         run: |
-          .github/scripts/helpers create-directories
-          .github/scripts/helpers preinstall-binaries
-          .github/scripts/helpers ___
-          .github/scripts/helpers show-system-information
-          .github/scripts/helpers dump-env
+          .github/scripts/ciutil create-directories
+          .github/scripts/ciutil preinstall-binaries
+          .github/scripts/ciutil ___
+          .github/scripts/ciutil show-system-information
+          .github/scripts/ciutil dump-env
 
           .github/scripts/deps
 
@@ -87,7 +87,7 @@ jobs:
           echo "stop $(date +%H:%M:%S)"
           echo
 
-          .github/scripts/pstats deno task job1
+          pstats deno task job1
           # test18
 
       # ─────────────────────────────────────────────────────
@@ -109,10 +109,10 @@ jobs:
         run: |
           echo "Public ip: $(curl -sS icanhazip.com)"
           uptime
-          .github/scripts/helpers show-cache-folders
-          .github/scripts/helpers show-cache-structure
+          .github/scripts/ciutil show-cache-folders
+          .github/scripts/ciutil show-cache-structure
           mkdir -p $DEBUG_DIR &> /dev/null
-          .github/scripts/helpers ___
+          .github/scripts/ciutil ___
 
           echo '${{ toJSON(github) }}'    >> $DEBUG_DIR/github.json &
           echo '${{ toJSON(job) }}'       >> $DEBUG_DIR/job.json &
@@ -122,4 +122,4 @@ jobs:
           echo '${{ toJSON(matrix) }}'    >> $DEBUG_DIR/matrix.json &
           wait
 
-          .github/scripts/helpers dump-context
+          .github/scripts/ciutil dump-context
