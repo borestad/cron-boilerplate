@@ -78,7 +78,7 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯❯ Job1
-        if: github.event.schedule != '5 4 * * *'
+        if: github.event.schedule == '5 4 * * *'
         run: |
           cd cron
           echo
