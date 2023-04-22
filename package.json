@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.29.4",
+    "@tsconfig/deno": "^1.0.7",
     "@tsconfig/node-lts": "^18.12.1",
     "@types/node": "^18.15.11",
     "eslint": "^8.38.0",

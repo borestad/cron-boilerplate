@@ -4,6 +4,9 @@ devDependencies:
   '@antfu/eslint-config':
     specifier: ^0.29.4
     version: 0.29.4(eslint@8.38.0)(typescript@5.0.4)
+  '@tsconfig/deno':
+    specifier: ^1.0.7
+    version: 1.0.7
   '@tsconfig/node-lts':
     specifier: ^18.12.1
     version: 18.12.1
@@ -202,6 +205,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: true
+
+  /@tsconfig/deno@1.0.7:
+    resolution: {integrity: sha512-AqIaGDRyklUuxaYzSQeCtj6+/OXTOcTLpm04RW8a7T1tTTr6kd/zNq/7Ex38bNJG/60GQUuIdZwcd8MSz9/cuw==}
     dev: true
 
   /@tsconfig/node-lts@18.12.1:
