@@ -19,7 +19,7 @@ on:
 
   # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
   # schedule:
-  #   - cron: '5 4 * * *'
+  #   - cron: '*/5 * * * *'
 
 jobs:
 
@@ -78,28 +78,21 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯❯ Job1
-        if: github.event.schedule == '5 4 * * *'
+        if: github.event.schedule != '*/5 * * * *'
         run: |
-          cd cron
           echo
           echo "start $(date +%H:%M:%S)"
           bkt --ttl=300s -- sleep 3
           echo "stop $(date +%H:%M:%S)"
           echo
 
-          pstats deno task job1
+          cd cron; pstats deno task job1
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
         if: github.ref == 'refs/heads/main'
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add . --verbose
-          stats=$(git diff --cached --shortstat | sed -E 's/ (insertion|insertions|deletion|deletions)//g')
-          git commit -m "⚡️ CI: $stats [skip ci]" -a || true
-          git push
-
+          .github/scripts/ciutil git-commit-to-repository
 
       # # ─────────────────────────────────────────────────────
       - name: "Debug ❯❯ Context Information"
