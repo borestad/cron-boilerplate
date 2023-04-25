@@ -10,7 +10,7 @@ initstart=$(time-now)
 # DEBUG
 # =============================================================================
 ✨ "Show cache folders"
-show-cache-folders
+show-cache-structure
 timestamp
 
 

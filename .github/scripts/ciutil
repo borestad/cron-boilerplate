@@ -105,15 +105,24 @@ timestamp() {
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Debug / Statistics / Information
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-show-cache-folders() {
-  cd $ACTIONS_CACHE_DIR
-  find . -maxdepth 1 -type d -not -iname '.git' -print0 | xargs -0 -I {} sh -c "printf '%-24s' '{}' ; du -sh {} | cut -f 1" \;
-}
+# show-cache-folders() {
+#   cd $ACTIONS_CACHE_DIR
+#   dust -b -P -s
+
+#   cd $TTL_CACHE_DIR
+# }
 
 show-cache-structure() {
   ✨ "Cache structure ($ACTIONS_CACHE_DIR)"
-  cd $ACTIONS_CACHE_DIR
-  find . -maxdepth 1 -type d -not -iname '.git' -print0 | xargs -0 -I {} sh -c "tree -L 2 -F --noreport {}; echo"
+  dust -b -P -s $ACTIONS_CACHE_DIR
+  echo
+
+  ✨ "Cache structure ($TTL_CACHE_DIR)"
+  dust -b -P -s $TTL_CACHE_DIR
+  echo
+
+  #cd $ACTIONS_CACHE_DIR
+  #find . -maxdepth 1 -type d -not -iname '.git' -print0 | xargs -0 -I {} sh -c "tree -L 2 -F --noreport {}; echo"
 }
 
 show-system-information() {
