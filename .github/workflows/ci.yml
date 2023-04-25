@@ -35,10 +35,10 @@ jobs:
           fetch-depth: 1
 
       # ─────────────────────────────────────────────────────
-      - name: Bootstrap ❯❯ denoland/setup-deno@v1
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
+      # - name: Bootstrap ❯❯ denoland/setup-deno@v1
+      #   uses: denoland/setup-deno@v1
+      #   with:
+      #     deno-version: v1.x
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Set env variables
@@ -81,9 +81,7 @@ jobs:
         # if: github.event.schedule != '*/5 * * * *'
         run: |
           cd cron
-          echo "start $(date +%H:%M:%S)"
           pstats bkt --ttl=30s --discard-failures -- deno task job1
-          echo "stop $(date +%H:%M:%S)"
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository

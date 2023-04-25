@@ -5,7 +5,8 @@ const { log } = console
 
 process.env.FORCE_COLOR = 'true'
 
-// / usr / local / bin / wget - S
+$.cd(await Deno.makeTempDir())
+
 await mapLimit(
   [
     'http://speedtest.tele2.net/1MB.zip',
