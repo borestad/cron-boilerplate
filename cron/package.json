@@ -17,8 +17,7 @@
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/gron",
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge",
     "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/ets",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/bkt",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/deno"
+    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/bkt"
   ],
   "eslintConfig": {
     "extends": "@antfu",

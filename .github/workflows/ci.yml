@@ -49,7 +49,7 @@ jobs:
       - name: Bootstrap ❯❯ Preinstall & Prepare Environment
         run: |
           .github/scripts/ciutil create-directories
-          pstats .github/scripts/ciutil preinstall-binaries
+          .github/scripts/ciutil preinstall-binaries
           .github/scripts/ciutil ___
           .github/scripts/ciutil show-system-information
           .github/scripts/ciutil dump-env
