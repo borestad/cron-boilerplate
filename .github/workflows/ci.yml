@@ -80,6 +80,7 @@ jobs:
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
+          cd cron
           echo "start $(date +%H:%M:%S)"
           pstats bkt --ttl=30s --discard-failures -- deno task job1
           echo "stop $(date +%H:%M:%S)"
