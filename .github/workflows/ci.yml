@@ -78,15 +78,11 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯❯ Job1
-        if: github.event.schedule != '*/5 * * * *'
+        # if: github.event.schedule != '*/5 * * * *'
         run: |
-          echo
           echo "start $(date +%H:%M:%S)"
-          bkt --ttl=300s -- sleep 3
+          pstats bkt --ttl=30s --discard-failures -- deno task job1
           echo "stop $(date +%H:%M:%S)"
-          echo
-
-          cd cron; pstats deno task job1
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
@@ -97,7 +93,6 @@ jobs:
       # # ─────────────────────────────────────────────────────
       - name: "Debug ❯❯ Context Information"
         id: github_context_step
-        if: github.ref == 'refs/heads/main'
         run: |
           echo "Public ip: $(curl -sS icanhazip.com)"
           uptime
