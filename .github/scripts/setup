@@ -25,10 +25,8 @@ show-system-information
 ✨ "Debug: Env variables"
 dump-env
 
-✨ "Debug: Show cache folders"
 show-cache-structure
 timestamp
-
 
 # =============================================================================
 # Install node_modules

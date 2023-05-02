@@ -87,11 +87,8 @@ jobs:
       - name: "Debug ❯❯ Context Information"
         id: github_context_step
         run: |
-          echo "Public ip: $(curl -sS icanhazip.com)"
-          uptime
-          # .github/scripts/ciutil show-cache-folders
+          .github/scripts/ciutil public-ip
           .github/scripts/ciutil show-cache-structure
-          mkdir -p $DEBUG_DIR &> /dev/null
           .github/scripts/ciutil ___
 
           echo '${{ toJSON(github) }}'    >> $DEBUG_DIR/github.json &

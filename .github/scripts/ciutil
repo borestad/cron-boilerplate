@@ -29,16 +29,16 @@ preinstall-binaries() {
   wait
 }
 create-directories() {
-  mkdir -p ~/.local/bin
-  mkdir -p $ACTIONS_CACHE_DIR
-  mkdir -p $ACTIONS_CACHE_BIN_DIR
-  mkdir -p $PNPM_HOME
-  mkdir -p $PNPM_STORE_DIR
-  mkdir -p $RUNNER_TEMPDIR
+  mkdir -pv ~/.local/bin
+  mkdir -pv $ACTIONS_CACHE_DIR
+  mkdir -pv $ACTIONS_CACHE_BIN_DIR
+  mkdir -pv $PNPM_HOME
+  mkdir -pv $PNPM_STORE_DIR
+  mkdir -pv $RUNNER_TEMPDIR
+  mkdir -pv $DEBUG_DIR
 }
 
-optimize-ubuntu() {
-  # "Optimize apt-get install"
+optimize-apt-get-install() {
   sudo cp -p /bin/true /usr/bin/mandb 2>/dev/null || true
   sudo mv -f /var/cache/man /tmp/ 2>/dev/null || true
 }
@@ -148,6 +148,9 @@ dump-env() {
   echo "::endgroup::"
 }
 
+public-ip() {
+  echo "$(curl -sS icanhazip.com)"
+}
 dump-context() {
   command -v gron &> /dev/null || (mkdir -p ~/.local/bin &> /dev/null && cd "$_" && wget -q -nv "https://raw.githubusercontent.com/borestad/static-binaries/main/gron" && chmod +x gron)
 
