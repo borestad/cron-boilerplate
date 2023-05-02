@@ -7,12 +7,13 @@
 Goals:
 
 - Cron Job oriented
-- Avoid install via Bash or [Deno](https://deno.land/) with
+- Preconfigured - use Bash or [Deno](https://deno.land/) with
   [Dax](https://github.com/dsherret/dax)
 - Fastest installation possible
 - Multithreaded & parallellism by default
+- Cache + TTL support (reusable between ci runs)
 - Optimized: one shot jobs (checkout + cache + install + run) should run ~ 5
   seconds.
-- Avoids expensive apt-get update. Rely on static upx compressed binaries
+- Rely on static binaries instead of expensive apt-get.
 - Super productive & fast boilerplate environment
 - Stats & useful debugging included
