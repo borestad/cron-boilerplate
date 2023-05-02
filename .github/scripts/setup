@@ -15,7 +15,6 @@ create-directories
 
 ✨ "Setup: Preinstall binaries"
 preinstall-binaries
-___
 
 # =============================================================================
 # DEBUG

@@ -46,17 +46,6 @@ jobs:
           .github/scripts/ciutil set-env-variables
 
       # ─────────────────────────────────────────────────────
-      - name: Bootstrap ❯❯ Preinstall & Prepare Environment
-        run: |
-          # .github/scripts/ciutil create-directories
-          # .github/scripts/ciutil preinstall-binaries
-          # .github/scripts/ciutil ___
-          # .github/scripts/ciutil show-system-information
-          # .github/scripts/ciutil dump-env
-
-          .github/scripts/setup
-
-      # ─────────────────────────────────────────────────────
       - uses: actions/cache@v3
         name: Bootstrap ❯❯ Restore Cache
         with:
@@ -75,6 +64,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ttl-cache-
             ${{ runner.os }}-
+
+      # ─────────────────────────────────────────────────────
+      - name: Bootstrap ❯❯ Preinstall & Prepare Environment
+        run: |
+          .github/scripts/setup
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯❯ Job1

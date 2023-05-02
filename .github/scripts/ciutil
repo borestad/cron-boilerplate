@@ -63,7 +63,7 @@ set-env-variables() {
   echo PNPM_HOME=$ACTIONS_CACHE_DIR/pnpm                       >> $GITHUB_ENV
 
   # TTL Cache (Cache that will automatically be invalidated)
-  export TTL_CACHE_DIR=$GITHUB_WORKSPACE/.cache-ttl
+  export TTL_CACHE_DIR=$RUNNER_WORKSPACE/.cache-ttl
   echo TTL_CACHE_DIR=$TTL_CACHE_DIR                            >> $GITHUB_ENV
   echo BKT_CACHE_DIR=$TTL_CACHE_DIR/bkt                        >> $GITHUB_ENV
 
