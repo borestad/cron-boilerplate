@@ -77,7 +77,6 @@ set-env-variables() {
   echo TERM=xterm-256color                                     >> $GITHUB_ENV
   echo FORCE_COLOR=1                                           >> $GITHUB_ENV
 
-
   echo './node_modules/.bin'                                   >> $GITHUB_PATH
   echo $HOME/.local/bin                                        >> $GITHUB_PATH
   echo $RUNNER_WORKSPACE/.actions-cache/pnpm                   >> $GITHUB_PATH
@@ -105,13 +104,6 @@ timestamp() {
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Debug / Statistics / Information
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# show-cache-folders() {
-#   cd $ACTIONS_CACHE_DIR
-#   dust -b -P -s
-
-#   cd $TTL_CACHE_DIR
-# }
-
 show-cache-structure() {
   ✨ "Cache structure ($ACTIONS_CACHE_DIR)"
   dust -b -P -s $ACTIONS_CACHE_DIR
@@ -120,9 +112,6 @@ show-cache-structure() {
   ✨ "Cache structure ($TTL_CACHE_DIR)"
   dust -b -P -s $TTL_CACHE_DIR
   echo
-
-  #cd $ACTIONS_CACHE_DIR
-  #find . -maxdepth 1 -type d -not -iname '.git' -print0 | xargs -0 -I {} sh -c "tree -L 2 -F --noreport {}; echo"
 }
 
 show-system-information() {

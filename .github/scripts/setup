@@ -6,10 +6,27 @@ GITROOT=`git-root`
 
 initstart=$(time-now)
 
+
+# =============================================================================
+# Setup
+# =============================================================================
+✨ "Setup: Create directories"
+create-directories
+
+✨ "Setup: Preinstall binaries"
+preinstall-binaries
+___
+
 # =============================================================================
 # DEBUG
 # =============================================================================
-✨ "Show cache folders"
+✨ "Debug: System information"
+show-system-information
+
+✨ "Debug: Env variables"
+dump-env
+
+✨ "Debug: Show cache folders"
 show-cache-structure
 timestamp
 

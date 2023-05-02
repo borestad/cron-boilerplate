@@ -48,13 +48,13 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Preinstall & Prepare Environment
         run: |
-          .github/scripts/ciutil create-directories
-          .github/scripts/ciutil preinstall-binaries
-          .github/scripts/ciutil ___
-          .github/scripts/ciutil show-system-information
-          .github/scripts/ciutil dump-env
+          # .github/scripts/ciutil create-directories
+          # .github/scripts/ciutil preinstall-binaries
+          # .github/scripts/ciutil ___
+          # .github/scripts/ciutil show-system-information
+          # .github/scripts/ciutil dump-env
 
-          .github/scripts/deps
+          .github/scripts/setup
 
       # ─────────────────────────────────────────────────────
       - uses: actions/cache@v3
