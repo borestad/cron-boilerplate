@@ -1,7 +1,7 @@
 # cron-boilerplate
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/borestad/cron/ci.yml?style=for-the-badge)
-![GitHub Workflow Status](https://counterapi.com/counter.svg?ns=codeit.se&action=view&key=cronboilerplate&style=big&startNumber=1&color=green)
+![GitHub Workflow Status](https://counterapi.com/counter.svg?ns=codeit.se&action=view&key=cronboilerplate&style=big&startNumber=1&color=blue)
 
 **cron-boilerplate**
 
