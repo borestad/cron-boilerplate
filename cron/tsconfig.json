@@ -17,7 +17,7 @@
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "checkJs": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "strict": true
   }
 }
