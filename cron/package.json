@@ -14,11 +14,11 @@
     "eslint-plugin-unicorn": "^44.0.2"
   },
   "preinstallBinaries": [
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/gron",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/sponge",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/ets",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/bkt",
-    "https://raw.githubusercontent.com/borestad/cron/main/static-binaries/x86_64/dust"
+    "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/gron",
+    "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/sponge",
+    "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/ets",
+    "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/bkt",
+    "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/dust"
   ],
   "eslintConfig": {
     "extends": "@antfu",
