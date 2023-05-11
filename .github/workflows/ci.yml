@@ -80,6 +80,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           .github/scripts/ciutil git-commit-to-repository
+          exit 1
 
       # # ─────────────────────────────────────────────────────
       - name: "Debug ❯❯ Context Information"
