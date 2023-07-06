@@ -72,7 +72,7 @@ jobs:
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
-          cd cron
+          cd .scripts
           pstats bkt --ttl=30s --discard-failures -- deno task job1
 
       # ─────────────────────────────────────────────────────
