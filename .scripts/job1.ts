@@ -26,7 +26,7 @@ await mapLimit(
   2,
   async (x, i) => {
     log(i, x)
-    await $`sleep 0.1`
+    await $`sleep 1`
   },
 )
 
