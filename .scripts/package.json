@@ -1,7 +1,7 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.3.1",
+  "packageManager": "pnpm@8.6.4",
   "author": "Johan Borestad <johan@borestad.com> (http://borestad.com/)",
   "engines": {
     "node": ">=18"
