@@ -12,7 +12,9 @@ on:
         default: false
 
   push:
-    branches: [main]
+    branches:
+      - main
+      - 'feature/**'
   pull_request:
 
   # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
