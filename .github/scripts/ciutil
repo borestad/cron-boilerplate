@@ -22,7 +22,7 @@ preinstall-binaries() {
   cp .github/scripts/pstats ~/.local/bin/
   cp .github/scripts/ciutil ~/.local/bin/
 
-  for url in $(jq .preinstallBinaries .scripts/package.json | jq -r .[]); do
+  for url in $(jq .preinstallBinaries scripts/package.json | jq -r .[]); do
     download "$url" &
   done
 
