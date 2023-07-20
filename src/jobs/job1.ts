@@ -1,13 +1,14 @@
-#!/usr/bin/env -S deno run -A
-
 import process from 'node:process'
 import $ from 'dax/mod.ts'
 import { colors } from 'dax/src/deps.ts'
 import { mapLimit } from 'promise-utils/map.ts'
 import chalk from 'npm:chalk@5'
+import * as mod from 'std/uuid/mod.ts'
 const { log } = console
 
 process.env.FORCE_COLOR = 'true'
+
+log(mod.v1.generate())
 
 // run a command
 await $`echo 5`
@@ -37,3 +38,6 @@ console.log(bar)
 
 console.log(chalk.bgBlue.red('hello world'))
 console.log(colors.red(colors.bgBlue('hello world')))
+
+
+
