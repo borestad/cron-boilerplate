@@ -1,3 +1,5 @@
+#!/usr/bin/env -S deno run -A
+
 import process from 'node:process'
 import $ from 'dax/mod.ts'
 import { colors } from 'dax/src/deps.ts'
@@ -38,6 +40,3 @@ console.log(bar)
 
 console.log(chalk.bgBlue.red('hello world'))
 console.log(colors.red(colors.bgBlue('hello world')))
-
-
-

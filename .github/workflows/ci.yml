@@ -74,7 +74,7 @@ jobs:
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
-          cd src && pstats memo --ttl=300s -- 'deno task job1'
+          pstats memo --ttl=300s -- 'deno run -A .github/cron/job1.ts'
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
@@ -93,7 +93,7 @@ jobs:
           JSON_STRATEGY: ${{ toJSON(strategy) }}
           JSON_MATRIX: ${{ toJSON(MATRIX) }}
         run: |
-          .github/scripts/ciutil public-ip
+          ip-public
           .github/scripts/ciutil show-cache-structure
           .github/scripts/ciutil ___
 
@@ -104,5 +104,5 @@ jobs:
           printf "$JSON_STRATEGY"  >> $DEBUG_DIR/strategy.json
           printf $JSON_MATRIX      >> $DEBUG_DIR/matrix.json
 
-          .github/scripts/ciutil dump-context
+          ga-dump-context
 

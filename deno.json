@@ -13,8 +13,6 @@
     }
   },
   "tasks": {
-    "dev": "deno run -A --watch jobs/job1.ts",
-    "job1": "deno run -A jobs/job1.ts",
     "update:lockfile": "fd .ts . -tf --threads=1 -X deno cache --import-map=deno.json --unstable --lock=deno.lock --lock-write"
   }
 }

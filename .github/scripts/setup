@@ -6,7 +6,6 @@ GITROOT=`git-root`
 
 initstart=$(time-now)
 
-
 # =============================================================================
 # Setup
 # =============================================================================
@@ -20,10 +19,10 @@ preinstall-binaries
 # DEBUG
 # =============================================================================
 ✨ "Debug: System information"
-show-system-information
+system-info
 
 ✨ "Debug: Env variables"
-dump-env
+ga-dump-env
 
 show-cache-structure
 timestamp
@@ -31,20 +30,16 @@ timestamp
 # =============================================================================
 # Install node_modules
 # =============================================================================
-if cat $GITROOT/src/package.json | jq -e .dependencies &>/dev/null; then
+if cat $GITROOT/package.json | jq -e .dependencies &>/dev/null; then
   ✨ "pnpm install"
 
-  cd $GITROOT/src
+  cd $GITROOT
 
   # Applying dirty fix for *not* including @types/* in the production ci
   cp pnpm-lock.yaml $RUNNER_TEMPDIR/
   grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
 
-  pnpm install \
-    --frozen-lockfile \
-    --production \
-    --prefer-offline \
-    --no-verify-store-integrity
+  pnpm install --frozen-lockfile --production --prefer-offline --no-verify-store-integrity
 
   mv $RUNNER_TEMPDIR/pnpm-lock.yaml .
   timestamp

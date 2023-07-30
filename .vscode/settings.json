@@ -1,6 +1,6 @@
 {
   "deno.enable": true,
-  "deno.importMap": "./src/deno.json",
+  "deno.importMap": "./deno.json",
   "deno.suggest.autoImports": true,
   "deno.suggest.completeFunctionCalls": true,
   "deno.suggest.imports.autoDiscover": true,
@@ -26,9 +26,10 @@
     "typescriptreact",
     "yaml"
   ],
-  "prettier.enable": false,
   "files.associations": {
     "deno.json": "jsonc",
     "dprint.json": "jsonc"
-  }
+  },
+  "files.exclude": {},
+  "prettier.enable": false
 }
