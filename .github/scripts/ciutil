@@ -19,10 +19,9 @@ download() {
 }
 
 preinstall-binaries() {
-  cp .github/scripts/pstats ~/.local/bin/
   cp .github/scripts/ciutil ~/.local/bin/
 
-  for url in $(jq .preinstallBinaries src/package.json | jq -r .[]); do
+  for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
     download "$url" &
   done
 
@@ -56,6 +55,7 @@ git-commit-to-repository() {
 set-env-variables() {
   # Action Cache
   export ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache
+
   echo ACTIONS_CACHE_DIR=$ACTIONS_CACHE_DIR                    >> $GITHUB_ENV
   echo ACTIONS_CACHE_BIN_DIR=$ACTIONS_CACHE_DIR/bin            >> $GITHUB_ENV
   echo PNPM_STORE_DIR=$ACTIONS_CACHE_DIR/pnpm/pnpm-store       >> $GITHUB_ENV
@@ -113,96 +113,6 @@ show-cache-structure() {
   ✨ "Cache structure ($TTL_CACHE_DIR)"
   dust -b -P -s $TTL_CACHE_DIR
   echo
-}
-
-show-system-information() {
-  while IFS=":" read -r a b; do
-    case $a in
-    "MemTotal")
-      mem_total="${b/kB/}"
-      ;;
-    "MemAvailable")
-      mem_avail=${b/kB/}
-      ;;
-    esac
-  done < /proc/meminfo
-
-  mem_used=$(((mem_total - mem_avail) / 1024))
-  mem_total="$((mem_total / 1024))"
-  cores="$(nproc --all)"
-
-  echo "Cores:         $cores"
-  echo "Memory used:   $mem_used Mb"
-  echo "Memory total:  $mem_total Mb"
-  echo "Public ip:     $(curl -sS icanhazip.com)"
-}
-
-
-dump-env() {
-  TOKEN="dump-env-$RANDOM-$RANDOM"
-
-  echo
-  echo "::group::Environment variables"
-  echo "::stop-commands::$TOKEN"
-  env|sort| egrep --color=always '^[^=]+' || true
-  echo "::$TOKEN::"
-  echo "::endgroup::"
-}
-
-public-ip() {
-  echo "$(curl -sS icanhazip.com)"
-}
-dump-context() {
-  command -v gron &> /dev/null || (mkdir -p ~/.local/bin &> /dev/null && cd "$_" && wget -q -nv "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/bin/gron" && chmod +x gron)
-
-  TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Event ($(gron $GITHUB_EVENT_PATH | wc -l))"
-  echo "::stop-commands::$TOKEN"
-  gron -c "$GITHUB_EVENT_PATH" || true
-  echo "::$TOKEN::"
-  echo "::endgroup::"
-
-  TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Github Context ($(gron $DEBUG_DIR/github.json | wc -l))"
-  echo "::stop-commands::$TOKEN"
-  gron -c $DEBUG_DIR/github.json || true
-  echo "::$TOKEN::"
-  echo "::endgroup::"
-
-  TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Job Context ($(gron $DEBUG_DIR/job.json | wc -l))"
-  echo "::stop-commands::$TOKEN"
-  gron -c $DEBUG_DIR/job.json || true
-  echo "::$TOKEN::"
-  echo "::endgroup::"
-
-  TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Steps Context ($(gron $DEBUG_DIR/steps.json | wc -l))"
-  echo "::stop-commands::$TOKEN"
-  gron -c $DEBUG_DIR/steps.json || true
-  echo "::$TOKEN::"
-  echo "::endgroup::"
-
-  TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Runner Context ($(gron $DEBUG_DIR/runner.json | wc -l))"
-  echo "::stop-commands::$TOKEN"
-  gron -c $DEBUG_DIR/runner.json || true
-  echo "::$TOKEN::"
-  echo "::endgroup::"
-
-  TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Strategy Context ($(gron $DEBUG_DIR/strategy.json | wc -l))"
-  echo "::stop-commands::$TOKEN"
-  gron -c $DEBUG_DIR/strategy.json || true
-  echo "::$TOKEN::"
-  echo "::endgroup::"
-
-  TOKEN="dump-context-$RANDOM-$RANDOM-token"
-  echo "::group::Matrix Context ($(gron $DEBUG_DIR/matrix.json | wc -l))"
-  echo "::stop-commands::$TOKEN"
-  gron -c $DEBUG_DIR/matrix.json || true
-  echo "::$TOKEN::"
-  echo "::endgroup::"
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
