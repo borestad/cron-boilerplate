@@ -93,7 +93,7 @@ jobs:
           JSON_STRATEGY: ${{ toJSON(strategy) }}
           JSON_MATRIX: ${{ toJSON(MATRIX) }}
         run: |
-          .github/scripts/ciutil public-ip
+          ip-public
           .github/scripts/ciutil show-cache-structure
           .github/scripts/ciutil ___
 

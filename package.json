@@ -15,6 +15,7 @@
   },
   "preinstallBinaries": [
     "https://raw.githubusercontent.com/borestad/ci-utils/main/bin/ga-dump-env",
+    "https://raw.githubusercontent.com/borestad/ci-utils/main/bin/ip-public",
     "https://raw.githubusercontent.com/borestad/ci-utils/main/bin/memo",
     "https://raw.githubusercontent.com/borestad/ci-utils/main/bin/pstats",
     "https://raw.githubusercontent.com/borestad/ci-utils/main/bin/system-info",
