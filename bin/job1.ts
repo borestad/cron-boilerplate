@@ -1,5 +1,3 @@
-#!/usr/bin/env -S deno run -A
-
 import process from 'node:process'
 import $ from 'dax/mod.ts'
 import { colors } from 'dax/src/deps.ts'
@@ -12,8 +10,15 @@ process.env.FORCE_COLOR = 'true'
 
 log(mod.v1.generate())
 
+log()
+log()
+
+log('test')
+
 // run a command
 await $`echo 5`
+log($``)
+
 await $`echo ---------`
 
 await $`git rev-parse --show-toplevel`
@@ -21,6 +26,7 @@ const branch = await $`git rev-parse --abbrev-ref HEAD`.text()
 console.log(branch)
 
 await $`echo ---------`
+
 await mapLimit(
   [
     '11',
@@ -36,6 +42,7 @@ await mapLimit(
 )
 
 const bar = chalk.reset.inverse(' ')
+
 console.log(bar)
 
 console.log(chalk.bgBlue.red('hello world'))

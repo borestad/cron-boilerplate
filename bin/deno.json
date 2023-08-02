@@ -7,10 +7,8 @@
     "deno/": "https://cdn.jsdelivr.net/gh/blend/promise-utils/src/"
   },
   "fmt": {
-    "options": {
-      "semiColons": false,
-      "singleQuote": true
-    }
+    "semiColons": false,
+    "singleQuote": true
   },
   "tasks": {
     "update:lockfile": "fd .ts . -tf --threads=1 -X deno cache --import-map=deno.json --unstable --lock=deno.lock --lock-write"

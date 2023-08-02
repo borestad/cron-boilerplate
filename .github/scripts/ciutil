@@ -21,7 +21,7 @@ download() {
 preinstall-binaries() {
   cp .github/scripts/ciutil ~/.local/bin/
 
-  for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
+  for url in $(jq .preinstallBinaries bin/package.json | jq -r .[]); do
     download "$url" &
   done
 
@@ -49,7 +49,6 @@ git-commit-to-repository() {
   git add . --verbose
   stats=$(git diff --cached --shortstat | sed -E 's/ (insertion|insertions|deletion|deletions)//g')
   git commit -m "⚡️ CI: $stats [skip ci]" -a || true
-  git push
 }
 
 set-env-variables() {
