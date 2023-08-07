@@ -62,6 +62,7 @@
           "*.mjs"
         ],
         "rules": {
+          "template-tag-spacing": ["error", "always"],
           "no-console": "off",
           "@typescript-eslint/comma-dangle": "off",
           "@typescript-eslint/require-await": [

@@ -1,33 +1,23 @@
+#!/usr/bin/env -S deno run -A
+
 import process from 'node:process'
-import $ from 'dax/mod.ts'
-import { colors } from 'dax/src/deps.ts'
-import { mapLimit } from 'promise-utils/map.ts'
-import chalk from 'npm:chalk@5'
-import * as mod from 'std/uuid/mod.ts'
-const { log } = console
+import { $, chalk, dax, log, p, uuid } from './deps.ts'
 
 process.env.FORCE_COLOR = 'true'
 
-log(mod.v1.generate())
-
-log()
-log()
-
+log(uuid.v1.generate())
 log('test')
 
-// run a command
-await $`echo 5`
-log($``)
+await $ `echo 5`
+await $ `echo ---------`
+await $ `git rev-parse --show-toplevel`
 
-await $`echo ---------`
+const branch = await $ `git rev-parse --abbrev-ref HEAD`.text()
+log(branch)
 
-await $`git rev-parse --show-toplevel`
-const branch = await $`git rev-parse --abbrev-ref HEAD`.text()
-console.log(branch)
+await $ `echo ---------`
 
-await $`echo ---------`
-
-await mapLimit(
+await p.mapLimit(
   [
     '11',
     '22',
@@ -37,13 +27,13 @@ await mapLimit(
   2,
   async (x, i) => {
     log(i, x)
-    await $`sleep 1`
+    await $ `sleep 0.5`
   },
 )
 
 const bar = chalk.reset.inverse(' ')
 
-console.log(bar)
+log(bar)
 
-console.log(chalk.bgBlue.red('hello world'))
-console.log(colors.red(colors.bgBlue('hello world')))
+log(chalk.bgBlue.red('hello world '))
+log(dax.colors.red(dax.colors.bgBlue('hello world')))

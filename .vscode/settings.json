@@ -1,6 +1,7 @@
 {
   "json.schemaDownload.enable": true,
   "deno.enable": true,
+  "deno.cacheOnSave": true,
   "deno.lint": false,
   "deno.importMap": "./bin/deno.json",
   "deno.config": "./bin/deno.json",
