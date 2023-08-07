@@ -1,7 +1,6 @@
 {
   "version": "2",
   "remote": {
-    "https://cdn.jsdelivr.net/gh/blend/promise-utils/src/map.ts": "8c33b7669b488d9baf2a6d97cc180df3305cbf415a74b22594a1fa524d6f6d27",
     "https://deno.land/std@0.182.0/_util/asserts.ts": "178dfc49a464aee693a7e285567b3d0b555dc805ff490505a8aae34f9cfb1462",
     "https://deno.land/std@0.182.0/_util/os.ts": "d932f56d41e4f6a6093d56044e29ce637f8dcc43c5a90af43504a889cf1775e3",
     "https://deno.land/std@0.182.0/bytes/copy.ts": "939d89e302a9761dcf1d9c937c7711174ed74c59eef40a1e4569a05c9de88219",
@@ -93,9 +92,14 @@
   },
   "npm": {
     "specifiers": {
+      "blend-promise-utils": "blend-promise-utils@1.29.0",
       "chalk@5": "chalk@5.3.0"
     },
     "packages": {
+      "blend-promise-utils@1.29.0": {
+        "integrity": "sha512-3jHnIhktLsczp/rKtufR8x/pVkm0EXwE1nt/h+XPPk/xooYGv4ymvGubLw6eaf8bSQMUxTbG5seWwSHAy56sIw==",
+        "dependencies": {}
+      },
       "chalk@5.3.0": {
         "integrity": "sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==",
         "dependencies": {}
