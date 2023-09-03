@@ -35,7 +35,7 @@
     "parserOptions": {
       "ecmaVersion": "latest",
       "sourceType": "module",
-      "project": "./bin/tsconfig.json"
+      "project": "./.github/bin/tsconfig.json"
     },
     "plugins": [
       "unicorn"
