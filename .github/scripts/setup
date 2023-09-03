@@ -30,7 +30,7 @@ timestamp
 # =============================================================================
 # Install node_modules
 # =============================================================================
-if cat $GITROOT/bin/package.json | jq -e .dependencies &>/dev/null; then
+if cat $GITROOT/.github/bin/package.json | jq -e .dependencies &>/dev/null; then
   ✨ "pnpm install"
 
   cd $GITROOT/bin

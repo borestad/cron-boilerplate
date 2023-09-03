@@ -35,5 +35,5 @@ const bar = chalk.reset.inverse(' ')
 
 log(bar)
 
-log(chalk.bgBlue.red('hello world '))
-log(dax.colors.red(dax.colors.bgBlue('hello world')))
+log(chalk.bgBlue.red(' hello world '))
+log(dax.colors.red(dax.colors.bgBlue(' hello world ')))
