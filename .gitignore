@@ -139,3 +139,6 @@ paused.conf
 
 # History
 .*_history
+
+# Only dev environment - no need to clutter the repo
+pnpm-lock.yaml
