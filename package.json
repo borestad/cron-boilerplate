@@ -8,9 +8,9 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.29.4",
-    "@tsconfig/deno": "^1.0.8",
-    "@types/node": "^18.17.1",
-    "eslint": "^8.46.0",
+    "@tsconfig/deno": "^1.0.9",
+    "@types/node": "^18.17.14",
+    "eslint": "^8.48.0",
     "eslint-plugin-unicorn": "^44.0.2"
   },
   "preinstallBinaries": [
@@ -30,7 +30,7 @@
     "extends": "@antfu",
     "root": true,
     "ignorePatterns": [
-      "deno.json*"
+      "!.*"
     ],
     "parserOptions": {
       "ecmaVersion": "latest",
@@ -62,7 +62,10 @@
           "*.mjs"
         ],
         "rules": {
-          "template-tag-spacing": ["error", "always"],
+          "template-tag-spacing": [
+            "error",
+            "always"
+          ],
           "no-console": "off",
           "@typescript-eslint/comma-dangle": "off",
           "@typescript-eslint/require-await": [
