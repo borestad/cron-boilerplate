@@ -6,6 +6,9 @@
   "engines": {
     "node": ">=18"
   },
+  "scripts": {
+    "postinstall": "rm -f pnpm-lock.yaml &> /dev/null"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.29.4",
     "@tsconfig/deno": "^1.0.9",

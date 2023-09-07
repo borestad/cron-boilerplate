@@ -10,6 +10,7 @@
     "promise-utils/": "https://cdn.jsdelivr.net/gh/blend/promise-utils/src/",
     "std/": "https://deno.land/std@0.201.0/"
   },
+  "lock": "./config/deno.lock",
   "tasks": {
     "update:lockfile": "fd .ts . -tf --threads=1 -X deno cache --import-map=deno.json --unstable --lock=deno.lock --lock-write"
   }
