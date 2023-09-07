@@ -27,23 +27,6 @@ ga-dump-env
 show-cache-structure
 timestamp
 
-# =============================================================================
-# Install node_modules
-# =============================================================================
-if jq -e .dependencies $GITROOT/package.json &>/dev/null; then
-  ✨ "pnpm install"
-
-  cd $GITROOT
-
-  # Applying dirty fix for *not* including @types/* in the production ci
-  if [ -f pnpm-lock.yaml ]; then
-    cp pnpm-lock.yaml $RUNNER_TEMPDIR/
-    grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
-  fi
-
-  pnpm install --frozen-lockfile --production --prefer-offline --no-verify-store-integrity
-
-  mv $RUNNER_TEMPDIR/pnpm-lock.yaml .
-  timestamp
-
-fi
+✨ "pnpm install"
+install-nodemodules
+timestamp
