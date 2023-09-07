@@ -30,14 +30,16 @@ timestamp
 # =============================================================================
 # Install node_modules
 # =============================================================================
-if cat $GITROOT/.github/bin/package.json | jq -e .dependencies &>/dev/null; then
+if jq -e .dependencies $GITROOT/package.json &>/dev/null; then
   ✨ "pnpm install"
 
-  cd $GITROOT/bin
+  cd $GITROOT
 
   # Applying dirty fix for *not* including @types/* in the production ci
-  cp pnpm-lock.yaml $RUNNER_TEMPDIR/
-  grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
+  if [ -f pnpm-lock.yaml ]; then
+    cp pnpm-lock.yaml $RUNNER_TEMPDIR/
+    grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
+  fi
 
   pnpm install --frozen-lockfile --production --prefer-offline --no-verify-store-integrity
 
