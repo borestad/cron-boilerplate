@@ -1,11 +1,10 @@
 {
   "extends": "@tsconfig/deno/tsconfig.json",
   "include": [
-    "./**/*.ts",
-    "./**/*.mjs"
+    "../../**/*.ts",
+    "../bin/**/*.ts"
   ],
   "exclude": [
-    "./fixtures/**/*.*",
     "deno.json"
   ],
   "compilerOptions": {
@@ -16,7 +15,6 @@
     "outDir": "./dist",
     "module": "esnext",
     "esModuleInterop": true,
-    "noImplicitAny": true,
     "experimentalDecorators": true,
     "checkJs": true,
     "moduleResolution": "nodenext",

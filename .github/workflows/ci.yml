@@ -74,7 +74,7 @@ jobs:
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
-          pstats memo --ttl=300s -- 'deno run -A .github/bin/job1.ts'
+          pstats memo --ttl=300s -- 'deno run -A .github/bin/cron.ts'
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository

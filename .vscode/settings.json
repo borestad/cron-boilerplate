@@ -1,9 +1,10 @@
 {
   "deno.cacheOnSave": true,
   "deno.codeLens.implementations": true,
-  "deno.config": "./.github/bin/deno.json",
+  "deno.codeLens.references": true,
+  "deno.config": "./.github/config/deno.json",
   "deno.enable": true,
-  "deno.importMap": "./.github/bin/deno.json",
+  "deno.importMap": "./.github/config/deno.json",
   "deno.internalDebug": false,
   "deno.lint": false,
   "deno.suggest.autoImports": true,
@@ -18,11 +19,10 @@
   // "deno.inlayHints.variableTypes.suppressWhenTypeMatchesName": true,
   // "deno.inlayHints.parameterTypes.enabled": true,
   "deno.suggest.imports.hosts": {
-    "https://deno.land": true,
+    "https://deno.land": true
   },
   "deno.suggest.names": true,
   "deno.suggest.paths": true,
-  "deno.codeLens.references": true,
   "deno.unstable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
