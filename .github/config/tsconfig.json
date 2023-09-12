@@ -2,7 +2,7 @@
   "extends": "@tsconfig/deno/tsconfig.json",
   "include": [
     "../../**/*.ts",
-    "../bin/**/*.ts"
+    "../../.github/**/*.ts"
   ],
   "exclude": [
     "deno.json"
