@@ -1,5 +1,5 @@
 #!/usr/bin/env -S deno run -A
 
-import { $ } from 'dax/mod.ts'
+import { $ } from '../lib/deps.ts'
 
 await $ `echo hello world`
