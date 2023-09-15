@@ -67,7 +67,7 @@ git-commit-to-repository() {
   git add . --verbose
 
   stats=$(git diff --cached --shortstat | sed -E 's/ (insertions?|deletions?)//g')
-  DATE=$(date +%Y-%m-%d %H:%M:%S)
+  DATE=$(date '+%Y-%m-%d %H:%M:%S')
 
   git commit -m "🦄 \`$DATE\`  $stats" -a || true
   git push
