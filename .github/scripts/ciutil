@@ -66,10 +66,10 @@ git-commit-to-repository() {
   git pull --rebase --autostash
   git add . --verbose
 
-  stats=$(git diff --cached --shortstat | sed -E 's/ (insertion?|deletion?)//g')
-  DATE=$(date +%Y:%m:%d-%H:%M:%S)
+  stats=$(git diff --cached --shortstat | sed -E 's/ (insertions?|deletions?)//g')
+  DATE=$(date +%Y-%m-%d %H:%M:%S)
 
-  git commit -m "⚡️ CI: \`$DATE\` [$stats]" -a || true
+  git commit -m "🦄 \`$DATE\`  $stats" -a || true
   git push
 }
 
