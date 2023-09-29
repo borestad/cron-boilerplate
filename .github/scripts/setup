@@ -9,8 +9,8 @@ initstart=$(time-now)
 # =============================================================================
 # Setup
 # =============================================================================
-✨ "Setup: Create directories"
-create-directories
+# ✨ "Setup: Create directories"
+# create-directories
 
 ✨ "Setup: Preinstall binaries"
 preinstall-binaries

@@ -45,15 +45,15 @@ install-nodemodules () {
 
 
 }
-create-directories() {
-  mkdir -pv ~/.local/bin
-  mkdir -pv $ACTIONS_CACHE_DIR
-  mkdir -pv $ACTIONS_CACHE_BIN_DIR
-  mkdir -pv $PNPM_HOME
-  mkdir -pv $PNPM_STORE_DIR
-  mkdir -pv $RUNNER_TEMPDIR
-  mkdir -pv $DEBUG_DIR
-}
+# create-directories() {
+#   # mkdir -pv ~/.local/bin
+#   # mkdir -pv $ACTIONS_CACHE_DIR
+#   mkdir -pv $ACTIONS_CACHE_BIN_DIR
+#   mkdir -pv $PNPM_HOME
+#   mkdir -pv $PNPM_STORE_DIR
+#   mkdir -pv $RUNNER_TEMPDIR
+#   mkdir -pv $DEBUG_DIR
+# }
 
 optimize-apt-get-install() {
   sudo cp -p /bin/true /usr/bin/mandb 2>/dev/null || true
@@ -73,37 +73,48 @@ git-commit-to-repository() {
   git push
 }
 
-set-env-variables() {
-  # Action Cache
-  export ACTIONS_CACHE_DIR=$RUNNER_WORKSPACE/.actions-cache
+function to_env() {
+  mkdir -pv $2
+  export $1=$2
+  echo "$1=$2" >> $GITHUB_ENV
+}
 
-  echo ACTIONS_CACHE_DIR=$ACTIONS_CACHE_DIR                    >> $GITHUB_ENV
-  echo ACTIONS_CACHE_BIN_DIR=$ACTIONS_CACHE_DIR/bin            >> $GITHUB_ENV
-  echo PNPM_STORE_DIR=$ACTIONS_CACHE_DIR/pnpm/pnpm-store       >> $GITHUB_ENV
-  echo EGET_BIN=$ACTIONS_CACHE_DIR/bin                         >> $GITHUB_ENV
-  echo DENO_DIR=$ACTIONS_CACHE_DIR/.deno                       >> $GITHUB_ENV
-  echo PNPM_HOME=$ACTIONS_CACHE_DIR/pnpm                       >> $GITHUB_ENV
+function add_path() {
+  echo $1 >> $GITHUB_PATH
+}
+set-env-variables() {
+  mkdir -pv ~/.local/bin
+
+  # Action Cache
+  WS=$RUNNER_WORKSPACE
+
+  to_env ACTIONS_CACHE_DIR      $WS/.actions-cache
+  to_env ACTIONS_CACHE_BIN_DIR  $WS/.actions-cache/bin
+  to_env PNPM_STORE_DIR         $WS/.actions-cache/pnpm/pnpm-store
+  to_env EGET_BIN               $WS/.actions-cache/bin
+  to_env DENO_DIR               $WS/.actions-cache/.deno
+  to_env PNPM_HOME              $WS/.actions-cache/pnpm
 
   # TTL Cache (Cache that will automatically be invalidated)
-  export TTL_CACHE_DIR=$RUNNER_WORKSPACE/.cache-ttl
-  echo TTL_CACHE_DIR=$TTL_CACHE_DIR                            >> $GITHUB_ENV
-  echo BKT_CACHE_DIR=$TTL_CACHE_DIR/bkt                        >> $GITHUB_ENV
+  to_env TTL_CACHE_DIR          $WS/.cache-ttl
+  to_env BKT_CACHE_DIR          $WS/.cache-ttl/bkt
 
   # Other dirs
-  echo DEBUG_DIR=$RUNNER_WORKSPACE/.debug                      >> $GITHUB_ENV
-  echo RUNNER_TEMPDIR=$RUNNER_TEMP/`date +%s%N`                >> $GITHUB_ENV
+  to_env DEBUG_DIR              $WS/.debug
+  to_env RUNNER_TEMPDIR         $RUNNER_TEMP/`date +%s%N`
 
   # Other env
-  echo CACHE_PREFIX=$(date +'%U')                              >> $GITHUB_ENV
-  echo NODE_ENV="production"                                   >> $GITHUB_ENV
-  echo TERM=xterm-256color                                     >> $GITHUB_ENV
-  echo FORCE_COLOR=1                                           >> $GITHUB_ENV
+  to_env CACHE_PREFIX           "$(date +'%U')"
+  to_env NODE_ENV               production
+  to_env TERM                   xterm-256color
+  to_env FORCE_COLOR            1
 
-  echo './node_modules/.bin'                                   >> $GITHUB_PATH
-  echo $HOME/.local/bin                                        >> $GITHUB_PATH
-  echo $RUNNER_WORKSPACE/.actions-cache/pnpm                   >> $GITHUB_PATH
-  echo $RUNNER_WORKSPACE/.actions-cache/bin                    >> $GITHUB_PATH
-  echo $GITHUB_WORKSPACE/.github/scripts                       >> $GITHUB_PATH
+  # PATH
+  add_path './node_modules/.bin'
+  add_path $HOME/.local/bin
+  add_path $WS/.actions-cache/pnpm
+  add_path $WS/.actions-cache/bin
+  add_path $GITHUB_WORKSPACE/.github/scripts
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
