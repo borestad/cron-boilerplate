@@ -1,4 +1,4 @@
-import { $, consola } from 'deps.ts'
+import { $, createConsola } from 'deps.ts'
 
 /**
  * bkt - caching utility
@@ -17,9 +17,13 @@ export async function bkt({
     .noThrow().captureCombined().printCommand()
 }
 
-export const myLog = function (...args: any) {
+export const vanillaLogger = function (...args: any) {
   // eslint-disable-next-line no-console
   console.log(...args)
 }
 
-export const log = Object.assign(myLog, consola)
+const fancyLogger = createConsola({
+  fancy: true
+})
+
+export const log = Object.assign(vanillaLogger, fancyLogger)

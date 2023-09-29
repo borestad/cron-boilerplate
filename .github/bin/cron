@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run -A
 
-import { $, createConsola } from 'deps.ts'
+import { $ } from 'deps.ts'
 import { bkt, log } from 'lib.ts'
 
 await $ `echo hello world`
@@ -19,14 +19,3 @@ log.warn('A new version of log is available: 3.0.1')
 log.success('Project built!')
 log.error(new Error('This is an example error. Everything is fine!'))
 log.box('I am a simple box')
-
-const logger = createConsola({
-  fancy: true
-})
-
-logger.info('Using log 3.0.0')
-logger.start('Building project...')
-logger.warn('A new version of log is available: 3.0.1')
-logger.success('Project built!')
-logger.error(new Error('This is an example error. Everything is fine!'))
-logger.box('I am a simple box')
