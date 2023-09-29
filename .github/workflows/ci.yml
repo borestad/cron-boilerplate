@@ -74,7 +74,7 @@ jobs:
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
-          j default
+          just default
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
