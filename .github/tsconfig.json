@@ -1,8 +1,11 @@
 {
   "extends": "@tsconfig/deno/tsconfig.json",
   "include": [
-    "../../**/*.ts",
-    "../../.github/**/*.ts"
+    "../**/*.ts",
+    "../.*/**/*.ts"
+  ],
+  "files": [
+    "./bin/cron"
   ],
   "exclude": [
     "deno.json"
