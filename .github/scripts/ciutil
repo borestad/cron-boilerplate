@@ -8,14 +8,14 @@ download() {
   local url="$1"
   local software=$(basename "$url")
 
-  if ! command -v "$software" &>/dev/null; then
+  if ! command -v "$software" &> /dev/null; then
     echo "𐄂 $software is not installed, downloading ..."
   else
     printf "%-35s %s\n" "✔ $software is already preinstalled. " "[ $(command -v $software) ] - installing anyway"
   fi
 
   wget -O ~/.local/bin/$software -q -nv --content-disposition "$url"
-  chmod +x ~/.local/bin/$software 2>/dev/null || true
+  chmod +x ~/.local/bin/$software 2> /dev/null || true
 }
 
 preinstall-binaries() {
@@ -28,13 +28,13 @@ preinstall-binaries() {
   wait
 
   install-nodemodules() {
-    if jq -e .dependencies $GITROOT/package.json &>/dev/null; then
+    if jq -e .dependencies $GITROOT/package.json &> /dev/null; then
       cd $GITROOT
 
       # Applying dirty fix for *not* including @types/* in the production ci
       if [ -f pnpm-lock.yaml ]; then
         cp pnpm-lock.yaml $RUNNER_TEMPDIR/
-        grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >|pnpm-lock.yaml
+        grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
       fi
 
       pnpm install --frozen-lockfile --production --prefer-offline --no-verify-store-integrity
@@ -46,8 +46,8 @@ preinstall-binaries() {
 }
 
 optimize-apt-get-install() {
-  sudo cp -p /bin/true /usr/bin/mandb 2>/dev/null || true
-  sudo mv -f /var/cache/man /tmp/ 2>/dev/null || true
+  sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
+  sudo mv -f /var/cache/man /tmp/ 2> /dev/null || true
 }
 
 git-commit-to-repository() {
@@ -66,11 +66,11 @@ git-commit-to-repository() {
 function to_env() {
   mkdir -pv $2
   export $1=$2
-  echo "$1=$2" >>$GITHUB_ENV
+  echo "$1=$2" >> $GITHUB_ENV
 }
 
 function add_path() {
-  echo $1 >>$GITHUB_PATH
+  echo $1 >> $GITHUB_PATH
 }
 set-env-variables() {
   mkdir -pv ~/.local/bin
@@ -169,7 +169,7 @@ mkt() {
 }
 
 has-file-changed() {
-  changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2>/dev/null)"
+  changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2> /dev/null)"
   if $(echo "$changed_files" | grep --quiet "$1"); then
     return 0
   fi
