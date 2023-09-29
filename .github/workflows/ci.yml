@@ -74,7 +74,7 @@ jobs:
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
-          FORCE_COLOR=1 .github/bin/cron
+          FORCE_COLOR=1 .github/bin/cron --color
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
