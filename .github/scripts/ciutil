@@ -64,7 +64,7 @@ git-commit-to-repository() {
 }
 
 function to_env() {
-  [[ "$2" == *"/"* ]] && printf "$1 =>" && mkdir -pv $2
+  [[ "$2" == *"/"* ]] && (echo "$1 => $2" && mkdir -p $2)
   export $1=$2
   echo "$1=$2" >> $GITHUB_ENV
 }
