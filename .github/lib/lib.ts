@@ -4,13 +4,13 @@ import { $, createConsola } from 'deps.ts'
  * bkt - caching utility
  */
 export async function bkt({
-  to = '.',
+  cwd = '.',
   ttl = '3600s',
   timeout = '60s',
   cmd = ''
 }) {
-  if (to.trim().length) {
-    cmd = `mkdir -p ${to}; cd ${to}; ${cmd}`
+  if (cwd.trim().length) {
+    cmd = `mkdir -p ${cwd}; cd ${cwd}; ${cmd}`
   }
 
   return await $ `timeout ${timeout} bkt --discard-failures --ttl=${ttl} -- sh -c ${cmd}`
@@ -27,3 +27,15 @@ const fancyLogger = createConsola({
 })
 
 export const log = Object.assign(vanillaLogger, fancyLogger)
+
+/**
+ * Simple line filler helper
+ */
+export function hr(title = '', opt = { len: 80, pTop: true, pBottom: true }) {
+  title = title ? `${title} ` : title
+  const rest = opt.len - Number(title.length)
+
+  opt.pTop && log()
+  log(title + '─'.repeat(rest))
+  opt.pBottom && log()
+}

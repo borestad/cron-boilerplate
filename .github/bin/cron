@@ -1,16 +1,16 @@
 #!/usr/bin/env -S deno run -A
 
 import { $ } from 'deps.ts'
-import { bkt, log } from 'lib.ts'
+import { bkt, hr, log } from 'lib.ts'
 
 await $ `echo hello world`
 const param = '+%Y-%m-%d-%H%M%S'
 
 const res = await bkt({
-  to: '',
   cmd: `date ${param}`,
 })
 
+hr('Hello')
 log(res.stdout)
 
 log.info('Using log 3.0.0')
