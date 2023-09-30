@@ -26,24 +26,24 @@ preinstall-binaries() {
   done
 
   wait
-
-  install-nodemodules() {
-    if jq -e .dependencies $GITROOT/package.json &> /dev/null; then
-      cd $GITROOT
-
-      # Applying dirty fix for *not* including @types/* in the production ci
-      if [ -f pnpm-lock.yaml ]; then
-        cp pnpm-lock.yaml $RUNNER_TEMPDIR/
-        grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
-      fi
-
-      pnpm install --frozen-lockfile --production --prefer-offline --no-verify-store-integrity
-
-      mv $RUNNER_TEMPDIR/pnpm-lock.yaml .
-    fi
-  }
-
 }
+
+install-nodemodules() {
+  if jq -e .dependencies `git rev-parse --show-toplevel`/package.json &> /dev/null; then
+    cd $GITROOT
+
+    # Applying dirty fix for *not* including @types/* in the production ci
+    if [ -f pnpm-lock.yaml ]; then
+      cp pnpm-lock.yaml $RUNNER_TEMPDIR/
+      grep -v "'@types/" $RUNNER_TEMPDIR/pnpm-lock.yaml >| pnpm-lock.yaml
+    fi
+
+    pnpm install --frozen-lockfile --production --prefer-offline --no-verify-store-integrity
+
+    mv $RUNNER_TEMPDIR/pnpm-lock.yaml .
+  fi
+}
+
 
 optimize-apt-get-install() {
   sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
