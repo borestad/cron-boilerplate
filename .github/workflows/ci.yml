@@ -68,13 +68,19 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Preinstall & Prepare Environment
         run: |
-          .github/scripts/setup
+          . .github/scripts/ciutil
+          ✨ "Setup: Preinstall binaries"           && preinstall-binaries
+          ✨ "Debug: System information"            && system-info
+          ✨ "Debug: Env variables"                 && ga-dump-env
+          ✨ "Debug: cache ($ACTIONS_CACHE_DIR)"    && show-cache-structure-default
+          ✨ "Debug: cache ($TTL_CACHE_DIR)"        && show-cache-structure-ttl
+          ✨ "pnpm install"                         && install-nodemodules
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
-          FORCE_COLOR=1 .github/bin/cron --color
+          .github/bin/cron
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository

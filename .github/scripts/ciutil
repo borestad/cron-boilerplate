@@ -127,14 +127,12 @@ timestamp() {
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Debug / Statistics / Information
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-show-cache-structure() {
-  ✨ "Cache structure ($ACTIONS_CACHE_DIR)"
-  dust -b -P -s $ACTIONS_CACHE_DIR
-  echo
+show-cache-structure-default() {
+  dust -b -P -s $ACTIONS_CACHE_DIR && echo
+}
 
-  ✨ "Cache structure ($TTL_CACHE_DIR)"
-  dust -b -P -s $TTL_CACHE_DIR
-  echo
+show-cache-structure-ttl() {
+  dust -b -P -s $TTL_CACHE_DIR && echo
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -147,8 +145,6 @@ show-cache-structure() {
   echo
 }
 
-✓() { echo -e "✓ ${R} $1"; }
-
 ___() {
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
 }
@@ -156,18 +152,6 @@ ___() {
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # File system
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-git-root() {
-  git rev-parse --show-toplevel
-}
-
-mk() {
-  mkdir -pv -p "$@" && cd "$_"
-}
-
-mkt() {
-  cd $(mktemp -d) && pwd
-}
-
 has-file-changed() {
   changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2> /dev/null)"
   if $(echo "$changed_files" | grep --quiet "$1"); then
