@@ -101,7 +101,8 @@ jobs:
           JSON_MATRIX: ${{ toJSON(MATRIX) }}
         run: |
           ip-public
-          .github/scripts/ciutil show-cache-structure
+          .github/scripts/ciutil show-cache-structure-default
+          .github/scripts/ciutil show-cache-structure-ttl
           .github/scripts/ciutil ___
 
           printf "$JSON_GITHUB"    >> $DEBUG_DIR/github.json
