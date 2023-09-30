@@ -112,5 +112,5 @@ jobs:
           printf "$JSON_STRATEGY"  >> $DEBUG_DIR/strategy.json
           printf $JSON_MATRIX      >> $DEBUG_DIR/matrix.json
 
-          ga-dump-context | tee $RUNNER_TEMPDIR/ga-dump-context.txt &> /dev/null & cat $RUNNER_TEMPDIR/ga-dump-context.txt
+          ga-dump-context | tee /tmp/ga-dump-context.txt &> /dev/null & cat /tmp/ga-dump-context.txt
 
