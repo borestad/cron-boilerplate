@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { $, createConsola } from 'deps.ts'
 
 /**
@@ -7,7 +9,7 @@ export async function bkt({
   cwd = '.',
   ttl = '3600s',
   timeout = '60s',
-  cmd = ''
+  cmd = '',
 }) {
   if (cwd.trim().length) {
     cmd = `mkdir -p ${cwd}; cd ${cwd}; ${cmd}`
@@ -18,15 +20,15 @@ export async function bkt({
 }
 
 export const vanillaLogger = function (...args: any) {
-  // eslint-disable-next-line no-console
   console.log(...args)
 }
 
-const fancyLogger = createConsola({
-  fancy: true
-})
-
-export const log = Object.assign(vanillaLogger, fancyLogger)
+export const log = Object.assign(
+  (...args: any) => console.log(...args),
+  createConsola({
+    fancy: true,
+  }),
+)
 
 /**
  * Simple line filler helper

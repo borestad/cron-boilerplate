@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# set -o errexit
+# set -e
+
+#
+# Helpers
+#
+time-now() {
+  date +%s.%N
+}
+benchmark() {
+  local start=$1
+  local end=${2:-$(time-now)}
+  printf %.2f $(echo "$end - $start" | bc -l)
+}
+
+touch2() {
+  mkdir -p "$(dirname "$1")" && touch "$1" ;
+}
+
+#
+# Main
+#
+DIR=$(pwd)
+URL=$1
+BASENAME=$(basename $URL | sed 's/?.*//g')
+OUTPUT=${2:-$BASENAME}
+TEMPFILE=$(mktemp)
+
+curl \
+  --silent \
+  --show-error \
+  --location \
+  --keepalive \
+  --connect-timeout 10 \
+  --retry 1 \
+  --http2 \
+  --fail-with-body \
+  --compressed \
+  -o "$TEMPFILE" \
+  "${URL}" 2>&1
+
+  code=$?
+
+  if [ $code -ne 0 ]; then
+    echo "$URL"
+    exit $code
+  fi
+
+cd $DIR
+touch2 $OUTPUT
+mv $TEMPFILE $OUTPUT
+
+echo $(readlink -f $OUTPUT)

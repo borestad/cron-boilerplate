@@ -4,27 +4,28 @@ set -euo pipefail
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Preinstall
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function exists() { command -v $1 &> /dev/null; }
+
 download() {
   local url="$1"
   local software=$(basename "$url")
+  local location=~/.local/bin/$software
 
-  if ! command -v "$software" &> /dev/null; then
-    echo "𐄂 $software is not installed, downloading ..."
-  else
-    printf "%-35s %s\n" "✔ $software is already preinstalled. " "[ $(command -v $software) ] - installing anyway"
-  fi
-
-  wget -O ~/.local/bin/$software -q -nv --content-disposition "$url"
-  chmod +x ~/.local/bin/$software 2> /dev/null || true
+  echo "✔ Downloading $software into $location"
+  wget -O $location -q -nv --content-disposition "$url"
+  chmod +x $location 2> /dev/null || true
 }
 
 preinstall-binaries() {
+  # Optimize apt-get install time (no need for mandb on a ci)
+  sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
+  sudo mv -f /var/cache/man /tmp/ 2> /dev/null || true
+
   cp .github/scripts/ciutil ~/.local/bin/
 
   for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
     download "$url" &
   done
-
   wait
 }
 
@@ -44,34 +45,16 @@ install-nodemodules() {
   fi
 }
 
-
-optimize-apt-get-install() {
-  sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
-  sudo mv -f /var/cache/man /tmp/ 2> /dev/null || true
-}
-
-git-commit-to-repository() {
-  git config user.name github-actions
-  git config user.email github-actions@github.com
-  git pull --rebase --autostash
-  git add . --verbose
-
-  stats=$(git diff --cached --shortstat | sed -E 's/ (insertions?|deletions?|changed?,)//g')
-  DATE=$(date '+%Y-%m-%d %H:%M:%S')
-
-  git commit -m "🦄 \`$DATE\`  \`$stats\`" -a || true
-  git push
-}
-
-function to_env() {
+to_env() {
   [[ "$2" == *"/"* ]] && (echo "$1 => $2" && mkdir -p $2)
   export $1=$2
   echo "$1=$2" >> $GITHUB_ENV
 }
 
-function add_path() {
+add_path() {
   echo $1 >> $GITHUB_PATH
 }
+
 set-env-variables() {
   mkdir -pv ~/.local/bin
 
@@ -107,50 +90,22 @@ set-env-variables() {
   add_path $GITHUB_WORKSPACE/.github/scripts
 }
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Time / Benchmark
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-time-now() {
-  date +%s.%N
-}
-
-benchmark() {
-  local start=$1
-  local end=${2:-$(time-now)}
-  printf %.2f $(echo "$end - $start" | bc -l)
-}
-
-timestamp() {
-  printf "\n%-65s %s\n" "⌛ Time: $(benchmark $start)s" "⌛ Total: $(benchmark $initstart)s"
-}
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Debug / Statistics / Information
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-show-cache-structure-default() {
-  dust -b -P -s $ACTIONS_CACHE_DIR && echo
-}
-
-show-cache-structure-ttl() {
-  dust -b -P -s $TTL_CACHE_DIR && echo
-}
+show-cache-structure-default() { dust -b -P -s $ACTIONS_CACHE_DIR && echo; }
+show-cache-structure-ttl() { dust -b -P -s $TTL_CACHE_DIR && echo; }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Formatters / Printers
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨() {
-  ___
-  start=$(time-now)
-  echo "✨ $1"
-  echo
-}
+✨() { ___; start=$(time-now); echo "✨ $1"; echo; }
 
-___() {
-  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-}
+___() { echo; printf '━%.0s' {1..80}; echo; }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# File system
+# Git Utils
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 has-file-changed() {
   changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2> /dev/null)"
@@ -159,6 +114,32 @@ has-file-changed() {
   fi
   return 1
 }
+
+git-commit-to-repository() {
+  DATE=$(date '+%Y/%m/%d %H:%M')
+  LABEL="CRON"
+
+  echo
+  git diff --stat HEAD
+  echo
+
+  git config user.name github-actions
+  git config user.email github-actions@github.com
+  git pull --rebase --autostash
+
+  for file in $(git status -s | cut -c4-); do
+    echo "file: $file";
+    shortname=$(basename $file | sed -E 's/\.(ipset|netset)//g')
+    git add $file
+    stats=$(git diff --cached --shortstat | sed -E 's/ (insertions?|deletions?|changed?)//g' | sed 's/,//g' | xargs)
+    stats=$(echo $stats | sed 's/1 file//g' | xargs)
+    git commit -m "\`️️⚡️ $LABEL ⚡️\` \`$DATE\` \`$stats $shortname\`" || true
+    echo $stats
+  done
+
+  git push
+}
+
 
 # Allow calling for methods from outside
 for i in "$@"; do

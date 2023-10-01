@@ -50,5 +50,6 @@
   },
   "files.exclude": {},
   "json.schemaDownload.enable": true,
-  "prettier.enable": false
+  "prettier.enable": true,
+  "editor.codeLens": false
 }
