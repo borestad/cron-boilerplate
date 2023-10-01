@@ -1,7 +1,7 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.6.4",
+  "packageManager": "pnpm@8.8.0",
   "author": "Johan Borestad <johan@borestad.com> (http://borestad.com/)",
   "engines": {
     "node": ">=18"
@@ -43,7 +43,7 @@
     "parserOptions": {
       "ecmaVersion": "latest",
       "sourceType": "module",
-      "project": "./.github/tsconfig.json"
+      "project": "./.cron/tsconfig.json"
     },
     "plugins": [
       "unicorn"
