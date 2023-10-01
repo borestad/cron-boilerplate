@@ -42,6 +42,8 @@ install-nodemodules() {
     pnpm install --frozen-lockfile --production --prefer-offline --no-verify-store-integrity
 
     mv $RUNNER_TEMPDIR/pnpm-lock.yaml .
+  else
+    echo "Nothing to install"
   fi
 }
 
