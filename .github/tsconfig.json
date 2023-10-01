@@ -16,7 +16,7 @@
     "rootDir": ".",
     "target": "ESNext",
     "outDir": "./dist",
-    "module": "esnext",
+    "module": "NodeNext",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "checkJs": true,
