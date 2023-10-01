@@ -9,7 +9,7 @@ export async function bkt({
   cwd = '.',
   ttl = '3600s',
   timeout = '60s',
-  cmd = '',
+  cmd = ''
 }) {
   if (cwd.trim().length) {
     cmd = `mkdir -p ${cwd}; cd ${cwd}; ${cmd}`
@@ -19,15 +19,14 @@ export async function bkt({
     .noThrow().captureCombined().printCommand()
 }
 
-export const vanillaLogger = function (...args: any) {
-  console.log(...args)
-}
-
+/**
+ * Log wrapper
+ */
 export const log = Object.assign(
   (...args: any) => console.log(...args),
   createConsola({
-    fancy: true,
-  }),
+    fancy: true
+  })
 )
 
 /**

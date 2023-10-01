@@ -80,7 +80,7 @@ jobs:
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
-          .cron/bin/cron
+          cd .cron && just
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
