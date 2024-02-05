@@ -21,7 +21,7 @@ preinstall-binaries() {
   sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
   sudo mv -f /var/cache/man /tmp/ 2> /dev/null || true
 
-  cp .cron/scripts/ciutil ~/.local/bin/
+  cp .github/scripts/ciutil ~/.local/bin/
 
   for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
     download "$url" &

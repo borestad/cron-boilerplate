@@ -43,7 +43,7 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Set env variables
         run: |
-          .cron/scripts/ciutil set-env-variables
+          .github/scripts/ciutil set-env-variables
 
       # ─────────────────────────────────────────────────────
       - uses: actions/cache@v3
@@ -68,7 +68,7 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Preinstall & Prepare Environment
         run: |
-          . .cron/scripts/ciutil
+          . .github/scripts/ciutil
           ✨ "Setup: Preinstall binaries"           && preinstall-binaries
           ✨ "Debug: System information"            && system-info
           ✨ "Debug: Env variables"                 && ga-dump-env
@@ -86,7 +86,7 @@ jobs:
       - name: Post hooks ❯❯ Commit to repository
         if: github.ref == 'refs/heads/main'
         run: |
-          .cron/scripts/ciutil git-commit-to-repository
+          .github/scripts/ciutil git-commit-to-repository
           git push
 
       # ─────────────────────────────────────────────────────
@@ -101,9 +101,9 @@ jobs:
           JSON_MATRIX: ${{ toJSON(MATRIX) }}
         run: |
           ip-public
-          .cron/scripts/ciutil show-cache-structure-default
-          .cron/scripts/ciutil show-cache-structure-ttl
-          .cron/scripts/ciutil ___
+          .github/scripts/ciutil show-cache-structure-default
+          .github/scripts/ciutil show-cache-structure-ttl
+          .github/scripts/ciutil ___
 
           printf "$JSON_GITHUB"    >> $DEBUG_DIR/github.json
           printf "$JSON_JOB"       >> $DEBUG_DIR/job.json
