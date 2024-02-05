@@ -7,7 +7,7 @@
  */
 
 import { URL } from 'node:url'
-import { $, createConsola } from 'deps.ts'
+import { $, chalk, createConsola } from 'deps.ts'
 
 /**
  * bkt - caching utility
@@ -50,4 +50,23 @@ export function hr(title = '', opt = { len: 80, pTop: true, pBottom: true }) {
 /**
  * Path Helpers
  */
-export const gitRoot = new URL('../', import.meta.url).pathname
+export const root = new URL('../', import.meta.url).pathname
+
+/**
+ * Color Helpers
+ */
+export const Code = {
+  OK: `${chalk.bgAnsi256(34).black('   OK   ')} `,
+  WARN: `${chalk.bgAnsi256(221).black('  WARN  ')} `,
+  ERROR: `${chalk.bgAnsi256(160).whiteBright('  FAIL  ')} `,
+}
+
+/**
+ * Benchmark helper
+ */
+export function benchmark(unit = 1) {
+  const start = performance.now()
+  return (now = performance.now()) => {
+    return ((now - start) / unit).toFixed(2)
+  }
+}
