@@ -5,8 +5,8 @@ import antfu from '@antfu/eslint-config'
 export default antfu({
   // Enable stylistic formatting rules
   stylistic: {
-    indent: 2, // 4, or 'tab'
-    quotes: 'single', // or 'double'
+    indent: 2,
+    quotes: 'single',
   },
 
   // Or customize the stylistic rules

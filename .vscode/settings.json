@@ -27,7 +27,7 @@
     "source.organizeImports": "never"
   },
 
-  "editor.codeLens": false,
+  "editor.codeLens": true,
   "editor.defaultFormatter": "denoland.vscode-deno",
   "editor.formatOnSave": false,
   "editor.formatOnSaveMode": "file",
@@ -46,6 +46,19 @@
     "typescriptreact",
     "yaml",
     "toml"
+  ],
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off" },
+    { "rule": "format/*", "severity": "off" },
+    { "rule": "*-indent", "severity": "off" },
+    { "rule": "*-spacing", "severity": "off" },
+    { "rule": "*-spaces", "severity": "off" },
+    { "rule": "*-order", "severity": "off" },
+    { "rule": "*-dangle", "severity": "off" },
+    { "rule": "*-newline", "severity": "off" },
+    { "rule": "*quotes", "severity": "off" },
+    { "rule": "*semi", "severity": "off" }
   ],
   "files.associations": {
     "deno.json": "jsonc",
