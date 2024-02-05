@@ -55,7 +55,7 @@ jobs:
             ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX }}-
             ${{ runner.os }}-v1-store-
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         name: Bootstrap ❯❯ Restore TTL Cache
         if: always()
         with:
