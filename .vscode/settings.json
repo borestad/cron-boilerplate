@@ -1,14 +1,12 @@
 {
+  "deno.enable": true,
   "deno.cacheOnSave": true,
   "deno.codeLens.implementations": true,
   "deno.codeLens.references": true,
   "deno.config": "./.cron/deno.json",
-  "deno.enable": true,
   "deno.importMap": "./.cron/deno.json",
   "deno.internalDebug": false,
   "deno.lint": false,
-  "deno.suggest.autoImports": true,
-  "deno.suggest.completeFunctionCalls": true,
   "deno.suggest.imports.autoDiscover": true,
   // "deno.inlayHints.enumMemberValues.enabled": true,
   // "deno.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -21,17 +19,21 @@
   "deno.suggest.imports.hosts": {
     "https://deno.land": true
   },
-  "deno.suggest.names": true,
-  "deno.suggest.paths": true,
   "deno.unstable": true,
+
+  // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
+
+  "editor.codeLens": false,
   "editor.defaultFormatter": "denoland.vscode-deno",
   "editor.formatOnSave": false,
   "editor.formatOnSaveMode": "file",
   "editor.formatOnType": false,
   "eslint.enable": true,
+  "eslint.experimental.useFlatConfig": true,
   "eslint.useESLintClass": true,
   "eslint.validate": [
     "javascript",
@@ -42,7 +44,8 @@
     "markdown",
     "typescript",
     "typescriptreact",
-    "yaml"
+    "yaml",
+    "toml"
   ],
   "files.associations": {
     "deno.json": "jsonc",
@@ -50,6 +53,11 @@
   },
   "files.exclude": {},
   "json.schemaDownload.enable": true,
-  "prettier.enable": true,
-  "editor.codeLens": false
+  "typescript.suggest.autoImports": true,
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.suggest.enabled": true,
+  "typescript.suggest.paths": true,
+  "explorer.fileNesting.enabled": false,
+
+  "prettier.enable": false
 }

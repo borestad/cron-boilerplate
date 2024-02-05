@@ -1,5 +1,12 @@
 /* eslint-disable no-console */
 
+/**
+ *
+ * Common utils
+ *
+ */
+
+import { URL } from 'node:url'
 import { $, createConsola } from 'deps.ts'
 
 /**
@@ -9,13 +16,12 @@ export async function bkt({
   cwd = '.',
   ttl = '3600s',
   timeout = '60s',
-  cmd = ''
+  cmd = '',
 }) {
-  if (cwd.trim().length) {
+  if (cwd.trim().length)
     cmd = `mkdir -p ${cwd}; cd ${cwd}; ${cmd}`
-  }
 
-  return await $ `timeout ${timeout} bkt --discard-failures --ttl=${ttl} -- sh -c ${cmd}`
+  return await $`timeout ${timeout} bkt --discard-failures --ttl=${ttl} -- sh -c ${cmd}`
     .noThrow().captureCombined().printCommand()
 }
 
@@ -25,8 +31,8 @@ export async function bkt({
 export const log = Object.assign(
   (...args: any) => console.log(...args),
   createConsola({
-    fancy: true
-  })
+    fancy: true,
+  }),
 )
 
 /**
@@ -40,3 +46,8 @@ export function hr(title = '', opt = { len: 80, pTop: true, pBottom: true }) {
   log(title + '─'.repeat(rest))
   opt.pBottom && log()
 }
+
+/**
+ * Path Helpers
+ */
+export const gitRoot = new URL('../', import.meta.url).pathname

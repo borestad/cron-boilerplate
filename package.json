@@ -10,11 +10,12 @@
     "postinstall": "rm -f pnpm-lock.yaml &> /dev/null"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.29.4",
+    "@antfu/eslint-config": "^2.6.2",
+    "@stylistic/eslint-plugin-js": "^1.5.3",
     "@tsconfig/deno": "^1.0.9",
-    "@types/node": "^18.17.14",
-    "eslint": "^8.48.0",
-    "eslint-plugin-unicorn": "^44.0.2"
+    "@types/node": "^20.11.2",
+    "eslint": "^8.56.0",
+    "eslint-plugin-unicorn": "^50.0.1"
   },
   "preinstallBinaries": [
     "https://raw.githubusercontent.com/borestad/ci-utils/main/bin/dl",
@@ -34,87 +35,5 @@
     "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/rg",
     "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/sd",
     "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/sponge"
-  ],
-  "eslintConfig": {
-    "extends": "@antfu",
-    "root": true,
-    "ignorePatterns": [
-      "!.*"
-    ],
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module",
-      "project": "./.cron/tsconfig.json"
-    },
-    "plugins": [
-      "unicorn"
-    ],
-    "rules": {
-      "unicorn/template-indent": [
-        "warn",
-        {
-          "tags": [],
-          "functions": [],
-          "selectors": [
-            "TemplateLiteral"
-          ]
-        }
-      ]
-    },
-    "globals": {},
-    "overrides": [
-      {
-        "files": [
-          "*",
-          "*.ts",
-          "*.tsx",
-          "*.js",
-          "*.mjs"
-        ],
-        "rules": {
-          "template-tag-spacing": [
-            "error",
-            "always"
-          ],
-          "curly": ["error", "multi-line"],
-          "no-console": "error",
-          "@typescript-eslint/comma-dangle": "off",
-          "@typescript-eslint/require-await": [
-            "error"
-          ],
-          "@typescript-eslint/no-floating-promises": [
-            "error"
-          ],
-          "@typescript-eslint/no-misused-promises": [
-            "error"
-          ],
-          "no-multiple-empty-lines": [
-            "error",
-            {
-              "max": 1,
-              "maxBOF": 0,
-              "maxEOF": 0
-            }
-          ]
-        }
-      },
-      {
-        "files": [
-          "settings.json",
-          "deno.json*"
-        ],
-        "rules": {
-          "jsonc/sort-keys": [
-            "error",
-            "asc",
-            {
-              "caseSensitive": true,
-              "natural": false,
-              "minKeys": 2
-            }
-          ]
-        }
-      }
-    ]
-  }
+  ]
 }

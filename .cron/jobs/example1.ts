@@ -1,9 +1,9 @@
 #!/usr/bin/env -S deno run -A
 
+import { bkt, gitRoot, hr, log } from 'util.ts'
 import { $ } from 'deps.ts'
-import { bkt, hr, log } from 'lib.ts'
 
-await $ `echo hello world`
+await $`echo hello world`
 const param = '+%Y-%m-%d-%H%M%S'
 
 const res = await bkt({
@@ -12,6 +12,8 @@ const res = await bkt({
 
 hr('Hello')
 log(res.stdout)
+
+log.info(gitRoot)
 
 log.info('Using log 3.0.0')
 log.start('Building project...')

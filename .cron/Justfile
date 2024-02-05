@@ -1,5 +1,0 @@
-root := `git rev-parse --show-toplevel`
-
-default:
-    pstats memo --ttl=60s -- FORCE_COLOR=1 {{root}}/.cron/bin/cron
-
