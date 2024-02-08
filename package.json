@@ -4,18 +4,16 @@
   "packageManager": "pnpm@8.8.0",
   "author": "Johan Borestad <johan@borestad.com> (http://borestad.com/)",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "scripts": {
     "postinstall": "rm -f pnpm-lock.yaml &> /dev/null"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.2",
-    "@stylistic/eslint-plugin-js": "^1.5.3",
+    "@antfu/eslint-config": "^2.6.4",
     "@tsconfig/deno": "^1.0.9",
-    "@types/node": "^20.11.2",
+    "@types/node": "^20.11.17",
     "eslint": "^8.56.0",
-    "eslint-plugin-unicorn": "^50.0.1",
     "typescript": "^5.3.3"
   },
   "preinstallBinaries": [
