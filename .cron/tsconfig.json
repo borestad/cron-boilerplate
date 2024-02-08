@@ -7,19 +7,22 @@
     "rootDir": ".",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
-    "checkJs": true,
-    "strict": true,
+    "checkJs": false,
+    "strict": false,
+    "noImplicitAny": false,
     "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
   "files": [
-    // "./jobs/example1.ts",
-    // "./jobs/example2.ts",
+    // "./.cron/jobs/example1.job.ts",
+    // "./.cron/jobs/example2.job.ts",
+    // "./.cron/*.ts",
+    // "./.cron/**/*.ts"
   ],
   "include": [
-    "**/*.ts"
-    // ".*/**/*.ts"
+    "**/*.ts",
+    ".cron/**/*.ts"
   ],
   "exclude": [
     "deno.json"

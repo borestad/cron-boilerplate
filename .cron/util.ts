@@ -64,9 +64,13 @@ export const Code = {
 /**
  * Benchmark helper
  */
-export function benchmark(unit = 1) {
+export function benchmark(unitMs = 1) {
   const start = performance.now()
   return (now = performance.now()) => {
-    return ((now - start) / unit).toFixed(2)
+    return ((now - start) / unitMs).toFixed(2)
   }
+}
+
+export function wc(path: string): Promise<string> {
+  return $`cat ${path} | wc -l`.text()
 }

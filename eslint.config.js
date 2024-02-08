@@ -1,5 +1,3 @@
-// eslint.config.js
-
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
@@ -9,102 +7,30 @@ export default antfu({
     quotes: 'single',
   },
 
-  // Or customize the stylistic rules
-
+  typescript: {
+    tsconfigPath: '.cron/tsconfig.json',
+    parserOptions: {
+      project: '.cron/tsconfig.json',
+    },
+  },
   // Disable jsonc and yaml support
   jsonc: true,
   yaml: true,
-  typescript: true,
-
-  // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
-},
-  // {
-  //   root: true,
-  //   ignorePatterns: [
-  //     '!.*'
-  //   ],
-  //   parserOptions: {
-  //     ecmaVersion: 'latest',
-  //     sourceType: 'module',
-  //     project: './cron/tsconfig.json'
-  //   },
-  //   plugins: [
-  //     'unicorn'
-  //   ],
-  //   rules: {
-  //     'unicorn/template-indent': [
-  //       'warn',
-  //       {
-  //         tags: [],
-  //         functions: [],
-  //         selectors: [
-  //           'TemplateLiteral'
-  //         ]
-  //       }
-  //     ]
-  //   },
-  //   globals: {},
-  //   overrides: [
-  //     {
-  //       files: [
-  //         '*',
-  //         '*.ts',
-  //         '*.tsx',
-  //         '*.js',
-  //         '*.mjs'
-  //       ],
-  //       rules: {
-  //         'template-tag-spacing': [
-  //           'error',
-  //           'always'
-  //         ],
-  //         curly: [
-  //           'error',
-  //           'multi-line'
-  //         ],
-  //         'no-console': 'error',
-  //         '@typescript-eslint/comma-dangle': 'off',
-  //         '@typescript-eslint/require-await': [
-  //           'error'
-  //         ],
-  //         '@typescript-eslint/no-floating-promises': [
-  //           'error'
-  //         ],
-  //         '@typescript-eslint/no-misused-promises': [
-  //           'error'
-  //         ],
-  //         'no-multiple-empty-lines': [
-  //           'error',
-  //           {
-  //             max: 1,
-  //             maxBOF: 0,
-  //             maxEOF: 0
-  //           }
-  //         ]
-  //       }
-  //     },
-  //     {
-  //       files: [
-  //         'settings.json',
-  //         'deno.json*'
-  //       ],
-  //       rules: {
-  //         'jsonc/sort-keys': [
-  //           'error',
-  //           'asc',
-  //           {
-  //             caseSensitive: true,
-  //             natural: false,
-  //             minKeys: 2
-  //           }
-  //         ]
-  //       }
-  //     }
-  //   ]
-  // }
-
-)
-
-// export default [{
-//   extends: '@antfu',
-// ]
+}, {
+  ignores: [
+    '*.js',
+    // '!.*'
+  ],
+}, {
+  files: ['**/*.ts', '.cron/**/*.ts'],
+  rules: {
+    'ts/no-unsafe-assignment': 'off',
+    'ts/no-unsafe-call': 'off',
+    'ts/no-unsafe-return': 'off',
+    'ts/no-unsafe-member-access': 'off',
+    'ts/no-unsafe-argument': 'off',
+    'ts/require-await': 'error',
+    'ts/no-floating-promises': 'error',
+    'ts/no-misused-promises': 'error',
+  },
+})

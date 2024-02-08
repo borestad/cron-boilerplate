@@ -15,7 +15,8 @@
     "@tsconfig/deno": "^1.0.9",
     "@types/node": "^20.11.2",
     "eslint": "^8.56.0",
-    "eslint-plugin-unicorn": "^50.0.1"
+    "eslint-plugin-unicorn": "^50.0.1",
+    "typescript": "^5.3.3"
   },
   "preinstallBinaries": [
     "https://raw.githubusercontent.com/borestad/ci-utils/main/bin/dl",
