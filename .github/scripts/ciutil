@@ -131,7 +131,7 @@ git-commit-to-repository() {
 
   for file in $(git status -s | cut -c4-); do
     echo "file: $file";
-    shortname=$(basename $file | sed -E 's/\.(ipset|netset)//g')
+    shortname=$(basename $file)
     git add $file
     stats=$(git diff --cached --shortstat | sed -E 's/ (insertions?|deletions?|changed?)//g' | sed 's/,//g' | xargs)
     stats=$(echo $stats | sed 's/1 file//g' | xargs)

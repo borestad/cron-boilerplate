@@ -4,13 +4,12 @@
     "singleQuote": true
   },
   "imports": {
-    "dax/": "https://deno.land/x/dax@0.38.0/",
-    "deno/": "https://cdn.jsdelivr.net/gh/blend/promise-utils/src/",
-    "deps.ts": "./deps.ts",
-    "fmt/": "https://deno.land/std@0.214.0/fmt/",
-    "util.ts": "./util.ts",
+    "dax/": "https://deno.land/x/dax@0.39.0/",
+    "fmt/": "https://deno.land/std@0.215.0/fmt/",
     "promise-utils/": "https://cdn.jsdelivr.net/gh/blend/promise-utils/src/",
-    "std/": "https://deno.land/std@0.214.0/"
+    "std/": "https://deno.land/std@0.215.0/",
+    "deps.ts": "./deps.ts",
+    "util.ts": "./util.ts"
   },
   "lock": "./deno.lock",
   "tasks": {

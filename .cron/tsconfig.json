@@ -14,12 +14,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "files": [
-    // "./.cron/jobs/example1.job.ts",
-    // "./.cron/jobs/example2.job.ts",
-    // "./.cron/*.ts",
-    // "./.cron/**/*.ts"
-  ],
+  "files": [],
   "include": [
     "**/*.ts",
     ".cron/**/*.ts"
