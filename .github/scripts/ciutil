@@ -20,16 +20,23 @@ install-deb() {
   local pkgs="$@"
   local exitcode=0
 
-  sudo apt-get -qq install --download-only -y $pkgs || exitcode=$?
+  echo "✔ [install-deb]: $pkgs"
+  sudo apt-get clean
+  sudo dpkg --clear-avail
+
+  sudo apt-fast -qq install --download-only -y $pkgs || exitcode=$?
 
   if [ ! $exitcode -eq 0 ]; then
-    echo "❌ Failed install-deb. Retrying with apt-get update: $pkgs"
-    sudo apt-get update && sudo apt-get -qq install --download-only -y $pkgs || exit 1
+    echo "[install-deb]: ❌ Error downloading $pkgs"
+    echo "[install-deb]: (1/2) Retrying with apt-fast update: $pkgs"
+    sudo apt-fast update
+
+    echo "[install-deb]: (2/2) Retrying with apt-fast --download-only: $pkgs"
+    sudo apt-fast -qq install --download-only -y $pkgs || exit 1
   fi
 
-  echo "✔ dpkg: start install $pkgs" && \
-      cd /var/cache/apt && \
-      sudo find . -iname '*.deb' -print0 | xargs -I {} -0 sudo dpkg -x "{}" /
+  echo "✔ [install-deb]: Extracting *.deb: $pkgs"
+  ( cd /var/cache/apt && sudo find . -iname '*.deb' -print0 | xargs -I {} -0 sudo dpkg -x "{}" / )
 }
 
 preinstall-binaries() {
@@ -39,7 +46,7 @@ preinstall-binaries() {
   sudo rm -rf /var/lib/apt/*
   sudo rm -rf /var/cache/*
 
-  # Optimize apt-get install time (no need for mandb on a ci)
+  # Optimize apt install time (no need for mandb on a ci)
   sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
   sudo mv -f /var/cache/man /tmp/ 2> /dev/null || true
   sudo rm -rf /usr/share/locale/
@@ -52,10 +59,6 @@ preinstall-binaries() {
   pkgs=$(jq .dpkgInstallPackages[] package.json 2> /dev/null | xargs)
 
   if [[ "$pkgs" != "" ]]; then
-    echo "✔ apt-download $pkgs"
-    sudo apt-get clean
-    sudo dpkg --clear-avail
-
     install-deb $pkgs &
   fi
 
