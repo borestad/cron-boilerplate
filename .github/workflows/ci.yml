@@ -47,12 +47,13 @@ jobs:
 
       # ─────────────────────────────────────────────────────
       - uses: actions/cache@v4
-        name: Bootstrap ❯❯ Restore Cache
+        name: Bootstrap ❯❯ Restore Lockfile Cache
         with:
           path: ${{ env.ACTIONS_CACHE_DIR }}
-          key:  ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX }}-${{ hashFiles('**/deno.lock') }}
+          key:  ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_WEEKLY }}-${{ hashFiles('**/deno.lock') }}
           restore-keys: |
-            ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX }}-
+            ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_WEEKLY }}-${{ hashFiles('**/deno.lock') }}
+            ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_WEEKLY }}-
             ${{ runner.os }}-v1-store-
 
       - uses: actions/cache@v4
@@ -60,21 +61,31 @@ jobs:
         if: always()
         with:
           path: ${{ env.TTL_CACHE_DIR }}
-          key:  ${{ runner.os }}-ttl-cache-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key:  ${{ runner.os }}-v1-ttl-cache-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            ${{ runner.os }}-ttl-cache-
-            ${{ runner.os }}-
+            ${{ runner.os }}-v1-ttl-cache-
+
+      - uses: actions/cache@v4
+        name: Bootstrap ❯❯ Restore Files Cache
+        if: always()
+        with:
+          path: ${{ env.FILES_CACHE_DIR }}
+          key:  ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/package.json') }}
+            ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Preinstall & Prepare Environment
         run: |
           . .github/scripts/ciutil
-          ✨ "Setup: Preinstall binaries"           && preinstall-binaries
-          ✨ "Debug: System information"            && system-info
-          ✨ "Debug: Env variables"                 && ga-dump-env
-          ✨ "Debug: cache ($ACTIONS_CACHE_DIR)"    && show-cache-structure-default
-          ✨ "Debug: cache ($TTL_CACHE_DIR)"        && show-cache-structure-ttl
-          ✨ "pnpm install"                         && install-nodemodules
+          ✨ "Setup: Preinstall binaries"                   && preinstall-binaries
+          ✨ "Debug: System information"                    && system-info
+          ✨ "Debug: Env variables"                         && ga-dump-env
+          ✨ "Debug: generic cache ($ACTIONS_CACHE_DIR)"    && show-cache-structure-default
+          ✨ "Debug: ttl cache ($TTL_CACHE_DIR)"            && show-cache-structure-ttl
+          ✨ "Debug: file cache ($FILES_CACHE_DIR)"         && show-cache-structure-files
+          ✨ "pnpm install"                                 && install-nodemodules
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯❯ Job1

@@ -16,17 +16,50 @@ download() {
   chmod +x $location 2> /dev/null || true
 }
 
+install-deb() {
+  local pkgs="$@"
+  sudo apt-get -qq install --download-only -y $pkgs || exitcode=$?
+
+  if [ ! $exitcode -eq 0 ]; then
+    echo "❌ Failed install-deb. Retrying with apt-get update: $pkgs"
+    sudo apt-get update && sudo apt-get -qq install --download-only -y $pkgs || exit 1
+  fi
+
+  echo "✔ dpkg: start install $pkgs" && \
+      cd /var/cache/apt && \
+      sudo find . -iname '*.deb' -print0 | xargs -I {} -0 sudo dpkg -x "{}" /
+}
+
 preinstall-binaries() {
+  local dir=$PWD
+
   # Optimize apt-get install time (no need for mandb on a ci)
   sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
   sudo mv -f /var/cache/man /tmp/ 2> /dev/null || true
+  # sudo rm -rf /usr/share/locale/
+  # sudo rm -rf /usr/share/man/
+  # sudo rm -rf /usr/share/doc/
 
   cp .github/scripts/ciutil ~/.local/bin/
+
+  # Install apt packages if available
+  pkgs=$(jq .dpkgInstallPackages[] package.json 2> /dev/null | xargs)
+
+  if [[ "$pkgs" != "" ]]; then
+    echo "✔ apt-download $pkgs"
+    sudo apt-get clean
+    sudo dpkg --clear-avail
+
+    install-deb $pkgs &
+  fi
 
   for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
     download "$url" &
   done
+
   wait
+
+  cd $dir
 }
 
 install-nodemodules() {
@@ -74,12 +107,17 @@ set-env-variables() {
   to_env TTL_CACHE_DIR $WS/.cache-ttl
   to_env BKT_CACHE_DIR $WS/.cache-ttl/bkt
 
+  # Files Cache (Cache that will automatically be invalidated)
+  to_env FILES_CACHE_DIR $WS/.cache-files
+
   # Other dirs
   to_env DEBUG_DIR $WS/.debug
   to_env RUNNER_TEMPDIR $RUNNER_TEMP/$(date +%s%N)
 
   # Other env
-  to_env CACHE_PREFIX "$(date +'%U')"
+  to_env CACHE_PREFIX_WEEKLY "$(date +'%U')"      # changes every week (i.e 06)
+  to_env CACHE_PREFIX_DAILY "$(date +'%Y-%m-%d')" # changes every day (i.e 2024-02-12)
+  date +'%U'
   to_env NODE_ENV production
   to_env TERM xterm-256color
   to_env FORCE_COLOR 1
@@ -96,8 +134,9 @@ set-env-variables() {
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Debug / Statistics / Information
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-show-cache-structure-default() { dust -b -P -s $ACTIONS_CACHE_DIR && echo; }
-show-cache-structure-ttl() { dust -b -P -s $TTL_CACHE_DIR && echo; }
+show-cache-structure-default() { dust -b -P -s -r $ACTIONS_CACHE_DIR && echo; }
+show-cache-structure-files() { dust -b -P -s -r $FILES_CACHE_DIR && echo; }
+show-cache-structure-ttl() { dust -b -P -s -r $TTL_CACHE_DIR && echo; }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Formatters / Printers
