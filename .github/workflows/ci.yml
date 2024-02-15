@@ -106,6 +106,7 @@ jobs:
       - name: Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
+          wget2 --version
           cd .cron && just
 
       # ─────────────────────────────────────────────────────
