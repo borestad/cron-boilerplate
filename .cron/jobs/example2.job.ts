@@ -4,4 +4,4 @@ import { $ } from 'deps.ts'
 
 await $`echo hello`
 
-$.log('apa')
+$.log('world')
