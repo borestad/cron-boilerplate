@@ -48,14 +48,14 @@ preinstall-binaries() {
 
   # Optimize apt install time (no need for mandb on a ci)
   sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
-  sudo mv -f /var/cache/man /tmp/ 2> /dev/null || true
-  sudo rm -rf /usr/share/locale/
-  sudo rm -rf /usr/share/man/
-  sudo rm -rf /usr/share/doc/
+  sudo mv -fv /var/cache/man /tmp/ 2> /dev/null || true
+  sudo rm -rfv /usr/share/locale/
+  sudo rm -rfv /usr/share/man/
+  sudo rm -rfv /usr/share/doc/
 
-  sudo rm -rf /etc/apt/apt.conf.d/*needrestart*
+  sudo rm -rfv /etc/apt/apt.conf.d/*needrestart*
   # TODO: Needs some testing. But no need for hooks, since it's a shortlived CI process.
-  sudo rm -rf /etc/apt/apt.conf.d/*
+  sudo rm -rfv /etc/apt/apt.conf.d/*
   cp .github/scripts/ciutil ~/.local/bin/
 
   # Install apt packages if available
