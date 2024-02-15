@@ -35,5 +35,7 @@
     "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/sd",
     "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/sponge"
   ],
-  "dpkgInstallPackages": []
+  "dpkgInstallPackages": [
+    "wget2"
+  ]
 }
