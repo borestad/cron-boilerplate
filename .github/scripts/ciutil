@@ -43,8 +43,8 @@ preinstall-binaries() {
   local dir=$PWD
 
   # Testing:
-  sudo rm -rf /var/lib/apt/archives/*
-  sudo rm -rf /var/cache/*
+  # sudo rm -rf /var/lib/apt/archives/*
+  # sudo rm -rf /var/cache/*
 
   # Optimize apt install time (no need for mandb on a ci)
   sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
