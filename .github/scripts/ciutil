@@ -53,6 +53,9 @@ preinstall-binaries() {
   sudo rm -rf /usr/share/man/
   sudo rm -rf /usr/share/doc/
 
+  sudo rm -rf /etc/apt/apt.conf.d/*needrestart*
+  # TODO: Needs some testing. But no need for hooks, since it's a shortlived CI process.
+  sudo rm -rf /etc/apt/apt.conf.d/*
   cp .github/scripts/ciutil ~/.local/bin/
 
   # Install apt packages if available
