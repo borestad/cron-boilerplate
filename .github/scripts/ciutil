@@ -16,6 +16,9 @@ download() {
   chmod +x $location 2> /dev/null || true
 }
 
+
+# A much faster alternative to apt-get install,
+# without any hooks that slows down installation
 install-deb() {
   local pkgs="$@"
   local exitcode=0
@@ -61,13 +64,8 @@ preinstall-binaries() {
 
   # Optimize apt install time (no need for mandb on a ci)
   sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
-  # sudo mv -fv /var/cache/man /var/cache/man.bak 2> /dev/null || true
-  # sudo mv -fv /usr/share/locale /usr/share/locale.bak
-  # sudo mv -fv /usr/share/man /usr/share/man.bak
-  # sudo mv -fv /usr/share/doc /usr/share/doc.bak
 
   # TODO: Needs some testing. But no need for hooks, since it's a shortlived CI process.
-  sudo rm -rf /etc/apt/apt.conf.d/*needrestart*
   sudo rm -rf /etc/apt/apt.conf.d/*
 
   cp .github/scripts/ciutil ~/.local/bin/
