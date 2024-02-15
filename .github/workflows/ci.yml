@@ -107,14 +107,6 @@ jobs:
           cd .cron && just
 
       # ─────────────────────────────────────────────────────
-      - name: Cron ❯❯ Test
-        run: |
-          mkdir ~/tmp/ && cd ~/tmp
-          git clone https://github.com/webpack/webpack.git
-          cd webpack
-          yarn --frozen-lockfile
-
-      # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
         if: github.ref == 'refs/heads/main'
         run: |
