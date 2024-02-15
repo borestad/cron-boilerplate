@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libeatmydata.so" >> $GITHUB_ENV
           echo 'force-unsafe-io' | sudo tee -a /etc/dpkg/dpkg.cfg > /dev/null
-          bsdtar --version
+          /usr/share/miniconda/bin/bsdtar --version
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ actions/checkout@v4
