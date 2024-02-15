@@ -48,10 +48,10 @@ preinstall-binaries() {
 
   # Optimize apt install time (no need for mandb on a ci)
   sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
-  sudo mv -fv /var/cache/man /tmp/ 2> /dev/null || true
-  sudo mv -fv /usr/share/locale /tmp
-  sudo mv -fv /usr/share/man /tmp
-  sudo mv -fv /usr/share/doc /tmp
+  sudo mv -fv /var/cache/man /var/cache/man.bak 2> /dev/null || true
+  sudo mv -fv /usr/share/locale /usr/share/locale.bak
+  sudo mv -fv /usr/share/man /usr/share/man.bak
+  sudo mv -fv /usr/share/doc /usr/share/doc.bak
 
   sudo rm -rfv /etc/apt/apt.conf.d/*needrestart*
 
