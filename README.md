@@ -20,5 +20,7 @@ Goals:
   (if not using *.deb packages) seconds.
 - Rely on static binaries.
 - Avoiding expensive `apt-get update && apt-get install somepackage`
+- Use [eatmydata](https://github.com/stewartsmith/libeatmydata) to avoid fsync
+  calls & speedup heavy I/O operations.
 - Super productive & fast boilerplate environment
 - Stats & useful debugging included
