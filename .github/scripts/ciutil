@@ -42,7 +42,7 @@ install-deb() {
 preinstall-binaries() {
   local dir=$PWD
 
-  # Testing:
+  # For testing purposes:
   # sudo rm -rf /var/lib/apt/archives/*
   # sudo rm -rf /var/cache/*
 
@@ -53,10 +53,10 @@ preinstall-binaries() {
   sudo mv -fv /usr/share/man /usr/share/man.bak
   sudo mv -fv /usr/share/doc /usr/share/doc.bak
 
-  sudo rm -rfv /etc/apt/apt.conf.d/*needrestart*
-
   # TODO: Needs some testing. But no need for hooks, since it's a shortlived CI process.
+  sudo rm -rf /etc/apt/apt.conf.d/*needrestart*
   sudo rm -rfv /etc/apt/apt.conf.d/*
+
   cp .github/scripts/ciutil ~/.local/bin/
 
   # Install apt packages if available
