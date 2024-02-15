@@ -55,7 +55,7 @@ preinstall-binaries() {
 
   # TODO: Needs some testing. But no need for hooks, since it's a shortlived CI process.
   sudo rm -rf /etc/apt/apt.conf.d/*needrestart*
-  sudo rm -rfv /etc/apt/apt.conf.d/*
+  sudo rm -rf /etc/apt/apt.conf.d/*
 
   cp .github/scripts/ciutil ~/.local/bin/
 
