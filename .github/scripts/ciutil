@@ -36,7 +36,8 @@ install-deb() {
   fi
 
   echo "✔ [install-deb]: Extracting *.deb: $pkgs"
-  ( cd /var/cache/apt && sudo find . -iname '*.deb' -print0 | xargs -I {} -0 sudo dpkg --force-unsafe-io --extract "{}" / )
+  # ( cd /var/cache/apt && sudo find . -iname '*.deb' -print0 | xargs -I {} -0 sudo dpkg --force-unsafe-io --extract "{}" / )
+  sudo dpkg --force-unsafe-io --extract /var/cache/apt/*.deb
 }
 
 preinstall-binaries() {
