@@ -78,15 +78,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-v1-ttl-cache-
 
-      - uses: actions/cache@v4
-        name: Bootstrap ❯❯ Restore Files Cache
-        if: always()
-        with:
-          path: ${{ env.FILES_CACHE_DIR }}
-          key:  ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/package.json') }}
-            ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-
+      # - uses: actions/cache@v4
+      #   name: Bootstrap ❯❯ Restore Files Cache
+      #   if: always()
+      #   with:
+      #     path: ${{ env.FILES_CACHE_DIR }}
+      #     key:  ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/package.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/package.json') }}
+      #       ${{ runner.os }}-v3-files-cache-${{ env.CACHE_PREFIX_DAILY }}-
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Preinstall & Prepare Environment
