@@ -20,6 +20,17 @@ install-deb() {
   local pkgs="$@"
   local exitcode=0
 
+  cat << 'EOF' > /etc/dpkg/dpkg.cfg.d/01_nodoc
+path-exclude /usr/share/groff/*
+path-exclude /usr/share/info/*
+path-exclude /usr/share/lintian/*
+path-exclude /usr/share/linda/*
+path-exclude /var/cache/man/*
+path-exclude /usr/share/locale/*
+path-exclude /usr/share/doc/*
+path-exclude /usr/share/man/*
+EOF
+
   echo "✔ [install-deb]: $pkgs"
   sudo eatmydata -- apt-get clean
   sudo eatmydata -- dpkg --clear-avail
@@ -36,7 +47,9 @@ install-deb() {
   fi
 
   echo "✔ [install-deb]: Extracting *.deb: $pkgs"
-  ( sudo find . /var/cache/apt -iname '*.deb' -print0 | xargs -I {} -0 sudo dpkg --force-unsafe-io --vextract "{}" / )
+  ( sudo find . /var/cache/apt -iname '*.deb' -print0 | \
+    xargs -I {} -0  sudo dpkg --force-unsafe-io --vextract "{}" /) \
+  | grep -E '/(bin|lib)/' | grep -Ev '/$'
 }
 
 preinstall-binaries() {
