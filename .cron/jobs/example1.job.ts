@@ -38,3 +38,13 @@ log('Lines:', await wc('.cron/jobs/example1.job.ts'))
 // Disable on purpose to test working no-floating-promises
 // eslint-disable-next-line ts/no-floating-promises
 wc('.cron/jobs/example1.job.ts')
+
+log.info('Debug Enviroment Variables')
+const env = Deno.env.toObject()
+log(Object.keys(env).sort().reduce(
+  (obj: any, key: any) => {
+    obj[key] = env[key]
+    return obj
+  },
+  {},
+))
