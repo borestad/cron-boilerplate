@@ -41,13 +41,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      - uses: actions/checkout@v4
-      - name: Setup tmate session
-        if: ${{ runner.debug == '1' }}
-        uses: mxschmitt/action-tmate@v3
-        with:
-          detached: false
-
       # ─────────────────────────────────────────────────────
       # - name: Bootstrap ❯❯ denoland/setup-deno@v1
       #   uses: denoland/setup-deno@v1
@@ -101,6 +94,15 @@ jobs:
           ✨ "Debug: ttl cache ($TTL_CACHE_DIR)"            && show-cache-structure-ttl
           ✨ "Debug: file cache ($FILES_CACHE_DIR)"         && show-cache-structure-files
           ✨ "pnpm install"                                 && install-nodemodules
+
+      # ─────────────────────────────────────────────────────
+      - uses: actions/checkout@v4
+      - name: Setup tmate session
+        # if: ${{ runner.debug == '1' }}
+        uses: mxschmitt/action-tmate@v3
+        with:
+          detached: false
+
 
       # ─────────────────────────────────────────────────────
       - name: Cron ❯❯ Job1
