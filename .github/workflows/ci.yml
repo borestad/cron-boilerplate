@@ -107,6 +107,13 @@ jobs:
           cd .cron && just
 
       # ─────────────────────────────────────────────────────
+      - name: Cron ❯❯ Test
+        run: |
+          mkdir ~/tmp/ && cd ~/tmp
+          git clone https://github.com/webpack/webpack.git
+          npm install --production
+
+      # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
         if: github.ref == 'refs/heads/main'
         run: |
