@@ -111,7 +111,7 @@ jobs:
         run: |
           mkdir ~/tmp/ && cd ~/tmp
           git clone https://github.com/webpack/webpack.git
-          npm install --production
+          yarn --frozen-lockfile
 
       # ─────────────────────────────────────────────────────
       - name: Post hooks ❯❯ Commit to repository
