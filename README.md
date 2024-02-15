@@ -17,7 +17,8 @@ Goals:
 - Multithreaded & parallellism by default
 - Cache + TTL support (reusable between ci runs)
 - Optimized: one shot jobs (checkout + cache + install + run) should run ~ 10
-  seconds.
-- Rely on static binaries instead of expensive apt-get.
+  (if not using *.deb packages) seconds.
+- Rely on static binaries.
+- Avoiding expensive `apt-get update && apt-get install somepackage`
 - Super productive & fast boilerplate environment
 - Stats & useful debugging included
