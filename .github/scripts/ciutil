@@ -42,9 +42,6 @@ install-deb() {
 preinstall-binaries() {
   local dir=$PWD
 
-  # https://medium.com/opsops/speeding-up-ci-cd-on-dpkg-based-systems-ae5af774c557
-  echo 'force-unsafe-io' | sudo tee -a /etc/dpkg/dpkg.cfg > /dev/null
-
   # Testing:
   # sudo rm -rf /var/lib/apt/archives/*
   # sudo rm -rf /var/cache/*
@@ -111,7 +108,7 @@ set-env-variables() {
   # Action Cache
   WS=$RUNNER_WORKSPACE
 
-  to_env LD_PRELOAD /usr/lib/x86_64-linux-gnu/libeatmydata.so
+  # to_env LD_PRELOAD /usr/lib/x86_64-linux-gnu/libeatmydata.so
   to_env ACTIONS_CACHE_DIR $WS/.actions-cache
   to_env ACTIONS_CACHE_BIN_DIR $WS/.actions-cache/bin
   to_env PNPM_STORE_DIR $WS/.actions-cache/pnpm/pnpm-store

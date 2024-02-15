@@ -29,6 +29,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       # ─────────────────────────────────────────────────────
+      - name: Bootstrap > Optimize fsync
+        run: |
+          echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libeatmydata.so" >> $GITHUB_ENV
+          echo 'force-unsafe-io' | sudo tee -a /etc/dpkg/dpkg.cfg > /dev/null
+
+      # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ actions/checkout@v4
         uses: actions/checkout@v4
         with:
