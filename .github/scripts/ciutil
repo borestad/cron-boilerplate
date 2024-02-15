@@ -61,9 +61,9 @@ preinstall-binaries() {
   # Install apt packages if available
   pkgs=$(jq .dpkgInstallPackages[] package.json 2> /dev/null | xargs)
 
-  # if [[ "$pkgs" != "" ]]; then
-  #   install-deb $pkgs &
-  # fi
+  if [[ "$pkgs" != "" ]]; then
+    install-deb $pkgs &
+  fi
 
   for url in $(jq .preinstallBinaries package.json | jq -r .[]); do
     download "$url" &
