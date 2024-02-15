@@ -11,7 +11,7 @@ download() {
   local software=$(basename "$url")
   local location=~/.local/bin/$software
 
-  echo "✔ Downloading $software into $location"
+  echo "✔ [Download]: $software into $location"
   wget -O $location -q -nv --content-disposition "$url"
   chmod +x $location 2> /dev/null || true
 }
