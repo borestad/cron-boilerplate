@@ -21,22 +21,22 @@ install-deb() {
   local exitcode=0
 
   echo "✔ [install-deb]: $pkgs"
-  sudo eatmydata apt-get clean
-  sudo eatmydata dpkg --clear-avail
+  sudo eatmydata -- apt-get clean
+  sudo eatmydata -- dpkg --clear-avail
 
-  sudo eatmydata apt-fast -qq install --download-only -y $pkgs || exitcode=$?
+  sudo eatmydata -- apt-fast -qq install --download-only -y $pkgs || exitcode=$?
 
   if [ ! $exitcode -eq 0 ]; then
     echo "[install-deb]: ❌ Error downloading $pkgs"
     echo "[install-deb]: (1/2) Retrying with apt-fast update: $pkgs"
-    sudo eatmydata apt-fast update
+    sudo eatmydata -- apt-fast update
 
     echo "[install-deb]: (2/2) Retrying with apt-fast --download-only: $pkgs"
-    sudo eatmydata apt-fast -qq install --download-only -y $pkgs || exit 1
+    sudo eatmydata -- apt-fast -qq install --download-only -y $pkgs || exit 1
   fi
 
   echo "✔ [install-deb]: Extracting *.deb: $pkgs"
-  ( cd /var/cache/apt && sudo find . -iname '*.deb' -print0 | xargs -I {} -0 sudo eatmydata dpkg --force-unsafe-io -x "{}" / )
+  ( cd /var/cache/apt && sudo find . -iname '*.deb' -print0 | xargs -I {} -0 sudo -- eatmydata dpkg --force-unsafe-io -x "{}" / )
 }
 
 preinstall-binaries() {
