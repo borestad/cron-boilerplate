@@ -96,7 +96,7 @@ install-nodemodules() {
 }
 
 to_env() {
-  [[ "$2" == *"/"* ]] && (echo "$1 => $2" && mkdir -p $2)
+  [[ "$2" == *"/"* ]] && (echo "$1 => $2" && mkdir -p $2 || true 2> /dev/null)
   export $1=$2
   echo "$1=$2" >> $GITHUB_ENV
 }
