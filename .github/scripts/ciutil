@@ -20,7 +20,7 @@ install-deb() {
   local pkgs="$@"
   local exitcode=0
 
-  cat << 'EOF' > /etc/dpkg/dpkg.cfg.d/01_nodoc
+  cat << 'EOF' | sudo tee /etc/dpkg/dpkg.cfg.d/01_nodoc > /dev/null
 path-exclude /usr/share/groff/*
 path-exclude /usr/share/info/*
 path-exclude /usr/share/lintian/*
