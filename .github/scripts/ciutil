@@ -111,7 +111,7 @@ set-env-variables() {
   # Action Cache
   WS=$RUNNER_WORKSPACE
 
-  to_env LD_PRELOAD libeatmydata.so
+  to_env LD_PRELOAD /usr/lib/x86_64-linux-gnu/libeatmydata.so
   to_env ACTIONS_CACHE_DIR $WS/.actions-cache
   to_env ACTIONS_CACHE_BIN_DIR $WS/.actions-cache/bin
   to_env PNPM_STORE_DIR $WS/.actions-cache/pnpm/pnpm-store
