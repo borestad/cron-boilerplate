@@ -49,7 +49,7 @@ EOF
   fi
 
   echo "✔ [install-deb]: Extracting *.deb: $pkgs"
-  ( sudo find . /var/cache/apt -iname '*.deb' -print0 | \
+  ( sudo find . /var/cache/apt -iname '*.deb' -print0 | tee /dev/stderr | \
     xargs -I {} -0  sudo dpkg --force-unsafe-io --vextract "{}" /) \
   | grep -E '/(bin|lib)/' | grep -Ev '/$'
 }
