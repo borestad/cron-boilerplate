@@ -161,6 +161,7 @@ set-env-variables() {
 show-cache-structure-default() { dust -b -P -s -r $ACTIONS_CACHE_DIR && echo; }
 show-cache-structure-files() { dust -b -P -s -r $FILES_CACHE_DIR && echo; }
 show-cache-structure-ttl() { dust -b -P -s -r $TTL_CACHE_DIR && echo; }
+show-cache-structure-apt() { dust -b -P -s -r /var/cache/apt/archives && echo; }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Formatters / Printers
