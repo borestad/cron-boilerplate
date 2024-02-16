@@ -36,6 +36,7 @@
     "https://raw.githubusercontent.com/borestad/static-binaries/main/x86_64/sponge"
   ],
   "dpkgInstallPackages": [
-    "wget2"
+    "wget2",
+    "moreutils"
   ]
 }
