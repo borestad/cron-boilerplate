@@ -51,7 +51,7 @@ EOF
   echo "✔ [install-deb]: Extracting *.deb: $pkgs"
   ( sudo find . /var/cache/apt -iname '*.deb' -print0 | \
     xargs -I {} -0  sudo dpkg --force-unsafe-io --vextract "{}" /) \
-  | grep -E '/(bin|lib)/' | grep -Ev '/$'
+  | grep -E '/(bin|sbin)/' | grep -Ev '/$'
 }
 
 preinstall-binaries() {
