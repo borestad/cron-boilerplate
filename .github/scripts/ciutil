@@ -37,7 +37,6 @@ EOF
   echo "✔ [install-deb]: $pkgs"
   sudo eatmydata -- apt-get clean
   sudo eatmydata -- dpkg --clear-avail
-
   sudo eatmydata -- apt-get -qq install --download-only -y $pkgs || exitcode=$?
 
   if [ ! $exitcode -eq 0 ]; then

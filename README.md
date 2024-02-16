@@ -16,8 +16,8 @@ Goals:
 - Fastest installation possible
 - Multithreaded & parallellism by default
 - Cache + TTL support (reusable between ci runs)
-- Optimized: one shot jobs (checkout + cache + install + run) should run ~ 10
-  (if not using *.deb packages) seconds.
+- Optimized: one shot jobs (checkout + cache + install + run) should run ~ 10sec
+  (if not using *.deb packages).
 - Rely on static binaries.
 - Avoiding expensive `apt-get update && apt-get install somepackage`
 - Use [eatmydata](https://github.com/stewartsmith/libeatmydata) to avoid fsync
