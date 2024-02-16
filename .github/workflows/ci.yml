@@ -129,10 +129,14 @@ jobs:
           JSON_STRATEGY: ${{ toJSON(strategy) }}
           JSON_MATRIX: ${{ toJSON(MATRIX) }}
         run: |
+          . .github/scripts/ciutil
           ip-public
-          .github/scripts/ciutil show-cache-structure-default
-          .github/scripts/ciutil show-cache-structure-ttl
-          .github/scripts/ciutil ___
+          ✨ "Debug: generic cache ($ACTIONS_CACHE_DIR)"    && show-cache-structure-default
+          ✨ "Debug: ttl cache ($TTL_CACHE_DIR)"            && show-cache-structure-ttl
+          ✨ "Debug: file cache ($FILES_CACHE_DIR)"         && show-cache-structure-files
+          ✨ "Debug: apt cache (/var/cache/apt/archives)"   && show-cache-structure-apt
+
+          ___
 
           printf "$JSON_GITHUB"    >> $DEBUG_DIR/github.json
           printf "$JSON_JOB"       >> $DEBUG_DIR/job.json
