@@ -9,7 +9,7 @@ function exists() { command -v $1 &> /dev/null; }
 download() {
   local url="$1"
   local software=$(basename "$url")
-  local location=~/.local/bin/$software
+  local location=/usr/local/bin/$software
 
   echo "✔ [Download]: $software into $location"
   wget -O $location -q -nv --content-disposition "$url"
