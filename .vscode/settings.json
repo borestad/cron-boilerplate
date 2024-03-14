@@ -62,7 +62,10 @@
   ],
   "files.associations": {
     "deno.json": "jsonc",
-    "dprint.json": "jsonc"
+    "dprint.json": "jsonc",
+    "action.yaml": "github-actions-workflow",
+    ".github/**/*.yaml": "github-actions-workflow",
+    ".github/**/*.yml": "github-actions-workflow"
   },
   "files.exclude": {},
   "json.schemaDownload.enable": true,
