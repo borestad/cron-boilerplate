@@ -86,7 +86,7 @@ jobs:
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Preinstall & Prepare Environment
         run: |
-          . ciutil
+          . .github/scripts/ciutil
           ✨ "Setup: Preinstall binaries"                   && preinstall-binaries
           ✨ "Debug: System information"                    && system-info
           ✨ "Debug: Env variables"                         && ga-dump-env
@@ -115,7 +115,7 @@ jobs:
       - name: Post hooks ❯❯ Commit to repository
         if: github.ref == 'refs/heads/main'
         run: |
-          ciutil git-commit-to-repository
+          .github/scripts/ciutil git-commit-to-repository
           git push
 
       # ─────────────────────────────────────────────────────
@@ -129,7 +129,7 @@ jobs:
           JSON_STRATEGY: ${{ toJSON(strategy) }}
           JSON_MATRIX: ${{ toJSON(MATRIX) }}
         run: |
-          . ciutil
+          . .github/scripts/ciutil
           ip-public
           ✨ "Debug: generic cache ($ACTIONS_CACHE_DIR)"    && show-cache-structure-default
           ✨ "Debug: ttl cache ($TTL_CACHE_DIR)"            && show-cache-structure-ttl
