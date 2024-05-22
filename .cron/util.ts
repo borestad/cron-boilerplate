@@ -71,6 +71,6 @@ export function benchmark(unitMs = 1) {
   }
 }
 
-export function wc(path: string): Promise<string> {
+export function wcl(path: string): Promise<string> {
   return $`cat ${path} | wc -l`.text()
 }

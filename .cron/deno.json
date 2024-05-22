@@ -11,8 +11,5 @@
     "deps.ts": "./deps.ts",
     "util.ts": "./util.ts"
   },
-  "lock": "./deno.lock",
-  "tasks": {
-    "update:lockfile": "fd .ts . -tf --threads=1 -X deno cache --import-map=deno.json --unstable --lock=deno.lock --lock-write"
-  }
+  "lock": "./deno.lock"
 }

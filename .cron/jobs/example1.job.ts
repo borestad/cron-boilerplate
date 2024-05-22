@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run -A
 
-import { Code, benchmark, bkt, hr, log, root, wc } from 'util.ts'
+import { Code, benchmark, bkt, hr, log, root, wcl } from 'util.ts'
 import { $ } from 'deps.ts'
 
 const b1 = benchmark()
@@ -33,11 +33,10 @@ log(b1())
 log(b2())
 
 $.cd(root)
-log('Lines:', await wc('.cron/jobs/example1.job.ts'))
+log('Lines:', await wcl('.cron/jobs/example1.job.ts'))
 
 // Disable on purpose to test working no-floating-promises
-// eslint-disable-next-line ts/no-floating-promises
-wc('.cron/jobs/example1.job.ts')
+// wcl('.cron/jobs/example1.job.ts')
 
 log.info('Debug Enviroment Variables')
 const env = Deno.env.toObject()

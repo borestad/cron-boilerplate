@@ -51,7 +51,7 @@ jobs:
       - name: Bootstrap ❯❯ Set env variables
         run: |
           echo TEST_SECRET="${{ secrets.TEST_SECRET }}" >> $GITHUB_ENV
-          ciutil set-env-variables
+          .github/scripts/ciutil set-env-variables
 
       # ─────────────────────────────────────────────────────
       - uses: actions/cache@v4
