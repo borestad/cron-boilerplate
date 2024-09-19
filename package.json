@@ -10,11 +10,11 @@
     "postinstall": "rm -f pnpm-lock.yaml &> /dev/null"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.4",
-    "@tsconfig/deno": "^1.0.9",
-    "@types/node": "^20.11.17",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3"
+    "@antfu/eslint-config": "^2.27.3",
+    "@tsconfig/deno": "^1.0.11",
+    "@types/node": "^20.16.5",
+    "eslint": "^8.57.1",
+    "typescript": "^5.6.2"
   },
   "preinstallBinaries": [
     "https://raw.githubusercontent.com/borestad/ci-utils/main/bin/dl",

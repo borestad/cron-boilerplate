@@ -8,9 +8,9 @@ export default antfu({
   },
 
   typescript: {
-    tsconfigPath: '.cron/tsconfig.json',
+    tsconfigPath: 'tsconfig.json',
     parserOptions: {
-      project: '.cron/tsconfig.json',
+      project: 'tsconfig.json',
     },
   },
   // Disable jsonc and yaml support
@@ -32,5 +32,6 @@ export default antfu({
     'ts/require-await': 'error',
     'ts/no-floating-promises': 'error',
     'ts/no-misused-promises': 'error',
+    "@typescript-eslint/strict-boolean-expressions": "error"
   },
 })
