@@ -4,10 +4,10 @@
     "singleQuote": true
   },
   "imports": {
-    "dax/": "https://deno.land/x/dax@0.39.0/",
-    "fmt/": "https://deno.land/std@0.215.0/fmt/",
-    "promise-utils/": "https://cdn.jsdelivr.net/gh/blend/promise-utils/src/",
-    "std/": "https://deno.land/std@0.215.0/",
+    "dax/": "https://deno.land/x/dax@0.39.2/",
+    "fmt/": "https://deno.land/std@0.224.0/fmt/",
+    "promise-utils/": "https://cdn.jsdelivr.net/gh/blend/promise-utils@1.29.1/src/",
+    "std/": "https://deno.land/std@0.224.0/",
     "deps.ts": "./.cron/deps.ts",
     "util.ts": "./.cron/util.ts"
   },
