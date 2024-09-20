@@ -23,7 +23,7 @@ install-deb() {
   local pkgs="$@"
   local exitcode=0
 
-  rm -f /var/lib/man-db/auto-update
+  sudo rm -f /var/lib/man-db/auto-update
 
   cat << 'EOF' | sudo tee /etc/dpkg/dpkg.cfg.d/01_nodoc > /dev/null
 path-exclude /usr/share/groff/*
