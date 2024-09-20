@@ -90,8 +90,7 @@ jobs:
         run: |
           . .github/scripts/ciutil
           ✨ "Setup: Preinstall binaries"                   && preinstall-binaries
-          ✨ "Debug: System information"                    && system-info
-          fastfetch --logo none --structure Title:Separator:OS:Host:Kernel:Uptime:Packages:Shell:CPU:GPU:Memory:Disk:Battery:PowerAdapter:Break:LocalIP:PublicIP --publicip-url icanhazip.com --publicip-timeout 200
+          ✨ "Debug: System information"                    && fastfetch --logo none --structure Title:Separator:OS:Host:Kernel:Uptime:Packages:Shell:CPU:GPU:Memory:Disk:Battery:PowerAdapter:Break:LocalIP:PublicIP --publicip-url icanhazip.com --publicip-timeout 200 || true
           ✨ "Debug: Env variables"                         && ga-dump-env
           ✨ "Debug: generic cache ($ACTIONS_CACHE_DIR)"    && show-cache-structure-default
           ✨ "Debug: ttl cache ($TTL_CACHE_DIR)"            && show-cache-structure-ttl
