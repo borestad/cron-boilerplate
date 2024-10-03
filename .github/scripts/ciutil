@@ -6,6 +6,13 @@ set -euo pipefail
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function exists() { command -v $1 &> /dev/null; }
 
+cron-housekeeping() {
+  if [[ ! -z $BKT_CACHE_DIR ]]; then
+    fd -u . $BKT_CACHE_DIR --changed-before=7d -x rm -rfv || true
+    fd -u -td -te . $BKT_CACHE_DIR -x rm -rfv || true
+  fi
+}
+
 download() {
   local url="$1"
   local software=$(basename "$url")

@@ -98,6 +98,7 @@ jobs:
           ✨ "Debug: file cache ($FILES_CACHE_DIR)"         && show-cache-structure-files
           ✨ "Debug: apt cache (/var/cache/apt/archives)"   && show-cache-structure-apt
           ✨ "pnpm install"                                 && install-nodemodules
+          ✨ "Housekeeping:"                                && cron-housekeeping
 
       # ─────────────────────────────────────────────────────
       - uses: actions/checkout@v4
@@ -108,7 +109,7 @@ jobs:
           detached: false
 
       # ─────────────────────────────────────────────────────
-      - name: Cron ❯❯ Job1
+      - name: "`Cron ❯❯ Job1`"
         # if: github.event.schedule != '*/5 * * * *'
         run: |
           cd .cron && just
