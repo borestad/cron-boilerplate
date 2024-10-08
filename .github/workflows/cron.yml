@@ -109,7 +109,13 @@ jobs:
           detached: false
 
       # ─────────────────────────────────────────────────────
-      - name: "`Cron ❯❯ Job1`"
+      - name: "✨ Docker ❯❯ Job1"
+        # if: github.event.schedule != '*/5 * * * *'
+        run: |
+          docker run hello-world
+
+      # ─────────────────────────────────────────────────────
+      - name: "✨ Cron ❯❯ Job1"
         # if: github.event.schedule != '*/5 * * * *'
         run: |
           cd .cron && just
