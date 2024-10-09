@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run -A
+#!/usr/bin/env -S deno run -Aq
 
 import { Code, benchmark, bkt, hr, log, root, wcl } from 'util.ts'
 import { $ } from 'deps.ts'
