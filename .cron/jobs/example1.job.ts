@@ -40,7 +40,7 @@ log('Lines:', await wcl('.cron/jobs/example1.job.ts'))
 
 log.info('Debug Enviroment Variables')
 const env = Deno.env.toObject()
-log(Object.keys(env).sort().reduce(
+log(Object.keys(env).filter(s => /GITHUB/.test(s)).sort().reduce(
   (obj: any, key: any) => {
     obj[key] = env[key]
     return obj
