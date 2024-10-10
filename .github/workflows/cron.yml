@@ -31,6 +31,8 @@ jobs:
       - name: Create Ramdrive
         run: |
           find . /home/runner/work
+          mv /home/runner/work /home/runner/_work
+          mkdir -p /home/runner/work
           sudo mount -o size=6G -t tmpfs none /home/runner/work
 
       # - name: Benchmark1
