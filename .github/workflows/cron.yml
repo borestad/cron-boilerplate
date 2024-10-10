@@ -30,11 +30,11 @@ jobs:
     steps:
       - name: Create Ramdrive
         run: |
-          find . /home/runner/work
           mv /home/runner/work /home/runner/_work
           mkdir -p /home/runner/work
-          rsync -a /home/runner/_work /home/runner/work
           sudo mount -o size=6G -t tmpfs none /home/runner/work
+          rsync -a /home/runner/_work /home/runner/work
+          find . /home/runner/work
 
       # - name: Benchmark1
       #   run: |
