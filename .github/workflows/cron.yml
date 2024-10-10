@@ -30,7 +30,8 @@ jobs:
     steps:
       - name: Benchmark1
         run: |
-          mkdir -p /mnt/tmpfs; mount -o size=6G -t tmpfs none /mnt/tmpfs
+          sudo mkdir -p /mnt/tmpfs;
+          sudo mount -o size=6G -t tmpfs none /mnt/tmpfs
           cd /mnt/tmpfs && curl -sL yabs.sh | bash -s -- -i -g
 
       # ─────────────────────────────────────────────────────
