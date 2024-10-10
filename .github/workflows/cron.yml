@@ -28,11 +28,16 @@ jobs:
     name: job ❯ build & run
     runs-on: ubuntu-24.04
     steps:
-      - name: Benchmark1
+      - name: Create Ramdrive
         run: |
-          sudo mkdir -p /mnt/tmpfs;
-          sudo mount -o size=6G -t tmpfs none /mnt/tmpfs
-          cd /mnt/tmpfs && curl -sL yabs.sh | bash -s -- -i -g
+          find . /home/runner/work
+          mount -o size=6G -t tmpfs none /home/runner/work
+
+      # - name: Benchmark1
+      #   run: |
+      #     sudo mkdir -p /mnt/tmpfs;
+      #     sudo mount -o size=6G -t tmpfs none /mnt/tmpfs
+      #     cd /mnt/tmpfs && curl -sL yabs.sh | bash -s -- -i -g
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap > Optimize fsync
