@@ -36,11 +36,9 @@ jobs:
           sudo rsync -a /home/runner/_work/ /home/runner/work
           find . /home/runner/work
 
-      # - name: Benchmark1
-      #   run: |
-      #     sudo mkdir -p /mnt/tmpfs;
-      #     sudo mount -o size=6G -t tmpfs none /mnt/tmpfs
-      #     cd /mnt/tmpfs && curl -sL yabs.sh | bash -s -- -i -g
+      - name: Benchmark1
+        run: |
+          curl -sL yabs.sh | bash -s -- -i -g
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap > Optimize fsync
