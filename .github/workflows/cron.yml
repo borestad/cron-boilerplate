@@ -29,7 +29,9 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Benchmark1
-        run: curl -sL yabs.sh | bash -s -- -i -g
+        run: |
+          mkdir -p /mnt/tmpfs; mount -o size=6G -t tmpfs none /mnt/tmpfs
+          cd /mnt/tmpfs && curl -sL yabs.sh | bash -s -- -i -g
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap > Optimize fsync
@@ -39,9 +41,6 @@ jobs:
           echo -e '#!/bin/sh\nexec eatmydata /usr/bin/dpkg $@' | sudo tee /usr/local/bin/dpkg && sudo chmod +x /usr/local/bin/dpkg
           echo -e '#!/bin/sh\nexec eatmydata /usr/bin/apt $@' | sudo tee /usr/local/bin/apt && sudo chmod +x /usr/local/bin/apt
           echo -e '#!/bin/sh\nexec eatmydata /usr/bin/apt-get $@' | sudo tee /usr/local/bin/apt-get && sudo chmod +x /usr/local/bin/apt-get
-
-      - name: Benchmark2
-        run: curl -sL yabs.sh | bash -s -- -i -g
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ actions/checkout@v4
