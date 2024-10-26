@@ -28,7 +28,9 @@ echo 'force-unsafe-io' | sudo tee -a /etc/dpkg/dpkg.cfg > /dev/null
 
 # Disable mandb
 sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
+sudo debconf-set man-db/auto-update false || { echo "set man-db/auto-update false" | debconf-communicate; dpkg-reconfigure man-db; }
 sudo rm -f /var/lib/man-db/auto-update
+
 
 # Don't install unneeded files with apt-get
 cat << 'EOF' | sudo tee /etc/dpkg/dpkg.cfg.d/01_nodoc > /dev/null
