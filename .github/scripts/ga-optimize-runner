@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+##
+#
+# This script is used for optimizing I/O heavy operations & cut buildtime.
+# Strategies used:
+#   * Use eatmydata (disables fsync)
+#   * Disable mandb
+#   * Don't unpack unneeded files
+#   * Increase memory for nodejs to avoid early garbage collection
+#
+##
+
+# https://shitpoet.cc/eat-all-my-data.html
+sudo ln -s /usr/lib/x86_64-linux-gnu/libeatmydata.so /usr/lib/libeatmydata.so
+echo "LD_PRELOAD=/usr/lib/libeatmydata.so" >> $GITHUB_ENV
+
+# Disable fsync calls with dpkg
+echo 'force-unsafe-io' | sudo tee -a /etc/dpkg/dpkg.cfg > /dev/null
+
+# Enforce dpkg/apt/apt-get to not use fsync
+(
+echo -e '#!/bin/sh\nexec eatmydata /usr/bin/dpkg $@' | sudo tee /usr/local/bin/dpkg && sudo chmod +x /usr/local/bin/dpkg
+echo -e '#!/bin/sh\nexec eatmydata /usr/binc/apt $@' | sudo tee /usr/local/bin/apt && sudo chmod +x /usr/local/bin/apt
+echo -e '#!/bin/sh\nexec eatmydata /usr/bin/apt-get $@' | sudo tee /usr/local/bin/apt-get && sudo chmod +x /usr/local/bin/apt-get
+echo -e '#!/bin/sh\nexec /usr/bin/sudo LD_PRELOAD=/usr/lib/libeatmydata.so $@' | /usr/bin/sudo tee /usr/local/bin/apt-get && /usr/bin/sudo chmod +x /usr/local/bin/apt-get
+) &>/dev/null
+
+# Disable mandb
+sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
+sudo rm -f /var/lib/man-db/auto-update
+
+# Don't install unneeded files with apt-get
+cat << 'EOF' | sudo tee /etc/dpkg/dpkg.cfg.d/01_nodoc > /dev/null
+path-exclude /usr/share/groff/*
+path-exclude /usr/share/info/*
+path-exclude /usr/share/lintian/*
+path-exclude /usr/share/linda/*
+path-exclude /var/cache/man/*
+path-exclude /usr/share/locale/*
+path-exclude /usr/share/doc/*
+path-exclude /usr/share/man/*
+EOF

@@ -41,20 +41,16 @@ jobs:
       #     curl -sL yabs.sh | bash -s -- -i -g
 
       # ─────────────────────────────────────────────────────
-      - name: Bootstrap > Optimize fsync
-        run: |
-          echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libeatmydata.so" >> $GITHUB_ENV
-          echo 'force-unsafe-io' | sudo tee -a /etc/dpkg/dpkg.cfg > /dev/null
-          echo -e '#!/bin/sh\nexec eatmydata /usr/bin/dpkg $@' | sudo tee /usr/local/bin/dpkg && sudo chmod +x /usr/local/bin/dpkg
-          echo -e '#!/bin/sh\nexec eatmydata /usr/bin/apt $@' | sudo tee /usr/local/bin/apt && sudo chmod +x /usr/local/bin/apt
-          echo -e '#!/bin/sh\nexec eatmydata /usr/bin/apt-get $@' | sudo tee /usr/local/bin/apt-get && sudo chmod +x /usr/local/bin/apt-get
-          sudo cp -p /bin/true /usr/bin/mandb 2> /dev/null || true
-
-      # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ actions/checkout@v4
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
+      # ─────────────────────────────────────────────────────
+      - name: Bootstrap > Optimize Runner
+        run: |
+          .github/scripts/ga-create-ramdisk
+          .github/scripts/ga-optimize-runner
 
       # ─────────────────────────────────────────────────────
       # - name: Bootstrap ❯❯ denoland/setup-deno@v1
