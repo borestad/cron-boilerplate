@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+##
+#
+# Creates a ram disk for ~ 40-80.000% (!!) faster I/O operations on slow Github CI runners
+#
+##
+
+WORKSPACE=/home/runner/work
+SIZE=8G
+
+test -d $WORKSPACE.bak && \
+  { echo 'Ramdrive script has already been run'; exit 0; }
+
+# Move origin workspace to .bak
+sudo mv $WORKSPACE $WORKSPACE.bak
+mkdir -p $WORKSPACE
+
+# Create the actual ramdrive partition
+sudo mount -o size=$SIZE -t tmpfs none $WORKSPACE
+
+# Copy over all files, preserve attributes & permissions
+sudo rsync -a $WORKSPACE.bak/ $WORKSPACE
+
+# Recreate folders that benefits from high I/O
+mkdir -p $WORKSPACE/{.rush,.local,.cache,.npm}
+
+# Move /var/cache/apt
+sudo rsync -a /var/cache/apt $WORKSPACE/.var-cache-apt
+rm -rf /var/cache/apt;  ln -sfv /var/cache/apt $WORKSPACE/.var-cache-apt
+
+# Symlink folders back to the home folder
+rm -rf /home/runner/.rush;  ln -sfv $WORKSPACE/.rush /home/runner/.rush
+rm -rf /home/runner/.local; ln -sfv $WORKSPACE/.local /home/runner/.local
+rm -rf /home/runner/.cache; ln -sfv $WORKSPACE/.cache /home/runner/.cache
+rm -rf /home/runner/.npm;   ln -sfv $WORKSPACE/.cache /home/runner/.npm
+
+echo
+df -Th
+echo
