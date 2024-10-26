@@ -51,10 +51,10 @@ EOF
   if [ ! $exitcode -eq 0 ]; then
     echo "[install-deb]: ❌ Error downloading $pkgs"
     echo "[install-deb]: (1/2) Retrying with apt-get update: $pkgs"
-    sudo /usr/local/bin/apt-get update
+    sudo eatmydata -- apt-get update
 
     echo "[install-deb]: (2/2) Retrying with apt-get --download-only: $pkgs"
-    sudo /usr/local/bin/apt-get -qq install --download-only -y $pkgs || exit 1
+    sudo eatmydata -- apt-get -qq install --download-only -y $pkgs || exit 1
   fi
 
   echo "✔ [install-deb]: Extracting *.deb: $pkgs"
