@@ -26,9 +26,9 @@ sudo rsync -a $WORKSPACE.bak/ $WORKSPACE
 mkdir -p $WORKSPACE/{.rush,.local,.cache,.npm}
 
 # Move /var/cache/apt
-# mkdir -p $WORKSPACE/.var-cache-apt
-# sudo rsync -a /var/cache/apt/ $WORKSPACE/.var-cache-apt
-# sudo rm -rf /var/cache/apt;  sudo ln -sfv /var/cache/apt $WORKSPACE/.var-cache-apt
+mkdir -p $WORKSPACE/.var-cache-apt
+sudo rsync -a /var/cache/apt/ $WORKSPACE/.var-cache-apt
+sudo rm -rf /var/cache/apt;  sudo ln -sfv $WORKSPACE/.var-cache-apt /var/cache/apt
 
 # Symlink folders back to the home folder
 rm -rf /home/runner/.rush;  ln -sfv $WORKSPACE/.rush /home/runner/.rush

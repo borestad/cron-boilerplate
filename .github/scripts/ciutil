@@ -44,9 +44,9 @@ path-exclude /usr/share/man/*
 EOF
 
   echo "✔ [install-deb]: $pkgs"
-  sudo /usr/local/bin/apt-get clean
-  sudo eatmydata -- dpkg --clear-avail
-  sudo /usr/local/bin/apt-get -qq install --download-only -y $pkgs || exitcode=$?
+  sudo apt-get clean
+  sudo dpkg --clear-avail
+  sudo apt-get -qq install --download-only -y $pkgs || exitcode=$?
 
   if [ ! $exitcode -eq 0 ]; then
     echo "[install-deb]: ❌ Error downloading $pkgs"
