@@ -127,6 +127,7 @@ jobs:
       - name: ✨ Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
+          deno --version
           cd .cron && just
 
       # ─────────────────────────────────────────────────────
