@@ -69,7 +69,7 @@ jobs:
         name: Bootstrap ❯❯ Restore Lockfile Cache
         with:
           path: ${{ env.ACTIONS_CACHE_DIR }}
-          key:  ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/deno.lock') }}
+          key: ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/deno.lock') }}
           restore-keys: |
             ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/deno.lock') }}
             # ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-
@@ -80,7 +80,7 @@ jobs:
         if: always()
         with:
           path: ${{ env.TTL_CACHE_DIR }}
-          key:  ${{ runner.os }}-v1-ttl-cache-${{ env.CACHE_PREFIX }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: ${{ runner.os }}-v1-ttl-cache-${{ env.CACHE_PREFIX }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             ${{ runner.os }}-v1-ttl-cache-${{ env.CACHE_PREFIX }}-
             ${{ runner.os }}-v1-ttl-cache-
@@ -118,13 +118,13 @@ jobs:
           detached: true
 
       # ─────────────────────────────────────────────────────
-      - name: "✨ Docker ❯❯ Job1"
+      - name: ✨ Docker ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
           pstats docker run hello-world
 
       # ─────────────────────────────────────────────────────
-      - name: "✨ Cron ❯❯ Job1"
+      - name: ✨ Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
           cd .cron && just
@@ -137,7 +137,7 @@ jobs:
           git push
 
       # ─────────────────────────────────────────────────────
-      - name: "Debug ❯❯ Context Information"
+      - name: Debug ❯❯ Context Information
         id: github_context_step
         env:
           JSON_GITHUB: ${{ toJSON(github) }}
@@ -154,4 +154,3 @@ jobs:
           ✨ "Debug: file cache ($FILES_CACHE_DIR)"         && show-cache-structure-files
           ___
           ga-dump-context # | tee /tmp/ga-dump-context.txt &> /dev/null && cat /tmp/ga-dump-context.txt
-

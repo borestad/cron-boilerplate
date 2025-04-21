@@ -12,17 +12,15 @@ import { $, chalk, createConsola } from 'deps.ts'
 /**
  * bkt - caching utility
  */
-export async function bkt({
-  cwd = '.',
-  ttl = '3600s',
-  timeout = '60s',
-  cmd = '',
-}) {
-  if (cwd.trim().length)
+export async function bkt({ cwd = '.', ttl = '3600s', timeout = '60s', cmd = '' }) {
+  if (cwd.trim().length) {
     cmd = `mkdir -p ${cwd}; cd ${cwd}; ${cmd}`
+  }
 
   return await $`timeout ${timeout} bkt --discard-failures --ttl=${ttl} -- sh -c ${cmd}`
-    .noThrow().captureCombined().printCommand()
+    .noThrow()
+    .captureCombined()
+    .printCommand()
 }
 
 /**
@@ -39,11 +37,11 @@ export const log = Object.assign(
  * Simple line filler helper
  */
 export function hr(title = '', opt = { len: 80, pTop: true, pBottom: true }) {
-  title = title ? `${title} ` : title
+  const str = title ? `${title} ` : title
   const rest = opt.len - Number(title.length)
 
   opt.pTop && log()
-  log(title + '─'.repeat(rest))
+  log(str + '─'.repeat(rest))
   opt.pBottom && log()
 }
 
@@ -71,6 +69,6 @@ export function benchmark(unitMs = 1) {
   }
 }
 
-export function wcl(path: string): Promise<string> {
+export async function wcl(path: string): Promise<string> {
   return $`cat ${path} | wc -l`.text()
 }

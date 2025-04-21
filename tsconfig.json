@@ -16,11 +16,6 @@
     "esModuleInterop": true
   },
   "files": [],
-  "include": [
-    "**/*.ts",
-    ".cron/**/*.ts"
-  ],
-  "exclude": [
-    "deno.json"
-  ]
+  "include": ["**/*.ts", ".cron/**/*.ts"],
+  "exclude": ["deno.json"]
 }

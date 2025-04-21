@@ -3,6 +3,7 @@
     "semiColons": false,
     "singleQuote": true
   },
+  "nodeModulesDir": "auto",
   "imports": {
     "dax/": "https://deno.land/x/dax@0.39.2/",
     "fmt/": "https://deno.land/std@0.224.0/fmt/",
@@ -11,5 +12,12 @@
     "deps.ts": "./.cron/deps.ts",
     "util.ts": "./.cron/util.ts"
   },
-  "lock": "./deno.lock"
+  "lock": "./deno.lock",
+  "compilerOptions": {
+    "checkJs": false,
+    "strict": false,
+    "strictNullChecks": true,
+    "noImplicitAny": false
+  },
+  "unstable": ["sloppy-imports"]
 }

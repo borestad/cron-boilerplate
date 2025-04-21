@@ -1,12 +1,13 @@
 #!/usr/bin/env -S deno run -Aq
 
-import { Code, benchmark, bkt, hr, log, root, wcl } from 'util.ts'
 import { $ } from 'deps.ts'
+import { Code, benchmark, bkt, hr, log, root, wcl } from 'util.ts'
 
 const b1 = benchmark()
 const b2 = benchmark(1000)
 
 await $`echo hello world`
+
 const param = '+%Y-%m-%d-%H%M%S'
 
 const res = await bkt({
@@ -40,10 +41,12 @@ log('Lines:', await wcl('.cron/jobs/example1.job.ts'))
 
 log.info('Debug Enviroment Variables')
 const env = Deno.env.toObject()
-log(Object.keys(env).filter(s => /GITHUB/.test(s)).sort().reduce(
-  (obj: any, key: any) => {
-    obj[key] = env[key]
-    return obj
-  },
-  {},
-))
+log(
+  Object.keys(env)
+    .filter((s) => /GITHUB/.test(s))
+    .sort()
+    .reduce((obj: any, key: any) => {
+      obj[key] = env[key]
+      return obj
+    }, {}),
+)
