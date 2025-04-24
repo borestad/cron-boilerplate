@@ -69,5 +69,8 @@
   "typescript.suggest.paths": true,
   "explorer.fileNesting.enabled": false,
 
-  "prettier.enable": false
+  "prettier.enable": false,
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "/Users/johan/.local/share/mise/shims/node"
+  }
 }
