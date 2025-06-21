@@ -40,5 +40,8 @@
   "scripts": {
     "postinstall": "rm -f pnpm-lock.yaml &> /dev/null"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "consola": "^3.4.2"
+  }
 }
