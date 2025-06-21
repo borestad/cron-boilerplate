@@ -60,10 +60,16 @@ jobs:
           experimental: true
           cache: true
 
-      - name: Bootstrap ❯❯ denoland/setup-deno@v2
-        uses: denoland/setup-deno@v2
+      - uses: oven-sh/setup-bun@v2
+        name: Bootstrap ❯❯ oven-sh/setup-bun@v2
         with:
-          deno-version: v2.x
+          bun-version: latest
+
+
+      # - name: Bootstrap ❯❯ denoland/setup-deno@v2
+      #   uses: denoland/setup-deno@v2
+      #   with:
+      #     deno-version: v2.x
 
       # ─────────────────────────────────────────────────────
       - name: Bootstrap ❯❯ Set env variables
@@ -76,9 +82,9 @@ jobs:
         name: Bootstrap ❯❯ Restore Lockfile Cache
         with:
           path: ${{ env.ACTIONS_CACHE_DIR }}
-          key: ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/deno.lock') }}
+          key: ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
-            ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/deno.lock') }}
+            ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-${{ hashFiles('**/bun.lock') }}
             # ${{ runner.os }}-v1-store-${{ env.CACHE_PREFIX_DAILY }}-
             # ${{ runner.os }}-v1-store-
 
@@ -134,7 +140,8 @@ jobs:
       - name: ✨ Cron ❯❯ Job1
         # if: github.event.schedule != '*/5 * * * *'
         run: |
-          deno --version
+          bun install --frozen-lockfile
+          bun --version
           cd .cron && just
 
       # ─────────────────────────────────────────────────────

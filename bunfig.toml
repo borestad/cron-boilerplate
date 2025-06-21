@@ -1,0 +1,6 @@
+# https://bun.sh/docs/runtime/bunfig
+
+telemetry = false
+
+[run]
+bun = true # equivalent to `bun --bun` for all `bun run` commands

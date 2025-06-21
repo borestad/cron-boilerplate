@@ -1,7 +1,8 @@
-#!/usr/bin/env -S deno run -A
+#!/usr/bin/env -S bun
 
-import { $ } from 'deps.ts'
+import { $ } from 'bun'
+import { log } from '../util'
 
 await $`echo hello`
 
-$.log('world')
+log.log('world')

@@ -1,12 +1,12 @@
 {
-  "extends": "@tsconfig/deno/tsconfig.json",
+  "extends": "@tsconfig/bun/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
     "experimentalDecorators": true,
     "baseUrl": ".",
     "rootDir": ".",
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "checkJs": false,
     "strict": false,
     "strictNullChecks": true,

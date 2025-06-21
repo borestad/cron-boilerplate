@@ -1,5 +1,0 @@
-export * as P from 'npm:blend-promise-utils'
-export { default as chalk } from 'npm:chalk'
-export { consola, createConsola } from 'npm:consola'
-export { $ } from 'dax/mod.ts'
-export { colors } from 'dax/src/deps.ts'

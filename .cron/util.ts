@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 /**
  *
  * Common utils
@@ -7,7 +5,9 @@
  */
 
 import { URL } from 'node:url'
-import { $, chalk, createConsola } from 'deps.ts'
+import { $ } from 'bun'
+import chalk from 'chalk'
+import { createConsola } from 'consola'
 
 /**
  * bkt - caching utility
@@ -18,9 +18,6 @@ export async function bkt({ cwd = '.', ttl = '3600s', timeout = '60s', cmd = '' 
   }
 
   return await $`timeout ${timeout} bkt --discard-failures --ttl=${ttl} -- sh -c ${cmd}`
-    .noThrow()
-    .captureCombined()
-    .printCommand()
 }
 
 /**
@@ -29,7 +26,10 @@ export async function bkt({ cwd = '.', ttl = '3600s', timeout = '60s', cmd = '' 
 export const log = Object.assign(
   (...args: any) => console.log(...args),
   createConsola({
-    fancy: true,
+    formatOptions: {
+      date: false,
+      colors: true,
+    },
   }),
 )
 
@@ -70,5 +70,5 @@ export function benchmark(unitMs = 1) {
 }
 
 export async function wcl(path: string): Promise<string> {
-  return $`cat ${path} | wc -l`.text()
+  return await $`cat ${path} | wc -l`.text()
 }

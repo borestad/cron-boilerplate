@@ -11,7 +11,7 @@
 Goals:
 
 - Cron Job oriented
-- Preconfigured - use Bash or [Deno](https://deno.land/) with
+- Preconfigured - use Bash, [Bun](https://bun.sh) or [Deno](https://deno.land/) with
   [Dax](https://github.com/dsherret/dax)
 - Fastest installation possible
 - Multithreaded & parallellism by default

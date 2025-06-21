@@ -1,6 +1,8 @@
 [env]
 NODE_ENV = 'production'
 DENO_NO_PACKAGE_JSON=1
+_.path = [ "./node_modules/.bin" ]
+
 
 [tools]
 

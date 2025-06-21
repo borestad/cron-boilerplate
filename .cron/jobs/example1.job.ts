@@ -1,7 +1,7 @@
-#!/usr/bin/env -S deno run -Aq
+#!/usr/bin/env -S bun
 
-import { $ } from 'deps.ts'
-import { benchmark, bkt, Code, hr, log, root, wcl } from 'util.ts'
+import { $ } from 'bun'
+import { benchmark, bkt, Code, hr, log, root, wcl } from '../util'
 
 const b1 = benchmark()
 const b2 = benchmark(1000)
@@ -15,7 +15,7 @@ const res = await bkt({
 })
 
 hr('Hello')
-log(res.stdout)
+log(res.stdout.toString())
 
 log.info(root)
 
@@ -33,14 +33,14 @@ log(Code.WARN)
 log(b1())
 log(b2())
 
-$.cd(root)
+process.chdir(root)
 log('Lines:', await wcl('.cron/jobs/example1.job.ts'))
 
 // Disable on purpose to test working no-floating-promises
-// wcl('.cron/jobs/example1.job.ts')
+wcl('.cron/jobs/example1.job.ts')
 
 log.info('Debug Enviroment Variables')
-const env = Deno.env.toObject()
+const env = Bun.env
 log(
   Object.keys(env)
     .filter((s) => /GITHUB/.test(s))

@@ -9,31 +9,12 @@
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
-  "deno.enable": true,
-  "deno.cacheOnSave": true,
-  "deno.codeLens.implementations": true,
-  "deno.codeLens.references": true,
-  "deno.config": "./deno.json",
-  "deno.importMap": "./deno.json",
-  "deno.internalDebug": false,
-  "deno.lint": false,
-  "deno.suggest.imports.autoDiscover": true,
-  // "deno.inlayHints.enumMemberValues.enabled": true,
-  // "deno.inlayHints.functionLikeReturnTypes.enabled": true,
-  // "deno.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
-  // "deno.inlayHints.parameterNames.enabled": "none",
-  // "deno.inlayHints.variableTypes.enabled": true,
-  // "deno.inlayHints.propertyDeclarationTypes.enabled": true,
-  // "deno.inlayHints.variableTypes.suppressWhenTypeMatchesName": true,
-  // "deno.inlayHints.parameterTypes.enabled": true,
-  "deno.suggest.imports.hosts": {
-    "https://deno.land": true
-  },
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.biome": "explicit",
-    "source.organizeImports": "never"
-  },
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+    },
   "biome.enabled": true,
   "editor.codeLens": true,
   "editor.defaultFormatter": "biomejs.biome",
