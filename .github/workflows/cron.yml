@@ -119,7 +119,6 @@ jobs:
           ✨ "Debug: ttl cache ($TTL_CACHE_DIR)"            && show-cache-structure-ttl
           ✨ "Debug: file cache ($FILES_CACHE_DIR)"         && show-cache-structure-files
           ✨ "Debug: apt cache (/var/cache/apt/archives)"   && show-cache-structure-apt
-          ✨ "pnpm install"                                 && install-nodemodules
           ✨ "Housekeeping:"                                && cron-housekeeping
 
       # ─────────────────────────────────────────────────────
