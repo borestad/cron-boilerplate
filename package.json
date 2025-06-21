@@ -11,10 +11,10 @@
     "postinstall": "rm -f pnpm-lock.yaml &> /dev/null"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.12.0",
+    "@antfu/eslint-config": "^4.15.0",
     "@tsconfig/deno": "^1.0.11",
-    "@types/node": "^22.14.1",
-    "eslint": "^9.25.1",
+    "@types/node": "^22.15.32",
+    "eslint": "^9.29.0",
     "typescript": "^5.8.3"
   },
   "preinstallBinaries": [

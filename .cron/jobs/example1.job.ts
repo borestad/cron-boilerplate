@@ -1,7 +1,7 @@
 #!/usr/bin/env -S deno run -Aq
 
 import { $ } from 'deps.ts'
-import { Code, benchmark, bkt, hr, log, root, wcl } from 'util.ts'
+import { benchmark, bkt, Code, hr, log, root, wcl } from 'util.ts'
 
 const b1 = benchmark()
 const b2 = benchmark(1000)
