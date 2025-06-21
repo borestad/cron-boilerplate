@@ -1,0 +1,8 @@
+[env]
+NODE_ENV = 'production'
+DENO_NO_PACKAGE_JSON=1
+
+[tools]
+
+[tasks.build]
+run = 'echo "running build tasks"'

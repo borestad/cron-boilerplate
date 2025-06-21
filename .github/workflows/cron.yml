@@ -53,6 +53,13 @@ jobs:
           .github/scripts/ga-optimize-runner
 
       # ─────────────────────────────────────────────────────
+      - uses: jdx/mise-action@v2
+        name: Bootstrap ❯❯ jdx/mise-action@v2
+        with:
+          install: true
+          experimental: true
+          cache: true
+
       - name: Bootstrap ❯❯ denoland/setup-deno@v2
         uses: denoland/setup-deno@v2
         with:
