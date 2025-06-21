@@ -12,7 +12,7 @@
     "deps.ts": "./.cron/deps.ts",
     "util.ts": "./.cron/util.ts"
   },
-  "lock": "./deno.lock",
+  "lock": "deno.lock",
   "compilerOptions": {
     "checkJs": false,
     "strict": false,
