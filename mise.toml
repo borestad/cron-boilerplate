@@ -1,6 +1,7 @@
 [env]
 NODE_ENV = 'production'
 DENO_NO_PACKAGE_JSON=1
+FORCE_COLOR=1
 _.path = [ "./node_modules/.bin" ]
 
 
@@ -8,3 +9,9 @@ _.path = [ "./node_modules/.bin" ]
 
 [tasks.build]
 run = 'echo "running build tasks"'
+
+[tasks.job1]
+run = '{{config_root}}/.cron/jobs/example1.job.ts'
+
+[tasks.job2]
+run = '{{config_root}}/.cron/jobs/example2.job.ts'
