@@ -112,7 +112,7 @@ install-nodemodules() {
   fi
 }
 
-to_env() {
+set-env() {
   [[ "$2" == *"/"* ]] && (echo "$1 => $2" && mkdir -p $2 || true 2> /dev/null)
   export $1=$2
   echo "$1=$2" >> $GITHUB_ENV
@@ -128,33 +128,38 @@ set-env-variables() {
   # Action Cache
   WS=$RUNNER_WORKSPACE
 
-  # to_env LD_PRELOAD /usr/lib/x86_64-linux-gnu/libeatmydata.so
-  to_env ACTIONS_CACHE_DIR $WS/.actions-cache
-  to_env ACTIONS_CACHE_BIN_DIR $WS/.actions-cache/bin
-  to_env PNPM_STORE_DIR $WS/.actions-cache/pnpm/pnpm-store
-  to_env EGET_BIN $WS/.actions-cache/bin
-  to_env DENO_DIR $WS/.actions-cache/.deno
-  to_env PNPM_HOME $WS/.actions-cache/pnpm
-  to_env DENO_NO_PACKAGE_JSON 1
+  # set-env LD_PRELOAD /usr/lib/x86_64-linux-gnu/libeatmydata.so
+  set-env ACTIONS_CACHE_DIR      $WS/.actions-cache
+  set-env ACTIONS_CACHE_BIN_DIR  $WS/.actions-cache/bin
 
   # TTL Cache (Cache that will automatically be invalidated)
-  to_env TTL_CACHE_DIR $WS/.cache-ttl
-  to_env BKT_CACHE_DIR $WS/.cache-ttl/bkt
+  set-env TTL_CACHE_DIR          $WS/.cache-ttl
+  set-env BKT_CACHE_DIR          $WS/.cache-ttl/bkt
 
   # Files Cache (Cache that will automatically be invalidated)
-  to_env FILES_CACHE_DIR $WS/.cache-files
+  set-env FILES_CACHE_DIR        $WS/.cache-files
 
   # Other dirs
-  to_env DEBUG_DIR $WS/.debug
-  to_env RUNNER_TEMPDIR $RUNNER_TEMP/$(date +%s%N)
+  set-env DEBUG_DIR              $WS/.debug
+  set-env RUNNER_TEMPDIR         $RUNNER_TEMP/$(date +%s%N)
+  set-env PNPM_STORE_DIR         $WS/.actions-cache/pnpm/pnpm-store
+
+  # Misc package manager config
+  set-env EGET_BIN               $WS/.actions-cache/bin
+  set-env DENO_DIR               $WS/.actions-cache/.deno
+  set-env PNPM_HOME              $WS/.actions-cache/pnpm
+  set-env DENO_NO_PACKAGE_JSON   1
 
   # Other env
-  to_env CACHE_PREFIX_WEEKLY "$(date +'%U')"      # changes every week (i.e 06)
-  to_env CACHE_PREFIX_DAILY "$(date +'%Y-%m-%d')" # changes every day (i.e 2024-02-12)
-  date +'%U'
-  to_env NODE_ENV production
-  to_env TERM xterm-256color
-  to_env FORCE_COLOR 1
+  set-env CACHE_PREFIX_WEEKLY    "$(date +'%U')"      # changes every week (i.e 06)
+  set-env CACHE_PREFIX_DAILY     "$(date +'%Y-%m-%d')" # changes every day (i.e 2024-02-12)
+
+  # Production / Test config
+  set-env NODE_ENV               production
+
+  # Terminal config
+  set-env TERM                   xterm-256color
+  set-env FORCE_COLOR            1
 
   # PATH
   add_path './node_modules/.bin'
