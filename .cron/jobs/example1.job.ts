@@ -37,7 +37,7 @@ process.chdir(root)
 log('Lines:', await wcl('.cron/jobs/example1.job.ts'))
 
 // Disable on purpose to test working no-floating-promises
-wcl('.cron/jobs/example1.job.ts')
+await wcl('.cron/jobs/example1.job.ts')
 
 log.info('Debug Enviroment Variables')
 const env = Bun.env

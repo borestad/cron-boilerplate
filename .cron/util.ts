@@ -7,7 +7,7 @@
 import { URL } from 'node:url'
 import { $ } from 'bun'
 import chalk from 'chalk'
-import { createConsola } from 'consola'
+import consola from 'consola'
 
 /**
  * bkt - caching utility
@@ -25,7 +25,9 @@ export async function bkt({ cwd = '.', ttl = '3600s', timeout = '60s', cmd = '' 
  */
 export const log = Object.assign(
   (...args: any) => console.log(...args),
-  createConsola({
+  consola.create({
+    // @ts-ignore
+    fancy: false,
     formatOptions: {
       date: false,
       colors: true,
@@ -69,6 +71,6 @@ export function benchmark(unitMs = 1) {
   }
 }
 
-export async function wcl(path: string): Promise<string> {
-  return await $`cat ${path} | wc -l`.text()
+export function wcl(path: string): Promise<string> {
+  return $`cat ${path} | wc -l`.text()
 }

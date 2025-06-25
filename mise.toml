@@ -10,7 +10,7 @@ _.path = [ "./node_modules/.bin" ]
 [tasks.build]
 run = 'echo "running build tasks"'
 
-[tasks.job1]
+[tasks.job]
 run = '{{config_root}}/.cron/jobs/example1.job.ts'
 
 [tasks.job2]

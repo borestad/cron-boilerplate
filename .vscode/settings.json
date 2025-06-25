@@ -6,6 +6,9 @@
   "[json]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -14,7 +17,7 @@
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit",
     "source.fixAll.biome": "explicit"
-    },
+  },
   "biome.enabled": true,
   "editor.codeLens": true,
   "editor.defaultFormatter": "biomejs.biome",
@@ -42,7 +45,18 @@
     ".github/**/*.yaml": "github-actions-workflow",
     ".github/**/*.yml": "github-actions-workflow"
   },
-  "files.exclude": {},
+  "files.exclude": {
+    ".gitignore": false,
+    ".vscode": false,
+    "**/.*cache*": false,
+    "**/.code/**": false,
+    "**/.nyc_output": false,
+    "**/.pnp*": false,
+    "**/.tmp": false,
+    "**/*.log": false,
+    "**/node_modules/**": false,
+    "**/reports": false
+  },
   "json.schemaDownload.enable": true,
   "typescript.suggest.autoImports": true,
   "typescript.suggest.completeFunctionCalls": true,

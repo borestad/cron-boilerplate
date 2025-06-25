@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", ".cron/jobs/*.ts"]
+    "includes": ["**", ".cron/jobs/*.ts", "biome.jsonc"]
   },
   "formatter": {
     "enabled": true,
@@ -20,16 +20,21 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "nursery": {
+        "noFloatingPromises": "error"
+      },
       "suspicious": {
         "noExplicitAny": "off",
         "useAwait": "error",
         "noAsyncPromiseExecutor": "error"
       },
       "complexity": {
+        "recommended": true,
         "noForEach": "off",
         "noCommaOperator": "off"
       },
       "style": {
+        "recommended": true,
         "noParameterAssign": "error",
         "useAsConstAssertion": "error",
         "useDefaultParameterLast": "error",
