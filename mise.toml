@@ -14,6 +14,6 @@ run = 'echo "running build tasks"'
 run = '''
   {{config_root}}/.cron/jobs/example1.job.ts
   {{config_root}}/.cron/jobs/example2.job.ts
-  {{config_root}}/.cron/jobs/example3.job.ts
+  {{config_root}}/.cron/jobs/example3.job
   {{config_root}}/.cron/jobs/example4.job.ts
 '''
